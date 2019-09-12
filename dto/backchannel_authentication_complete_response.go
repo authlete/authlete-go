@@ -22,50 +22,50 @@ type BackchannelAuthenticationCompleteResponse struct {
 	ApiResponse
 
 	//
-	Action BackchannelAuthenticationCompleteAction `json:"action"`
+	Action BackchannelAuthenticationCompleteAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientName string `json:"clientName"`
+	ClientName string `json:"clientName,omitempty"`
 
 	//
-	DeliveryMode types.DeliveryMode `json:"deliveryMode"`
+	DeliveryMode types.DeliveryMode `json:"deliveryMode,omitempty"`
 
 	//
-	ClientNotificationEndpoint string `json:"clientNotificationEndpoint"`
+	ClientNotificationEndpoint string `json:"clientNotificationEndpoint,omitempty"`
 
 	//
-	ClientNotificationToken string `json:"clientNotificationToken"`
+	ClientNotificationToken string `json:"clientNotificationToken,omitempty"`
 
 	//
-	AuthReqId string `json:"authReqId"`
+	AuthReqId string `json:"authReqId,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	RefreshToken string `json:"refreshToken"`
+	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	IdToken string `json:"idToken"`
+	IdToken string `json:"idToken,omitempty"`
 
 	//
-	AccessTokenDuration uint64 `json:"accessTokenDuration"`
+	AccessTokenDuration uint64 `json:"accessTokenDuration,omitempty"`
 
 	//
-	RefreshTokenDuration uint64 `json:"refreshTokenDuration"`
+	RefreshTokenDuration uint64 `json:"refreshTokenDuration,omitempty"`
 
 	//
-	IdTokenDuration uint64 `json:"idTokenDuration"`
+	IdTokenDuration uint64 `json:"idTokenDuration,omitempty"`
 
 	//
-	JwtAccessToken string `json:"jwtAccessToken"`
+	JwtAccessToken string `json:"jwtAccessToken,omitempty"`
 }

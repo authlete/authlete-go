@@ -18,5 +18,5 @@ package dto
 
 type BackchannelAuthenticationIssueRequest struct {
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 }

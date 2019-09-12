@@ -20,8 +20,8 @@ type TokenFailResponse struct {
 	ApiResponse
 
 	//
-	Action TokenFailAction `json:"action"`
+	Action TokenFailAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

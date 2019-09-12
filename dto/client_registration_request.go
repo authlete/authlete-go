@@ -17,7 +17,7 @@
 package dto
 
 type ClientRegistrationRequest struct {
-	Json     string `json:"json"`
-	Token    string `json:"token"`
-	ClientId string `json:"clientId"`
+	Json     string `json:"json,omitempty"`
+	Token    string `json:"token,omitempty"`
+	ClientId string `json:"clientId,omitempty"`
 }

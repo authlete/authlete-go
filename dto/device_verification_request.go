@@ -17,5 +17,5 @@
 package dto
 
 type DeviceVerificationRequest struct {
-	UserCode string `json:"userCode"`
+	UserCode string `json:"userCode,omitempty"`
 }

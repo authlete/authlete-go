@@ -17,5 +17,5 @@
 package dto
 
 type ClientSecretUpdateRequest struct {
-	ClientSecret string `json:"clientSecret"`
+	ClientSecret string `json:"clientSecret,omitempty"`
 }

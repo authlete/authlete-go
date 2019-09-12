@@ -20,20 +20,20 @@ type TokenUpdateResponse struct {
 	ApiResponse
 
 	//
-	Action TokenUpdateAction `json:"action"`
+	Action TokenUpdateAction `json:"action,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	TokenType string `json:"tokenType"`
+	TokenType string `json:"tokenType,omitempty"`
 
 	//
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 }

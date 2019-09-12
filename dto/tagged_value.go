@@ -17,6 +17,6 @@
 package dto
 
 type TaggedValue struct {
-	Tag   string `json:"tag"`
-	Value string `json:"value"`
+	Tag   string `json:"tag,omitempty"`
+	Value string `json:"value,omitempty"`
 }

@@ -20,17 +20,17 @@ type BackchannelAuthenticationIssueResponse struct {
 	ApiResponse
 
 	//
-	Action BackchannelAuthenticationIssueAction `json:"action"`
+	Action BackchannelAuthenticationIssueAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	AuthReqId string `json:"authReqId"`
+	AuthReqId string `json:"authReqId,omitempty"`
 
 	//
-	ExpiresIn uint32 `json:"expiresIn"`
+	ExpiresIn uint32 `json:"expiresIn,omitempty"`
 
 	//
-	Interval uint32 `json:"interval"`
+	Interval uint32 `json:"interval,omitempty"`
 }

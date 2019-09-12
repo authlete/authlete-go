@@ -22,65 +22,65 @@ type BackchannelAuthenticationResponse struct {
 	ApiResponse
 
 	//
-	Action BackchannelAuthenticationAction `json:"action"`
+	Action BackchannelAuthenticationAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientName string `json:"clientName"`
+	ClientName string `json:"clientName,omitempty"`
 
 	//
-	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod"`
+	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod,omitempty"`
 
 	//
-	DeliveryMode types.DeliveryMode `json:"deliveryMode"`
+	DeliveryMode types.DeliveryMode `json:"deliveryMode,omitempty"`
 
 	//
-	Scopes []Scope `json:"scopes"`
+	Scopes []Scope `json:"scopes,omitempty"`
 
 	//
-	ClaimNames []string `json:"claimNames"`
+	ClaimNames []string `json:"claimNames,omitempty"`
 
 	//
-	ClientNotificationToken string `json:"clientNotificationToken"`
+	ClientNotificationToken string `json:"clientNotificationToken,omitempty"`
 
 	//
-	Acrs []string `json:"acrs"`
+	Acrs []string `json:"acrs,omitempty"`
 
 	//
-	HintType types.UserIdentificationHintType `json:"hintType"`
+	HintType types.UserIdentificationHintType `json:"hintType,omitempty"`
 
 	//
-	Hint string `json:"hint"`
+	Hint string `json:"hint,omitempty"`
 
 	//
-	Sub string `json:"sub"`
+	Sub string `json:"sub,omitempty"`
 
 	//
-	BindingMessage string `json:"bindingMessage"`
+	BindingMessage string `json:"bindingMessage,omitempty"`
 
 	//
-	UserCode string `json:"userCode"`
+	UserCode string `json:"userCode,omitempty"`
 
 	//
-	UserCodeRequired bool `json:"userCodeRequired"`
+	UserCodeRequired bool `json:"userCodeRequired,omitempty"`
 
 	//
-	RequestedExpiry uint32 `json:"requestedExpiry"`
+	RequestedExpiry uint32 `json:"requestedExpiry,omitempty"`
 
 	//
-	RequestContext string `json:"requestContext"`
+	RequestContext string `json:"requestContext,omitempty"`
 
 	//
-	Warnings []string `json:"warnings"`
+	Warnings []string `json:"warnings,omitempty"`
 
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 }

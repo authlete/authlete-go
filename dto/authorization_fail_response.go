@@ -21,8 +21,8 @@ type AuthorizationFailResponse struct {
 	ApiResponse
 
 	// The next action that the authorization server should take.
-	Action AuthorizationFailAction `json:"action"`
+	Action AuthorizationFailAction `json:"action,omitempty"`
 
 	// The response content which can be used to generated a response to the client.
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

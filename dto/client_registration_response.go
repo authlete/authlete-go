@@ -20,11 +20,11 @@ type ClientRegistrationResponse struct {
 	ApiResponse
 
 	//
-	Action ClientRegistrationAction `json:"action"`
+	Action ClientRegistrationAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	Client Client `json:"client"`
+	Client Client `json:"client,omitempty"`
 }

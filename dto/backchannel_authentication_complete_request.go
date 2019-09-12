@@ -18,35 +18,35 @@ package dto
 
 type BackchannelAuthenticationCompleteRequest struct {
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	//
-	Result BackchannelAuthenticationCompleteResult `json:"result"`
+	Result BackchannelAuthenticationCompleteResult `json:"result,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Sub string `json:"sub"`
+	Sub string `json:"sub,omitempty"`
 
 	//
-	AuthTime uint64 `json:"authTime"`
+	AuthTime uint64 `json:"authTime,omitempty"`
 
 	//
-	Acr string `json:"acr"`
+	Acr string `json:"acr,omitempty"`
 
 	//
-	Claims string `json:"claims"`
+	Claims string `json:"claims,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	ErrorDescription string `json:"errorDescription"`
+	ErrorDescription string `json:"errorDescription,omitempty"`
 
 	//
-	ErrorUri string `json:"errorUri"`
+	ErrorUri string `json:"errorUri,omitempty"`
 }

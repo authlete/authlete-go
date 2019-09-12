@@ -20,35 +20,35 @@ import "github.com/authlete/authlete-go/types"
 
 type TokenCreateRequest struct {
 	//
-	GrantType types.GrantType `json:"grantType"`
+	GrantType types.GrantType `json:"grantType,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	AccessTokenDuration uint64 `json:"accessTokenDuration"`
+	AccessTokenDuration uint64 `json:"accessTokenDuration,omitempty"`
 
 	//
-	RefreshTokenDuration uint64 `json:"refreshTokenDuration"`
+	RefreshTokenDuration uint64 `json:"refreshTokenDuration,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	RefreshToken string `json:"refreshToken"`
+	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	AccessTokenPersistent bool `json:"accessTokenPersistent"`
+	AccessTokenPersistent bool `json:"accessTokenPersistent,omitempty"`
 }

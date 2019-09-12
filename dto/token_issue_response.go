@@ -20,44 +20,44 @@ type TokenIssueResponse struct {
 	ApiResponse
 
 	//
-	Action TokenIssueAction `json:"action"`
+	Action TokenIssueAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	//
-	AccessTokenDuration uint64 `json:"accessTokenDuration"`
+	AccessTokenDuration uint64 `json:"accessTokenDuration,omitempty"`
 
 	//
-	RefreshToken string `json:"refreshToken"`
+	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	RefreshTokenExpiresAt uint64 `json:"refreshTokenExpiresAt"`
+	RefreshTokenExpiresAt uint64 `json:"refreshTokenExpiresAt,omitempty"`
 
 	//
-	RefreshTokenDuration uint64 `json:"refreshTokenDuration"`
+	RefreshTokenDuration uint64 `json:"refreshTokenDuration,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	JwtAccessToken string `json:"jwtAccessToken"`
+	JwtAccessToken string `json:"jwtAccessToken,omitempty"`
 }

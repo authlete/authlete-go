@@ -18,8 +18,8 @@ package dto
 
 type TokenFailRequest struct {
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	//
-	Reason TokenFailReason `json:"reason"`
+	Reason TokenFailReason `json:"reason,omitempty"`
 }

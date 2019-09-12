@@ -18,14 +18,14 @@ package dto
 
 type ServiceListResponse struct {
 	//
-	Start uint32 `json:"start"`
+	Start uint32 `json:"start,omitempty"`
 
 	//
-	End uint32 `json:"end"`
+	End uint32 `json:"end,omitempty"`
 
 	//
-	TotalCount uint32 `json:"totalCount"`
+	TotalCount uint32 `json:"totalCount,omitempty"`
 
 	//
-	Services []Service `json:"services"`
+	Services []Service `json:"services,omitempty"`
 }

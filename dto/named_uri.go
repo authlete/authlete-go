@@ -17,6 +17,6 @@
 package dto
 
 type NamedUri struct {
-	Name string `json:"name"`
-	Uri  string `json:"uri"`
+	Name string `json:"name,omitempty"`
+	Uri  string `json:"uri,omitempty"`
 }

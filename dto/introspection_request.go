@@ -17,8 +17,8 @@
 package dto
 
 type IntrospectionRequest struct {
-	Token             string   `json:"token"`
-	Scopes            []string `json:"scopes"`
-	Subject           string   `json:"subject"`
-	ClientCertificate string   `json:"clientCertificate"`
+	Token             string   `json:"token,omitempty"`
+	Scopes            []string `json:"scopes,omitempty"`
+	Subject           string   `json:"subject,omitempty"`
+	ClientCertificate string   `json:"clientCertificate,omitempty"`
 }

@@ -19,32 +19,32 @@ package dto
 // Request to Authlete's /api/auth/authorization/issue API.
 type AuthorizationIssueRequest struct {
 	// The ticket issued by Authlete's /api/auth/authorization API.
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	// The subject (unique identifier) of the user.
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	// The value of the `sub` claim in an ID token.
 	//
 	// When this property is empty, the value of Subject is used as
 	// the value of the `sub` claim.
-	Sub string `json:"sub"`
+	Sub string `json:"sub,omitempty"`
 
 	// The time when the use was authenticated. (Seconds since epoch)
-	AuthTime uint64 `json:"authTime"`
+	AuthTime uint64 `json:"authTime,omitempty"`
 
 	// The authentication context class reference.
-	Acr string `json:"acr"`
+	Acr string `json:"acr,omitempty"`
 
 	// Claims in JSON format.
-	Claims string `json:"claims"`
+	Claims string `json:"claims,omitempty"`
 
 	// Properties to associate with tokens.
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	// Scopes to associate with tokens.
 	//
 	// When this property is empty, the scopes specified in the original
 	// authorization request are used.
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 }

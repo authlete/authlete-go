@@ -22,62 +22,62 @@ type AuthorizationResponse struct {
 	ApiResponse
 
 	// The next action that the authorization server should take.
-	Action AuthorizationAction `json:"action"`
+	Action AuthorizationAction `json:"action,omitempty"`
 
 	//
-	Service Service `json:"service"`
+	Service Service `json:"service,omitempty"`
 
 	//
-	Client Client `json:"client"`
+	Client Client `json:"client,omitempty"`
 
 	//
-	Display types.Display `json:"display"`
+	Display types.Display `json:"display,omitempty"`
 
 	//
-	MaxAge uint32 `json:"maxAge"`
+	MaxAge uint32 `json:"maxAge,omitempty"`
 
 	//
-	Scopes []Scope `json:"scopes"`
+	Scopes []Scope `json:"scopes,omitempty"`
 
 	//
-	UiLocales []string `json:"uiLocales"`
+	UiLocales []string `json:"uiLocales,omitempty"`
 
 	//
-	ClaimsLocales []string `json:"claimsLocales"`
+	ClaimsLocales []string `json:"claimsLocales,omitempty"`
 
 	//
-	Claims []string `json:"claims"`
+	Claims []string `json:"claims,omitempty"`
 
 	//
-	AcrEssential bool `json:"acrEssential"`
+	AcrEssential bool `json:"acrEssential,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 
 	//
-	Acrs []string `json:"acrs"`
+	Acrs []string `json:"acrs,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	LoginHint string `json:"loginHint"`
+	LoginHint string `json:"loginHint,omitempty"`
 
 	//
-	Prompts []types.Prompt `json:"prompts"`
+	Prompts []types.Prompt `json:"prompts,omitempty"`
 
 	//
-	RequestObjectPayload string `json:"requestObjectPayload"`
+	RequestObjectPayload string `json:"requestObjectPayload,omitempty"`
 
 	//
-	IdTokenClaims string `json:"idTokenClaims"`
+	IdTokenClaims string `json:"idTokenClaims,omitempty"`
 
 	//
-	UserInfoClaims string `json:"userInfoClaims"`
+	UserInfoClaims string `json:"userInfoClaims,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 }

@@ -18,26 +18,26 @@ package dto
 
 type TokenUpdateRequest struct {
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	AccessTokenExpiresAtUpdatedOnScopeUpdate bool `json:"accessTokenExpiresAtUpdatedOnScopeUpdate"`
+	AccessTokenExpiresAtUpdatedOnScopeUpdate bool `json:"accessTokenExpiresAtUpdatedOnScopeUpdate,omitempty"`
 
 	//
-	AccessTokenPersistent bool `json:"accessTokenPersistent"`
+	AccessTokenPersistent bool `json:"accessTokenPersistent,omitempty"`
 
 	//
-	AccessTokenHash string `json:"accessTokenHash"`
+	AccessTokenHash string `json:"accessTokenHash,omitempty"`
 
 	//
-	AccessTokenValueUpdated bool `json:"accessTokenValueUpdated"`
+	AccessTokenValueUpdated bool `json:"accessTokenValueUpdated,omitempty"`
 }

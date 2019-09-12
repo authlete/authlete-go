@@ -20,20 +20,20 @@ type GrantedScopesGetResponse struct {
 	ApiResponse
 
 	//
-	ServiceApiKey uint64 `json:"serviceApiKey"`
+	ServiceApiKey uint64 `json:"serviceApiKey,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	Subject string `json:"suject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	LatestGrantedScopes []string `json:"latestGrantedScopes"`
+	LatestGrantedScopes []string `json:"latestGrantedScopes,omitempty"`
 
 	//
-	MergedGrantedScopes []string `json:"mergedGrantedScopes"`
+	MergedGrantedScopes []string `json:"mergedGrantedScopes,omitempty"`
 
 	//
-	ModifiedAt uint64 `json:"modifiedAt"`
+	ModifiedAt uint64 `json:"modifiedAt,omitempty"`
 }

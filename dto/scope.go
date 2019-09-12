@@ -17,9 +17,9 @@
 package dto
 
 type Scope struct {
-	Name         string        `json:"name"`
-	DefaultEntry bool          `json:"defaultEntry"`
-	Description  string        `json:"description"`
-	Descriptions []TaggedValue `json:"descriptions"`
-	Attributes   []Pair        `json:"attributes"`
+	Name         string        `json:"name,omitempty"`
+	DefaultEntry bool          `json:"defaultEntry,omitempty"`
+	Description  string        `json:"description,omitempty"`
+	Descriptions []TaggedValue `json:"descriptions,omitempty"`
+	Attributes   []Pair        `json:"attributes,omitempty"`
 }

@@ -20,5 +20,5 @@ type DeviceCompleteResponse struct {
 	ApiResponse
 
 	//
-	Action DeviceCompleteAction `json:"action"`
+	Action DeviceCompleteAction `json:"action,omitempty"`
 }

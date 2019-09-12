@@ -17,8 +17,8 @@
 package dto
 
 type ClientAuthorizationGetListRequest struct {
-	Subject   string `json:"subject"`
-	Developer string `json:"developer"`
-	Start     uint32 `json:"start"`
-	End       uint32 `json:"end"`
+	Subject   string `json:"subject,omitempty"`
+	Developer string `json:"developer,omitempty"`
+	Start     uint32 `json:"start,omitempty"`
+	End       uint32 `json:"end,omitempty"`
 }

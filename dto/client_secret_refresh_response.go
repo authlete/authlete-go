@@ -17,6 +17,6 @@
 package dto
 
 type ClientSecretRefreshResponse struct {
-	NewClientSecret string `json:"newClientSecret"`
-	OldClientSecret string `json:"oldClientSecret"`
+	NewClientSecret string `json:"newClientSecret,omitempty"`
+	OldClientSecret string `json:"oldClientSecret,omitempty"`
 }

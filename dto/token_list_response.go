@@ -18,20 +18,20 @@ package dto
 
 type TokenListResponse struct {
 	//
-	Start uint32 `json:"start"`
+	Start uint32 `json:"start,omitempty"`
 
 	//
-	End uint32 `json:"end"`
+	End uint32 `json:"end,omitempty"`
 
 	//
-	Client Client `json:"client"`
+	Client Client `json:"client,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	TotalCount uint32 `json:"totalCount"`
+	TotalCount uint32 `json:"totalCount,omitempty"`
 
 	//
-	AccessTokens []AccessToken `json:"accessTokens"`
+	AccessTokens []AccessToken `json:"accessTokens,omitempty"`
 }

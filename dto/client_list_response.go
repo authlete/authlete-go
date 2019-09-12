@@ -17,9 +17,9 @@
 package dto
 
 type ClientListResponse struct {
-	Start      uint32   `json:"start"`
-	End        uint32   `json:"end"`
-	Developer  string   `json:"developer"`
-	TotalCount uint32   `json:"totalCount"`
-	Clients    []Client `json:"clients"`
+	Start      uint32   `json:"start,omitempty"`
+	End        uint32   `json:"end,omitempty"`
+	Developer  string   `json:"developer,omitempty"`
+	TotalCount uint32   `json:"totalCount,omitempty"`
+	Clients    []Client `json:"clients,omitempty"`
 }

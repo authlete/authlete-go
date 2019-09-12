@@ -17,5 +17,5 @@
 package dto
 
 type ClientAuthorizationDeleteRequest struct {
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 }

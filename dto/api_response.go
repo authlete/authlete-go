@@ -19,8 +19,8 @@ package dto
 // ApiResponse is the base class of classes that represent responses from Authlete APIs.
 type ApiResponse struct {
 	// The code of the result of an Authlete API call.
-	ResultCode string `json:"resultCode"`
+	ResultCode string `json:"resultCode,omitempty"`
 
 	// The message of the result of an Authlete API call.
-	ResultMessage string `json:"resultMessage"`
+	ResultMessage string `json:"resultMessage,omitempty"`
 }

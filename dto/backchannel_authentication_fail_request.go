@@ -18,14 +18,14 @@ package dto
 
 type BackchannelAuthenticationFailRequest struct {
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	//
-	Reason BackchannelAuthenticationFailReason `json:"reason"`
+	Reason BackchannelAuthenticationFailReason `json:"reason,omitempty"`
 
 	//
-	ErrorDescription string `json:"errorDescription"`
+	ErrorDescription string `json:"errorDescription,omitempty"`
 
 	//
-	ErrorUri string `json:"errorUri"`
+	ErrorUri string `json:"errorUri,omitempty"`
 }

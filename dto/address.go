@@ -18,10 +18,10 @@ package dto
 
 // Address represents the address claim defined in OIDC Core, Section 5.1.1.
 type Address struct {
-	Formatted     string `json:"formatted"`
-	StreetAddress string `json:"street_address"`
-	Locality      string `json:"locality"`
-	Region        string `json:"region"`
-	PostalCode    string `json:"postal_code"`
-	Country       string `json:"country"`
+	Formatted     string `json:"formatted,omitempty"`
+	StreetAddress string `json:"street_address,omitempty"`
+	Locality      string `json:"locality,omitempty"`
+	Region        string `json:"region,omitempty"`
+	PostalCode    string `json:"postal_code,omitempty"`
+	Country       string `json:"country,omitempty"`
 }

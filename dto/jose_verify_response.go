@@ -20,17 +20,17 @@ type JoseVerifyResponse struct {
 	ApiResponse
 
 	//
-	Valid bool `json:"valid"`
+	Valid bool `json:"valid,omitempty"`
 
 	//
-	SignatureValid bool `json:"signatureValid"`
+	SignatureValid bool `json:"signatureValid,omitempty"`
 
 	//
-	MissingClaims []string `json:"missingClaims"`
+	MissingClaims []string `json:"missingClaims,omitempty"`
 
 	//
-	InvalidClaims []string `json:"invalidClaims"`
+	InvalidClaims []string `json:"invalidClaims,omitempty"`
 
 	//
-	ErrorDescriptions []string `json:"errorDescriptions"`
+	ErrorDescriptions []string `json:"errorDescriptions,omitempty"`
 }

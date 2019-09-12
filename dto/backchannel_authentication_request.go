@@ -18,17 +18,17 @@ package dto
 
 type BackchannelAuthenticationRequest struct {
 	//
-	Parameters string `json:"parameters"`
+	Parameters string `json:"parameters"` // omitempty is not added intentionally.
 
 	//
-	ClientId string `json:"clientId"`
+	ClientId string `json:"clientId,omitempty"`
 
 	//
-	ClientSecret string `json:"clientSecret"`
+	ClientSecret string `json:"clientSecret,omitempty"`
 
 	//
-	ClientCertificate string `json:"clientCertificate"`
+	ClientCertificate string `json:"clientCertificate,omitempty"`
 
 	//
-	ClientCertificatePath []string `json:"clientCertificatePath"`
+	ClientCertificatePath []string `json:"clientCertificatePath,omitempty"`
 }

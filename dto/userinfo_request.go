@@ -18,8 +18,8 @@ package dto
 
 type UserInfoRequest struct {
 	//
-	Token string `json:"token"`
+	Token string `json:"token,omitempty"`
 
 	//
-	ClientCertificate string `json:"clientCertificate"`
+	ClientCertificate string `json:"clientCertificate,omitempty"`
 }

@@ -20,32 +20,32 @@ type UserInfoResponse struct {
 	ApiResponse
 
 	//
-	Action UserInfoAction `json:"action"`
+	Action UserInfoAction `json:"action,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	Claims []string `json:"claims"`
+	Claims []string `json:"claims,omitempty"`
 
 	//
-	Token string `json:"token"`
+	Token string `json:"token,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 }

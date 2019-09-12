@@ -22,65 +22,65 @@ type TokenResponse struct {
 	ApiResponse
 
 	//
-	Action TokenAction `json:"action"`
+	Action TokenAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	Username string `json:"username"`
+	Username string `json:"username,omitempty"`
 
 	//
-	Password string `json:"password"`
+	Password string `json:"password,omitempty"`
 
 	//
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	//
-	AccessTokenDuration uint64 `json:"accessTokenDuration"`
+	AccessTokenDuration uint64 `json:"accessTokenDuration,omitempty"`
 
 	//
-	RefreshToken string `json:"refreshToken"`
+	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	RefresthTokenExpiresAt string `json:"refreshTokenExpiresAt"`
+	RefresthTokenExpiresAt string `json:"refreshTokenExpiresAt,omitempty"`
 
 	//
-	RefreshTokenDuration string `json:"refreshTokenDuration"`
+	RefreshTokenDuration string `json:"refreshTokenDuration,omitempty"`
 
 	//
-	IdToken string `json:"idToken"`
+	IdToken string `json:"idToken,omitempty"`
 
 	//
-	GrantType types.GrantType `json:"grantType"`
+	GrantType types.GrantType `json:"grantType,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 
 	//
-	JwtAccessToken string `json:"jwtAccessToken"`
+	JwtAccessToken string `json:"jwtAccessToken,omitempty"`
 
 	//
-	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod"`
+	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod,omitempty"`
 }

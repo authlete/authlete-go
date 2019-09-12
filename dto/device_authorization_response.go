@@ -22,53 +22,53 @@ type DeviceAuthorizationResponse struct {
 	ApiResponse
 
 	//
-	Action DeviceAuthorizationAction `json:"action"`
+	Action DeviceAuthorizationAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContet"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 
 	//
-	ClientName string `json:"clientName"`
+	ClientName string `json:"clientName,omitempty"`
 
 	//
-	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod"`
+	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod,omitempty"`
 
 	//
-	Scopes []Scope `json:"scopes"`
+	Scopes []Scope `json:"scopes,omitempty"`
 
 	//
-	ClaimNames []string `json:"claimNames"`
+	ClaimNames []string `json:"claimNames,omitempty"`
 
 	//
-	Acrs []string `json:"acrs"`
+	Acrs []string `json:"acrs,omitempty"`
 
 	//
-	DeviceCode string `json:"deviceCode"`
+	DeviceCode string `json:"deviceCode,omitempty"`
 
 	//
-	UserCode string `json:"userCode"`
+	UserCode string `json:"userCode,omitempty"`
 
 	//
-	VerificationUri string `json:"verificationUri"`
+	VerificationUri string `json:"verificationUri,omitempty"`
 
 	//
-	VerificatinoUriComplete string `json:"verificationUriComplete"`
+	VerificationUriComplete string `json:"verificationUriComplete,omitempty"`
 
 	//
-	ExpiresIn uint32 `json:"expiresIn"`
+	ExpiresIn uint32 `json:"expiresIn,omitempty"`
 
 	//
-	Interval uint32 `json:"interval"`
+	Interval uint32 `json:"interval,omitempty"`
 
 	//
-	Warnings []string `json:"warnings"`
+	Warnings []string `json:"warnings,omitempty"`
 }

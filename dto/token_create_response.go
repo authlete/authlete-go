@@ -22,35 +22,35 @@ type TokenCreateResponse struct {
 	ApiResponse
 
 	//
-	Action TokenCreateAction `json:"action"`
+	Action TokenCreateAction `json:"action,omitempty"`
 
 	//
-	GrantType types.GrantType `json:"grantType"`
+	GrantType types.GrantType `json:"grantType,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
-	TokenType string `json:"tokenType"`
+	TokenType string `json:"tokenType,omitempty"`
 
 	//
-	ExpiresIn uint64 `json:"expiresIn"`
+	ExpiresIn uint64 `json:"expiresIn,omitempty"`
 
 	//
-	ExpiresAt uint64 `json:"expiresAt"`
+	ExpiresAt uint64 `json:"expiresAt,omitempty"`
 
 	//
-	RefreshToken string `json:"refreshToken"`
+	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 }

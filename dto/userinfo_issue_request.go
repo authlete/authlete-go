@@ -18,11 +18,11 @@ package dto
 
 type UserInfoIssueRequest struct {
 	//
-	Token string `json:"token"`
+	Token string `json:"token,omitempty"`
 
 	//
-	Claims string `json:"claims"`
+	Claims string `json:"claims,omitempty"`
 
 	//
-	Sub string `json:"sub"`
+	Sub string `json:"sub,omitempty"`
 }

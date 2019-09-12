@@ -17,7 +17,7 @@
 package dto
 
 type Property struct {
-	Key    string `json:"key"`
-	Value  string `json:"value"`
-	Hidden bool   `json:"hidden"`
+	Key    string `json:"key,omitempty"`
+	Value  string `json:"value,omitempty"`
+	Hidden bool   `json:"hidden,omitempty"`
 }

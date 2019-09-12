@@ -17,6 +17,6 @@
 package dto
 
 type ClientAuthorizationUpdateRequest struct {
-	Subject string   `json:"subject"`
-	Scopes  []string `json:"scopes"`
+	Subject string   `json:"subject,omitempty"`
+	Scopes  []string `json:"scopes,omitempty"`
 }

@@ -18,5 +18,5 @@ package dto
 
 type AuthorizedClientListResponse struct {
 	ClientListResponse
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 }

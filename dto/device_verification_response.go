@@ -20,29 +20,29 @@ type DeviceVerificationResponse struct {
 	ApiResponse
 
 	//
-	Action DeviceVerificationAction `json:"action"`
+	Action DeviceVerificationAction `json:"action,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	ClientIdAlias string `json:"clientIdAlias"`
+	ClientIdAlias string `json:"clientIdAlias,omitempty"`
 
 	//
-	ClientIdAliasUsed bool `json:"clientIdAliasUsed"`
+	ClientIdAliasUsed bool `json:"clientIdAliasUsed,omitempty"`
 
 	//
-	ClientName string `json:"clientName"`
+	ClientName string `json:"clientName,omitempty"`
 
 	//
-	Scopes []Scope `json:"scopes"`
+	Scopes []Scope `json:"scopes,omitempty"`
 
 	//
-	ClaimNames []string `json:"claimNames"`
+	ClaimNames []string `json:"claimNames,omitempty"`
 
 	//
-	Acrs []string `json:"acrs"`
+	Acrs []string `json:"acrs,omitempty"`
 
 	//
-	ExpiresAt uint64 `json:"expiresAt"`
+	ExpiresAt uint64 `json:"expiresAt,omitempty"`
 }

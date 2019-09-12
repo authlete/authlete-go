@@ -20,8 +20,8 @@ type RevocationResponse struct {
 	ApiResponse
 
 	//
-	Action RevocationAction `json:"action"`
+	Action RevocationAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

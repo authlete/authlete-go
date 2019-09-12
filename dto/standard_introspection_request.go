@@ -17,5 +17,5 @@
 package dto
 
 type StandardIntrospectionRequest struct {
-	Parameters string `json:"parameters"`
+	Parameters string `json:"parameters"` // omitempty is not added intentionally.
 }

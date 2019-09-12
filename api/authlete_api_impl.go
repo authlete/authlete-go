@@ -526,7 +526,7 @@ func (self *impl) UpdateClient(
 }
 
 type requestableScopes struct {
-	RequestableScopes []string `json:"requestableScopes"`
+	RequestableScopes []string `json:"requestableScopes,omitempty"`
 }
 
 func (self *impl) GetRequestableScopes(
@@ -568,7 +568,7 @@ func (self *impl) DeleteRequestableScopes(
 }
 
 type grantedScopesRequest struct {
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 }
 
 func (self *impl) GetGrantedScopes(

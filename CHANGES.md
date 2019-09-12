@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- Added `omitempty` to `struct` fields for JSON marshaling. Without this,
+  empty strings are generated instead of `null`.
+
 - Renamed `bakchannel_*.go` files to `backchannel_*.go`.
 
 v1.0.1 (2019-09-11)

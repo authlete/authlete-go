@@ -19,7 +19,7 @@ package dto
 import "github.com/authlete/authlete-go/types"
 
 type SnsCredentials struct {
-	Sns       types.Sns `json:"sns"`
-	ApiKey    string    `json:"apiKey"`
-	ApiSecret string    `json:"apiSecret"`
+	Sns       types.Sns `json:"sns,omitempty"`
+	ApiKey    string    `json:"apiKey,omitempty"`
+	ApiSecret string    `json:"apiSecret,omitempty"`
 }

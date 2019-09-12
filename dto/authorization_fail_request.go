@@ -19,11 +19,11 @@ package dto
 // Request to Authlete's /api/auth/authorization/fail API.
 type AuthorizationFailRequest struct {
 	// The ticket issued by Authlete's /api/auth/authorization API.
-	Ticket string `json:"ticket"`
+	Ticket string `json:"ticket,omitempty"`
 
 	// The reason of the failure of the authorization request.
-	Reason AuthorizationFailReason `json:"reason"`
+	Reason AuthorizationFailReason `json:"reason,omitempty"`
 
 	// The custom description about the authorization failure.
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 }

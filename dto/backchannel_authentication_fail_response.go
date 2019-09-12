@@ -20,8 +20,8 @@ type BackchannelAuthenticationFailResponse struct {
 	ApiResponse
 
 	//
-	Action BackchannelAuthenticationFailAction `json:"action"`
+	Action BackchannelAuthenticationFailAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

@@ -22,14 +22,14 @@ type RequestObjectResponse struct {
 	ApiResponse
 
 	//
-	Action RequestObjectAction `json:"action"`
+	Action RequestObjectAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	//
-	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod"`
+	ClientAuthMethod types.ClientAuthMethod `json:"clientAuthMethod,omitempty"`
 
 	//
-	RequestUri string `json:"requestUri"`
+	RequestUri string `json:"requestUri,omitempty"`
 }

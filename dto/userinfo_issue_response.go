@@ -20,8 +20,8 @@ type UserInfoIssueResponse struct {
 	ApiResponse
 
 	//
-	Action UserInfoIssueAction `json:"action"`
+	Action UserInfoIssueAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

@@ -17,6 +17,6 @@
 package dto
 
 type ClientExtension struct {
-	RequestableScopesEnabled bool     `json:"requestableScopesEnabled"`
-	RequestableScopes        []string `json:"requestableScopes"`
+	RequestableScopesEnabled bool     `json:"requestableScopesEnabled,omitempty"`
+	RequestableScopes        []string `json:"requestableScopes,omitempty"`
 }

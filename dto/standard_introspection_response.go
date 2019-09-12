@@ -20,8 +20,8 @@ type StandardIntrospectionResponse struct {
 	ApiResponse
 
 	//
-	Action StandardIntrospectionAction `json:"action"`
+	Action StandardIntrospectionAction `json:"action,omitempty"`
 
 	//
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 }

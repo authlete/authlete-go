@@ -20,35 +20,35 @@ import "github.com/authlete/authlete-go/types"
 
 type AccessToken struct {
 	//
-	AccessTokenHash string `json:"accessTokenHash"`
+	AccessTokenHash string `json:"accessTokenHash,omitempty"`
 
 	//
-	RefresthTokenHash string `json:"refreshTokenHash"`
+	RefresthTokenHash string `json:"refreshTokenHash,omitempty"`
 
 	//
-	ClientId uint64 `json:"clientId"`
+	ClientId uint64 `json:"clientId,omitempty"`
 
 	//
-	Subject string `json:"subject"`
+	Subject string `json:"subject,omitempty"`
 
 	//
-	GrantType types.GrantType `json:"grantType"`
+	GrantType types.GrantType `json:"grantType,omitempty"`
 
 	//
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes,omitempty"`
 
 	//
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	//
-	RefreshTokenExpiresAt uint64 `json:"refreshTokenExpiresAt"`
+	RefreshTokenExpiresAt uint64 `json:"refreshTokenExpiresAt,omitempty"`
 
 	//
-	CreatedAt uint64 `json:"createdAt"`
+	CreatedAt uint64 `json:"createdAt,omitempty"`
 
 	//
-	LastRefreshedAt uint64 `json:"lastRefreshedAt"`
+	LastRefreshedAt uint64 `json:"lastRefreshedAt,omitempty"`
 
 	//
-	Properties []Property `json:"properties"`
+	Properties []Property `json:"properties,omitempty"`
 }

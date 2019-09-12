@@ -18,17 +18,17 @@ package dto
 
 type JoseVerifyRequest struct {
 	//
-	Jose string `json:"jose"`
+	Jose string `json:"jose,omitempty"`
 
 	//
-	MandatoryClaims []string `json:"mandatoryClaims"`
+	MandatoryClaims []string `json:"mandatoryClaims,omitempty"`
 
 	//
-	ClockSkew uint32 `json:"clockSkew"`
+	ClockSkew uint32 `json:"clockSkew,omitempty"`
 
 	//
-	ClientIdentifier string `json:"clientIdentifier"`
+	ClientIdentifier string `json:"clientIdentifier,omitempty"`
 
 	//
-	SignedByClient bool `json:"signedByClient"`
+	SignedByClient bool `json:"signedByClient,omitempty"`
 }

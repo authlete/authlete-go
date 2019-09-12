@@ -21,42 +21,42 @@ type AuthorizationIssueResponse struct {
 	ApiResponse
 
 	// The next action that the authorization server should take.
-	Action AuthorizationIssueAction `json:"action"`
+	Action AuthorizationIssueAction `json:"action,omitempty"`
 
 	// The response content which can be used to generated a response to the client.
-	ResponseContent string `json:"responseContent"`
+	ResponseContent string `json:"responseContent,omitempty"`
 
 	// The issued access token.
 	//
 	// An access token is issued when the `response_type` request parameter of
 	// the authorization request includes `token`.
-	AccessToken string `json:"accessToken"`
+	AccessToken string `json:"accessToken,omitempty"`
 
 	// The expiration date of the access token.
 	//
 	// The date in milliseconds since the Unix epoch at which the access token
 	//  will expire.
-	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt"`
+	AccessTokenExpiresAt uint64 `json:"accessTokenExpiresAt,omitempty"`
 
 	// The duration of the access token in seconds.
-	AccessTokenDuration uint64 `json:"accessTokenDuration"`
+	AccessTokenDuration uint64 `json:"accessTokenDuration,omitempty"`
 
 	// The issued ID token.
 	//
 	// An ID token is issued when the `response_type` request parameter of the
 	// authorization request includes `id_token`.
-	IdToken string `json:"idToken"`
+	IdToken string `json:"idToken,omitempty"`
 
 	// The issued authorization code.
 	//
 	// An authorization code is issued when the `response_type` request parameter
 	// of the authorization request includes `code`.
-	AuthorizationCode string `json:"authorizationCode"`
+	AuthorizationCode string `json:"authorizationCode,omitempty"`
 
 	// The issued acces token in JWT format.
 	//
 	// If the authorization server is configued to issue JWT-based access tokens
 	// (= if Service.AccessTokenSignAlg returns a non-nil value), a JWT-based
 	// access token is issued along with the original random-string one.
-	JwtAcessToken string `json:"jwtAccessToken"`
+	JwtAcessToken string `json:"jwtAccessToken,omitempty"`
 }
