@@ -1,6 +1,8 @@
 CHANGES
 =======
 
+- Renamed `bakchannel_*.go` files to `backchannel_*.go`.
+
 v1.0.1 (2019-09-11)
 -------------------
 
