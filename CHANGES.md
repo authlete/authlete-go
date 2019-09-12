@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.0.2 (2019-09-12)
+-------------------
+
 - Added `omitempty` to `struct` fields for JSON marshaling. Without this,
   empty strings are generated instead of `null`.
 
