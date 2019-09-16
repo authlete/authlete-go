@@ -31,4 +31,7 @@ type TokenRequest struct {
 
 	//
 	ClientCertificatePath []string `json:"clientCertificatePath,omitempty"`
+
+	//
+	Properties []Property `json:"properties,omitempty"`
 }
