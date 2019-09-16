@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.0.3 (2019-09-17)
+-------------------
+
 - Added `Properties` to `TokenRequest`.
 
 v1.0.2 (2019-09-12)
