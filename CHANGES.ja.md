@@ -1,6 +1,12 @@
 変更点
 ======
 
+v1.0.4 (2019 年 09 月 19 日)
+----------------------------
+
+- `TokenResponse` のフィールド `RefreshTokenExpiresAt` と `RefreshTokenDuration` の
+  型を `string` から `uint64` に変更。
+
 v1.0.3 (2019 年 09 月 17 日)
 ----------------------------
 

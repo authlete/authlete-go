@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+v1.0.4 (2019-09-19)
+-------------------
+
+- Changed types of `RefresthTokenExpiresAt` and `RefreshTokenDuration`
+  fields in `TokenResponse` from `string` to `uint64`.
+
 v1.0.3 (2019-09-17)
 -------------------
 
