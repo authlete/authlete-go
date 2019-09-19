@@ -49,10 +49,10 @@ type TokenResponse struct {
 	RefreshToken string `json:"refreshToken,omitempty"`
 
 	//
-	RefresthTokenExpiresAt string `json:"refreshTokenExpiresAt,omitempty"`
+	RefresthTokenExpiresAt uint64 `json:"refreshTokenExpiresAt,omitempty"`
 
 	//
-	RefreshTokenDuration string `json:"refreshTokenDuration,omitempty"`
+	RefreshTokenDuration uint64 `json:"refreshTokenDuration,omitempty"`
 
 	//
 	IdToken string `json:"idToken,omitempty"`
