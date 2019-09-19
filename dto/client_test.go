@@ -26,8 +26,22 @@ import (
 
 func TestClient_FromJson(t *testing.T) {
 	jsn := `{
+		"developer": "Developer",
+		"clientId": 4326385671,
+		"clientIdAlias": "MyAlias",
+		"clientIdAliasEnabled": true,
+		"clientSecret": "Secret",
 		"clientType": "PUBLIC",
-		"applicationType": "WEB"
+		"redirectUris": ["https://example.com/redirect0", "https://example.com/redirect1"],
+		"responseTypes": ["CODE","TOKEN"],
+		"grantTypes": ["AUTHORIZATION_CODE","IMPLICIT"],
+		"applicationType": "WEB",
+		"contacts": ["info@example.com", "admin@example.com"],
+		"clientName": "Apple",
+		"clientNames": [
+			{"tag":"ja", "value":"Ringo"},
+			{"tag":"de", "value":"Apfel"}
+		]
 	}`
 
 	var client Client
@@ -38,8 +52,25 @@ func TestClient_FromJson(t *testing.T) {
 		return
 	}
 
+	redirectUris := []string{"https://example.com/redirect0", "https://example.com/redirect1"}
+	responseTypes := []types.ResponseType{types.ResponseType_CODE, types.ResponseType_TOKEN}
+	grantTypes := []types.GrantType{types.GrantType_AUTHORIZATION_CODE, types.GrantType_IMPLICIT}
+	contacts := []string{"info@example.com", "admin@example.com"}
+	clientNames := []TaggedValue{TaggedValue{`ja`, `Ringo`}, TaggedValue{`de`, `Apfel`}}
+
+	assert.Equal(t, `Developer`, client.Developer)
+	assert.Equal(t, uint64(4326385671), client.ClientId)
+	assert.Equal(t, `MyAlias`, client.ClientIdAlias)
+	assert.Equal(t, true, client.ClientIdAliasEnabled)
+	assert.Equal(t, `Secret`, client.ClientSecret)
 	assert.Equal(t, types.ClientType_PUBLIC, client.ClientType)
+	assert.Equal(t, redirectUris, client.RedirectUris)
+	assert.Equal(t, responseTypes, client.ResponseTypes)
+	assert.Equal(t, grantTypes, client.GrantTypes)
 	assert.Equal(t, types.ApplicationType_WEB, client.ApplicationType)
+	assert.Equal(t, contacts, client.Contacts)
+	assert.Equal(t, `Apple`, client.ClientName)
+	assert.Equal(t, clientNames, client.ClientNames)
 }
 
 func TestClient_ToJson(t *testing.T) {
