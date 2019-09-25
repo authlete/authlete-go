@@ -434,8 +434,10 @@ func (self *impl) UpdateService(
 
 func (self *impl) GetServiceJwks(
 	pretty bool, includePrivateKeys bool) (res string, err *AuthleteError) {
+	params := buildMap(`pretty`, pretty, `includePrivateKeys`, includePrivateKeys)
+
 	obj := strings.Builder{}
-	err = self.callServiceGetApi(`/api/service/jwks/get`, nil, &obj)
+	err = self.callServiceGetApi(`/api/service/jwks/get`, params, &obj)
 
 	if err == nil {
 		res = obj.String()
