@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.0.5 (2019-09-25)
+-------------------
+
 - Fixed the implementation of `api.GetServiceJwks(bool, bool)` method
   so that it passes given parameters to /api/service/jwks/get API.
 
