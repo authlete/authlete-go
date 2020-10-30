@@ -89,6 +89,10 @@ CHANGES
     * Added `Resources` field.
     * Added `AccessTokenResources` field.
 
+- `TokenUpdateRequest` struct
+    * Added `CertificateThumbprint` field.
+    * Added `DpopKeyThumbprint` field.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct

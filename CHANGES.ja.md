@@ -89,6 +89,10 @@
     * `Resources` フィールドを追加。
     * `AccessTokenResources` フィールドを追加。
 
+- `TokenUpdateRequest` 構造体
+    * `CertificateThumbprint` フィールドを追加。
+    * `DpopKeyThumbprint` フィールドを追加。
+
 - 新規部品
     * `PushedAuthReqAction` 型と同型の定数
     * `PushedAuthReqRequest` 構造体
