@@ -74,6 +74,9 @@ CHANGES
     * Added `CertificateThumbprint` field.
     * Added `DpopKeyThumbprint` field.
 
+- `TokenFailReason` type
+    * Added `TokenFailReason_INVALID_TARGET`.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct

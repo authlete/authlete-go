@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,4 +21,5 @@ type TokenFailReason string
 const (
 	TokenFailReason_UNKNOWN                            = TokenFailReason(`UNKNOWN`)
 	TokenFailReason_INVALID_RESOURCE_OWNER_CREDENTIALS = TokenFailReason(`INVALID_RESOURCE_OWNER_CREDENTIALS`)
+	TokenFailReason_INVALID_TARGET                     = TokenFailReason(`INVALID_TARGET`)
 )
