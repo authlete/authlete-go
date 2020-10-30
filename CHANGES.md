@@ -17,6 +17,9 @@ CHANGES
 - `BackchannelAuthenticationCompleteResponse` struct
     * Added `Resources` field.
 
+- `BackchannelAuthenticationFailReason` type
+    * Added `BackchannelAuthenticationFailReason_INVALID_TARGET`.
+
 v1.0.5 (2019-09-25)
 -------------------
 

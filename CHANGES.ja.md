@@ -17,6 +17,9 @@
 - `BackchannelAuthenticationCompleteResponse` 構造体
     * `Resources` フィールドを追加。
 
+- `BackchannelAuthenticationFailReason` 型
+    * `BackchannelAuthenticationFailReason_INVALID_TARGET` を追加。
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

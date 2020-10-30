@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ const (
 	BackchannelAuthenticationFailReason_MISSING_USER_CODE        = BackchannelAuthenticationFailReason(`MISSING_USER_CODE`)
 	BackchannelAuthenticationFailReason_INVALID_USER_CODE        = BackchannelAuthenticationFailReason(`INVALID_USER_CODE`)
 	BackchannelAuthenticationFailReason_INVALID_BINDING_MESSAGE  = BackchannelAuthenticationFailReason(`INVALID_BINDING_MESSAGE`)
+	BackchannelAuthenticationFailReason_INVALID_TARGET           = BackchannelAuthenticationFailReason(`INVALID_TARGET`)
 	BackchannelAuthenticationFailReason_ACCESS_DENIED            = BackchannelAuthenticationFailReason(`ACCESS_DENIED`)
 	BackchannelAuthenticationFailReason_SERVER_ERROR             = BackchannelAuthenticationFailReason(`SERVER_ERROR`)
 )
