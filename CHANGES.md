@@ -98,6 +98,9 @@ CHANGES
     * Added `Htm` field.
     * Added `Htu` field.
 
+- `UserInfoResponse` struct
+    * Added `UserInfoClaims` field.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct
