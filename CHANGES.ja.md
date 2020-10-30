@@ -77,6 +77,9 @@
 - `TokenFailReason` 型
     * `TokenFailReason_INVALID_TARGET` を追加。
 
+- `TokenIssueResponse` 型
+    * `AccessTokenResources` フィールドを追加。
+
 - 新規部品
     * `PushedAuthReqAction` 型と同型の定数
     * `PushedAuthReqRequest` 構造体
