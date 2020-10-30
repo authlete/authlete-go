@@ -23,6 +23,14 @@ CHANGES
 - `BackchannelAuthenticationResponse` struct
     * Added `Resources` field.
 
+- `Client` struct
+    * Added `Jwks` field.
+    * Added `DerivedSectorIdentifier` field.
+    * Added `AuthorizationDataTypes` field.
+    * Added `ParRequired` field.
+    * Added `RequestObjectRequired` field.
+    * Removed `SectorIdentifier` field.
+
 v1.0.5 (2019-09-25)
 -------------------
 

@@ -23,6 +23,14 @@
 - `BackchannelAuthenticationResponse` 構造体
     * `Resources` フィールドを追加。
 
+- `Client` 構造体
+    * `Jwks` フィールドを追加。
+    * `DerivedSectorIdentifier` フィールドを追加。
+    * `AuthorizationDataTypes` フィールドを追加。
+    * `ParRequired` フィールドを追加。
+    * `RequestObjectRequired` フィールドを追加。
+    * `SectorIdentifier` フィールドを削除。
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

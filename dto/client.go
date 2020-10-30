@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -85,8 +85,11 @@ type Client struct {
 	// The URL of the JWK Set document.
 	JwksUri string `json:"jwksUri,omitempty"`
 
-	// The sector identifier computed based on the sector identifier URI or redirect URIs.
-	SectorIdentifier string `json:"sectorIdentifier,omitempty"`
+	// The JWK Set document.
+	Jwks string `json:"jwks,omitempty"`
+
+	// Calculated sector identifier host component.
+	DerivedSectorIdentifier string `json:"derivedSectorIdentifier,omitempty"`
 
 	// The sector identifier URI.
 	SectorIdentifierUri string `json:"sectorIdentifierUri,omitempty"`
@@ -210,4 +213,17 @@ type Client struct {
 
 	// The hash of the registration access token.
 	RegistrationAccessTokenHash string `json:"registrationAccessTokenHash,omitempty"`
+
+	// The data types that this client may use as values of the `type` field
+	// in `authorization_details`.
+	AuthorizationDataTypes []string `json:"authorizationDataTypes,omitempty"`
+
+	// The flag which indicates whether this client is required to use PAR
+	// (OAuth 2.0 Pushed Authorization Requests).
+	ParRequired bool `json:"parRequired,omitempty"`
+
+	// The flag which indicates whether authorization requests from this client
+	// are always required to utilize a request object by using either `request`
+	// or `request_uri` request parameter.
+	RequestObjectRequired bool `json:"requestObjectRequired,omitempty"`
 }
