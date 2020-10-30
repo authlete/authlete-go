@@ -70,6 +70,10 @@ CHANGES
     * Renamed `Scopes` to `SupportedScopes`.
     * Renamed `RequestObjectEndpoint` to `PushedAuthReqEndpoint`.
 
+- `TokenCreateRequest` struct
+    * Added `CertificateThumbprint` field.
+    * Added `DpopKeyThumbprint` field.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct
