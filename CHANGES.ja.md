@@ -53,6 +53,11 @@
     * `Resources` フィールドを追加。
     * `AccessTokenResources` フィールドを追加。
 
+- 新規部品
+    * `PushedAuthReqAction` 型と同型の定数
+    * `PushedAuthReqRequest` 構造体
+    * `PushedAuthReqResponse` 構造体
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

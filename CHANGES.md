@@ -53,6 +53,11 @@ CHANGES
     * Added `Resources` field.
     * Added `AccessTokenResources` field.
 
+- New components
+    * `PushedAuthReqAction` type and some of its constants
+    * `PushedAuthReqRequest` struct
+    * `PushedAuthReqResponse` struct
+
 v1.0.5 (2019-09-25)
 -------------------
 
