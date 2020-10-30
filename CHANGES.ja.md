@@ -85,6 +85,10 @@
     * `Htm` フィールドを追加。
     * `Htu` フィールドを追加。
 
+- `TokenResponse` 構造体
+    * `Resources` フィールドを追加。
+    * `AccessTokenResources` フィールドを追加。
+
 - 新規部品
     * `PushedAuthReqAction` 型と同型の定数
     * `PushedAuthReqRequest` 構造体

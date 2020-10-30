@@ -85,6 +85,10 @@ CHANGES
     * Added `Htm` field.
     * Added `Htu` field.
 
+- `TokenResponse` struct
+    * Added `Resources` field.
+    * Added `AccessTokenResources` field.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct
