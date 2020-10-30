@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.0 (2020-10-31)
+-------------------
+
 - `AuthleteApi` interface
     * Added `TokenDelete()` method.
     * Added `PushAuthorizationRequest()` method.

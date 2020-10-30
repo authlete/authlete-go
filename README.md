@@ -274,6 +274,7 @@ Methods in `api.AuthleteApi` interface can be divided into some categories.
 ##### Methods for Token Operations
 
 - `TokenCreate(request *dto.TokenCreateRequest) (*dto.TokenCreateResponse, *AuthleteError)`
+- `TokenDelete(token string) *AuthleteError`
 - `TokenUpdate(request *dto.TokenUpdateRequest) (*dto.TokenUpdateResponse, *AuthleteError)`
 
 ##### Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)
@@ -317,9 +318,9 @@ Methods in `api.AuthleteApi` interface can be divided into some categories.
 - `DeviceComplete(request *dto.DeviceCompleteRequest) (*dto.DeviceCompleteResponse, *AuthleteError)`
 - `DeviceVerification(request *dto.DeviceVerificationRequest) (*dto.DeviceVerificationResponse, *AuthleteError)`
 
-##### Methods for Pushed Request Object
+##### Methods for Pushed Authorization Request
 
-- `RegisterRequestObject(request *dto.RequestObjectRequest) (*dto.RequestObjectResponse, *AuthleteError)`
+- `PushAuthorizationRequest(request *dto.PushedAuthReqRequest) (*dto.PushedAuthReqResponse, *AuthleteError)`
 
 Authlete Version
 ----------------

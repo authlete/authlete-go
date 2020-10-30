@@ -4,7 +4,7 @@ Go 用 Authlete ライブラリ
 概要
 ----
 
-[Authlete](https://www.authlete.com) Web API 用の公式 Go ライブラリです。
+[Authlete](https://www.authlete.com/ja/) Web API 用の公式 Go ライブラリです。
 
 ライセンス
 ----------
@@ -272,6 +272,7 @@ settings.Timeout = time.Duration(5) * time.Second
 ##### トークン操作のためのメソッド群
 
 - `TokenCreate(request *dto.TokenCreateRequest) (*dto.TokenCreateResponse, *AuthleteError)`
+- `TokenDelete(token string) *AuthleteError`
 - `TokenUpdate(request *dto.TokenUpdateRequest) (*dto.TokenUpdateResponse, *AuthleteError)`
 
 ##### クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)
@@ -315,9 +316,9 @@ settings.Timeout = time.Duration(5) * time.Second
 - `DeviceComplete(request *dto.DeviceCompleteRequest) (*dto.DeviceCompleteResponse, *AuthleteError)`
 - `DeviceVerification(request *dto.DeviceVerificationRequest) (*dto.DeviceVerificationResponse, *AuthleteError)`
 
-##### Pushed Request Object に関するメソッド群
+##### Pushed Authorization Request に関するメソッド群
 
-- `RegisterRequestObject(request *dto.RequestObjectRequest) (*dto.RequestObjectResponse, *AuthleteError)`
+- `PushAuthorizationRequest(request *dto.PushedAuthReqRequest) (*dto.PushedAuthReqResponse, *AuthleteError)`
 
 Authlete バージョン
 -------------------
@@ -348,7 +349,7 @@ Authlete 2.1 以降で利用できる機能：
 コンタクト
 ----------
 
-コンタクトフォーム : https://www.authlete.com/contact/
+コンタクトフォーム : https://www.authlete.com/ja/contact/
 
 | 目的 | メールアドレス       |
 |:-----|:---------------------|

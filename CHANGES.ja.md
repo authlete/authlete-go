@@ -1,6 +1,9 @@
 変更点
 ======
 
+v1.1.0 (2020 年 10 月 31 日)
+----------------------------
+
 - `AuthleteApi` インターフェース
     * `TokenDelete()` メソッドを追加。
     * `PushAuthorizationRequest()` メソッドを追加。
