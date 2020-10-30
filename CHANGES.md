@@ -31,6 +31,10 @@ CHANGES
     * Added `RequestObjectRequired` field.
     * Removed `SectorIdentifier` field.
 
+- `ClientExtension` struct
+    * Added `AccessTokenDuration` field.
+    * Added `RefreshTokenDuration` field.
+
 v1.0.5 (2019-09-25)
 -------------------
 

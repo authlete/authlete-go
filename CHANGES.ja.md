@@ -31,6 +31,10 @@
     * `RequestObjectRequired` フィールドを追加。
     * `SectorIdentifier` フィールドを削除。
 
+- `ClientExtension` 構造体
+    * `AccessTokenDuration` フィールドを追加。
+    * `RefreshTokenDuration` フィールドを追加。
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

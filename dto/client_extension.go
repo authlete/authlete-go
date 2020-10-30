@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,4 +19,6 @@ package dto
 type ClientExtension struct {
 	RequestableScopesEnabled bool     `json:"requestableScopesEnabled,omitempty"`
 	RequestableScopes        []string `json:"requestableScopes,omitempty"`
+	AccessTokenDuration      uint64   `json:"accessTokenDuration,omitempty"`
+	RefreshTokenDuration     uint64   `json:"refreshTokenDuration,omitempty"`
 }
