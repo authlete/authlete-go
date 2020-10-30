@@ -53,6 +53,23 @@
     * `Resources` フィールドを追加。
     * `AccessTokenResources` フィールドを追加。
 
+- `Service` 構造体
+    * `RefreshTokenDurationKept` フィールドを追加。
+    * `EndSessionEndpoint` フィールドを追加。
+    * `PushedAuthReqDuration` フィールドを追加。
+    * `SupportedAuthorizationDataTypes` フィールドを追加。
+    * `SupportedTrustFrameworks` フィールドを追加。
+    * `SupportedEvidence` フィールドを追加。
+    * `SupportedIdentityDocuments` フィールドを追加。
+    * `SupportedVerificationMethods` フィールドを追加。
+    * `SupportedVerifiedClaims` フィールドを追加。
+    * `MissingClientIdAllowed` フィールドを追加。
+    * `ParRequired` フィールドを追加。
+    * `RequestObjectRequired` フィールドを追加。
+    * `TraditionalRequestObjectProcessingApplied` フィールドを追加。
+    * `Scopes` を `SupportedScopes` へ名称変更。
+    * `RequestObjectEndpoint` を `PushedAuthReqEndpoint` へ名称変更。
+
 - 新規部品
     * `PushedAuthReqAction` 型と同型の定数
     * `PushedAuthReqRequest` 構造体

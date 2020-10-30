@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ type Service struct {
 	RegistrationManagementEndpoint string `json:"registrationManagementEndpoint,omitempty"`
 
 	// Supported scopes.
-	Scopes []Scope `json:"scopes,omitempty"`
+	SupportedScopes []Scope `json:"supportedScopes,omitempty"`
 
 	// Supported response types.
 	SupportedResponseTypes []types.ResponseType `json:"supportedResponseTypes,omitempty"`
@@ -154,6 +154,10 @@ type Service struct {
 	// The flag which indicates whether refresh tokens remain valid after use.
 	RefreshTokenKept bool `json:"refreshTokenKept,omitempty"`
 
+	// The flag which indicates whether the remaining duration of the used
+	// refresh token is taken over to the newly issued refresh token.
+	RefreshTokenDurationKept bool `json:"refreshTokenDurationKept,omitempty"`
+
 	// The flag which indicates whether `error_description` is omitted.
 	ErrorDescriptionOmitted bool `json:"errorDescriptionOmitted,omitempty"`
 
@@ -184,6 +188,9 @@ type Service struct {
 	// The flag which indicates whether Dynamic Client Registration is supported.
 	DynamicRegistrationSupported bool `json:"dynamicRegistrationSupported,omitempty"`
 
+	// The URL of the end session endpoint.
+	EndSessionEndpoint string `json:"endSessionEndpoint,omitempty"`
+
 	// The description of this service.
 	Description string `json:"description,omitempty"`
 
@@ -207,6 +214,9 @@ type Service struct {
 
 	// The duration of authorization response JWTs.
 	AuthorizationResponseDuration uint64 `json:"authorizationResponseDuration,omitempty"`
+
+	// The duration of pushed authorization requests.
+	PushedAuthReqDuration uint64 `json:"pushedAuthReqDuration,omitempty"`
 
 	// The key ID to identify a JWK used for signing JWT-based access tokens.
 	AccessTokenSignatureKeyId string `json:"accessTokenSignatureKeyId,omitempty"`
@@ -262,9 +272,43 @@ type Service struct {
 	// The length of end-user verification codes for Device Flow.
 	UserCodeLength uint8 `json:"userCodeLength,omitempty"`
 
-	// The URL of the request object endpoint.
-	RequestObjectEndpoint string `json:"requestObjectEndpoint,omitempty"`
+	// The URL of the pushed authorization request endpoint.
+	PushedAuthReqEndpoint string `json:"pushedAuthReqEndpoint,omitempty"`
 
 	// MTLS endpoint aliases.
 	MtlsEndpointAliases []NamedUri `json:"mtlsEndpointAliases,omitempty"`
+
+	// Supported data types for authorization_details.
+	SupportedAuthorizationDataTypes []string `json:"supportedAuthorizationDataTypes,omitempty"`
+
+	// Supported trust frameworks. This corresponds to "trust_frameworks_supported".
+	SupportedTrustFrameworks []string `json:"supportedTrustFrameworks,omitempty"`
+
+	// Supported evidence. This corresponds to "evidence_supported".
+	SupportedEvidence []string `json:"supportedEvidence,omitempty"`
+
+	// Supported ID documents. This corresponds to "id_documents_supported".
+	SupportedIdentityDocuments []string `json:"supportedIdentityDocuments,omitempty"`
+
+	// Supported verification methods. This corresponds to "id_documents_verification_methods_supported".
+	SupportedVerificationMethods []string `json:"supportedVerificationMethods,omitempty"`
+
+	// Supported verified claims. This corresponds to "claims_in_verified_claims_supported".
+	SupportedVerifiedClaims []string `json:"supportedVerifiedClaims,omitempty"`
+
+	// The flag which indicates whether token requests from public client without
+	// the `client_id` request parameter are allowed when the client can be guessed
+	// from `authorization_code` or `refresh_token`.
+	MissingClientIdAllowed bool `json:"missingClientIdAllowed,omitempty"`
+
+	// The flag which indicates whether this service requires that clients use
+	// PAR (OAuth 2.0 Pushed Authorization Requests).
+	ParRequired bool `json:"parRequired,omitempty"`
+
+	// The flag which indicates whether authorization requests must utilize a request object.
+	RequestObjectRequired bool `json:"requestObjectRequired,omitempty"`
+
+	// The flag which indicates traditional request object processing
+	// (rules defined in OIDC Core 1.0) is applied.
+	TraditionalRequestObjectProcessingApplied bool `json:"traditionalRequestObjectProcessingApplied,omitempty"`
 }

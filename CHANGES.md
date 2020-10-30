@@ -53,6 +53,23 @@ CHANGES
     * Added `Resources` field.
     * Added `AccessTokenResources` field.
 
+- `Service` struct
+    * Added `RefreshTokenDurationKept` field.
+    * Added `EndSessionEndpoint` field.
+    * Added `PushedAuthReqDuration` field.
+    * Added `SupportedAuthorizationDataTypes` field.
+    * Added `SupportedTrustFrameworks` field.
+    * Added `SupportedEvidence` field.
+    * Added `SupportedIdentityDocuments` field.
+    * Added `SupportedVerificationMethods` field.
+    * Added `SupportedVerifiedClaims` field.
+    * Added `MissingClientIdAllowed` field.
+    * Added `ParRequired` field.
+    * Added `RequestObjectRequired` field.
+    * Added `TraditionalRequestObjectProcessingApplied` field.
+    * Renamed `Scopes` to `SupportedScopes`.
+    * Renamed `RequestObjectEndpoint` to `PushedAuthReqEndpoint`.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct
