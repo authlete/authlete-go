@@ -123,5 +123,7 @@ const (
 	// See RFC 8707 Resource Indicators for OAuth 2.0 for details.
 	//
 	// Using this reason will result in `error=invalid_target`.
+	//
+	// Since v1.1.0.
 	AuthorizationFailReason_INVALID_TARGET = AuthorizationFailReason(`INVALID_TARGET`)
 )
