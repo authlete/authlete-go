@@ -80,6 +80,11 @@ CHANGES
 - `TokenIssueResponse` struct
     * Added `AccessTokenResources` field.
 
+- `TokenRequest` struct
+    * Added `Dpop` field.
+    * Added `Htm` field.
+    * Added `Htu` field.
+
 - New components
     * `PushedAuthReqAction` type and some of its constants
     * `PushedAuthReqRequest` struct

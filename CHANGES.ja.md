@@ -80,6 +80,11 @@
 - `TokenIssueResponse` 型
     * `AccessTokenResources` フィールドを追加。
 
+- `TokenRequest` 構造体
+    * `Dpop` フィールドを追加。
+    * `Htm` フィールドを追加。
+    * `Htu` フィールドを追加。
+
 - 新規部品
     * `PushedAuthReqAction` 型と同型の定数
     * `PushedAuthReqRequest` 構造体
