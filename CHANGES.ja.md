@@ -111,6 +111,11 @@
     * `PushedAuthReqRequest` 構造体
     * `PushedAuthReqResponse` 構造体
 
+- 削除された部品
+    * `RequestObjectAction` 型
+    * `RequestObjectRequest` 構造体
+    * `RequestObjectResponse` 構造体
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

@@ -111,6 +111,11 @@ CHANGES
     * `PushedAuthReqRequest` struct
     * `PushedAuthReqResponse` struct
 
+- Deleted components
+    * `RequestObjectAction` type
+    * `RequestObjectRequest` struct
+    * `RequestObjectResponse` struct
+
 v1.0.5 (2019-09-25)
 -------------------
 
