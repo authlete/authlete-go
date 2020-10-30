@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -323,6 +323,13 @@ func (self *impl) TokenCreate(
 	request *dto.TokenCreateRequest) (res *dto.TokenCreateResponse, err *AuthleteError) {
 	res = &dto.TokenCreateResponse{}
 	err = self.callServicePostApi(`/api/auth/token/create`, request, res)
+	return
+}
+
+func (self *impl) TokenDelete(
+	token string) (err *AuthleteError) {
+	path := `/api/auth/token/delete/` + token
+	err = self.callServiceDeleteApi(path)
 	return
 }
 
@@ -697,10 +704,10 @@ func (self *impl) DeviceVerification(
 	return
 }
 
-func (self *impl) RegisterRequestObject(
-	request *dto.RequestObjectRequest) (res *dto.RequestObjectResponse, err *AuthleteError) {
-	res = &dto.RequestObjectResponse{}
-	err = self.callServicePostApi(`/api/requestobject`, request, res)
+func (self *impl) PushAuthorizationRequest(
+	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
+	res = &dto.PushedAuthReqResponse{}
+	err = self.callServicePostApi(`/api/pushed_auth_req`, request, res)
 	return
 }
 

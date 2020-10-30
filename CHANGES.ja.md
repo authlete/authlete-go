@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `TokenDelete()` メソッドを追加。
+    * `PushAuthorizationRequest()` メソッドを追加。
+    * `RegisterRequestObject()` メソッドを削除。
+
 - `AuthorizationFailReason` 型
     * `AuthorizationFailReason_INVALID_TARGET` を追加。
 

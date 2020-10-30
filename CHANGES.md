@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `TokenDelete()` method.
+    * Added `PushAuthorizationRequest()` method.
+    * Removed `RegisterRequestObject()` method.
+
 - `AuthorizationFailReason` type
     * Added `AuthorizationFailReason_INVALID_TARGET`.
 

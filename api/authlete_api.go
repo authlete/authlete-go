@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ type AuthleteApi interface {
 	AuthorizationIssue(request *dto.AuthorizationIssueRequest) (*dto.AuthorizationIssueResponse, *AuthleteError)
 	Token(request *dto.TokenRequest) (*dto.TokenResponse, *AuthleteError)
 	TokenCreate(request *dto.TokenCreateRequest) (*dto.TokenCreateResponse, *AuthleteError)
+	TokenDelete(token string) *AuthleteError
 	TokenFail(request *dto.TokenFailRequest) (*dto.TokenFailResponse, *AuthleteError)
 	TokenIssue(request *dto.TokenIssueRequest) (*dto.TokenIssueResponse, *AuthleteError)
 	TokenUpdate(request *dto.TokenUpdateRequest) (*dto.TokenUpdateResponse, *AuthleteError)
@@ -68,5 +69,5 @@ type AuthleteApi interface {
 	DeviceAuthorization(request *dto.DeviceAuthorizationRequest) (*dto.DeviceAuthorizationResponse, *AuthleteError)
 	DeviceComplete(request *dto.DeviceCompleteRequest) (*dto.DeviceCompleteResponse, *AuthleteError)
 	DeviceVerification(request *dto.DeviceVerificationRequest) (*dto.DeviceVerificationResponse, *AuthleteError)
-	RegisterRequestObject(request *dto.RequestObjectRequest) (*dto.RequestObjectResponse, *AuthleteError)
+	PushAuthorizationRequest(request *dto.PushedAuthReqRequest) (*dto.PushedAuthReqResponse, *AuthleteError)
 }
