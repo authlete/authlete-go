@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -116,4 +116,12 @@ const (
 	//
 	// Using this reason will result in `error=interaction_required`.
 	AuthorizationFailReason_INTERACTION_REQUIRED = AuthorizationFailReason(`INTERACTION_REQUIRED`)
+
+	// INVALID_TARGET
+	//
+	// The requested resource is invalid, missing, unknown, or malformed.
+	// See RFC 8707 Resource Indicators for OAuth 2.0 for details.
+	//
+	// Using this reason will result in `error=invalid_target`.
+	AuthorizationFailReason_INVALID_TARGET = AuthorizationFailReason(`INVALID_TARGET`)
 )

@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `AuthorizationFailReason`
+    * `AuthorizationFailReason_INVALID_TARGET` を追加。
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 
