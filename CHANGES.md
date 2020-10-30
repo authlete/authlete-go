@@ -14,6 +14,9 @@ CHANGES
 - `BackchannelAuthenticationCompleteRequest` struct
     * Added `IdtHeaderParams` field.
 
+- `BackchannelAuthenticationCompleteResponse` struct
+    * Added `Resources` field.
+
 v1.0.5 (2019-09-25)
 -------------------
 
