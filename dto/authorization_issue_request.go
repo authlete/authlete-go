@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -47,4 +47,10 @@ type AuthorizationIssueRequest struct {
 	// When this property is empty, the scopes specified in the original
 	// authorization request are used.
 	Scopes []string `json:"scopes,omitempty"`
+
+	// JSON that represents additional JWS header parameters for ID tokens
+	// that may be issued based on the authorization request.
+	//
+	// Since v1.1.0.
+	IdtHeaderParams string `json:"idtHeaderParams,omitempty"`
 }

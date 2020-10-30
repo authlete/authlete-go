@@ -1,8 +1,11 @@
 CHANGES
 =======
 
-- `AuthorizationFailReason`
+- `AuthorizationFailReason` type
     * Added `AuthorizationFailReason_INVALID_TARGET`.
+
+- `AuthorizationIssueRequest` struct
+    * Added `IdtHeaderParams` field.
 
 v1.0.5 (2019-09-25)
 -------------------
