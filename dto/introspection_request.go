@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,4 +21,7 @@ type IntrospectionRequest struct {
 	Scopes            []string `json:"scopes,omitempty"`
 	Subject           string   `json:"subject,omitempty"`
 	ClientCertificate string   `json:"clientCertificate,omitempty"`
+	Dpop              string   `json:"dpop,omitempty"`
+	Htm               string   `json:"htm,omitempty"`
+	Htu               string   `json:"htu,omitempty"`
 }

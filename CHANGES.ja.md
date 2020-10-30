@@ -44,6 +44,11 @@
 - `DeviceVerificationResponse` 構造体
     * `Resources` フィールドを追加。
 
+- `IntrospectionRequest` 構造体
+    * `Dpop` フィールドを追加。
+    * `Htm` フィールドを追加。
+    * `Htu` フィールドを追加。
+
 v1.0.5 (2019 年 09 月 25 日)
 ----------------------------
 

@@ -44,6 +44,11 @@ CHANGES
 - `DeviceVerificationResponse` struct
     * Added `Resources` field.
 
+- `IntrospectionRequest` struct
+    * Added `Dpop` field.
+    * Added `Htm` field.
+    * Added `Htu` field.
+
 v1.0.5 (2019-09-25)
 -------------------
 
