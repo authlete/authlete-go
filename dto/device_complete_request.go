@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2020 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ type DeviceCompleteRequest struct {
 
 	//
 	Scopes []string `json:"scopes,omitempty"`
+
+	//
+	IdtHeaderParams string `json:"idtHeaderParams,omitempty"`
 
 	//
 	ErrorDescription string `json:"errorDescription,omitempty"`

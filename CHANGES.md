@@ -38,6 +38,9 @@ CHANGES
 - `DeviceAuthorizationResponse` struct
     * Added `Resources` field.
 
+- `DeviceCompleteRequest` struct
+    * Added `IdtHeaderParams` field.
+
 v1.0.5 (2019-09-25)
 -------------------
 
