@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.1 (2020-11-04)
+-------------------
+
 - `Service` struct
     * Added `ClaimShortcutRestrictive` field.
     * Added `ScopeRequired` field.
