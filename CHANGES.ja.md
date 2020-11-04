@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` 構造体
+    * `ClaimShortcutRestrictive` フィールドを追加。
+    * `ScopeRequired` フィールドを追加。
+
+
 v1.1.0 (2020 年 10 月 31 日)
 ----------------------------
 

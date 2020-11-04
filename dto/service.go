@@ -311,4 +311,13 @@ type Service struct {
 	// The flag which indicates traditional request object processing
 	// (rules defined in OIDC Core 1.0) is applied.
 	TraditionalRequestObjectProcessingApplied bool `json:"traditionalRequestObjectProcessingApplied,omitempty"`
+
+	// The flag which indicates whether claims specified by shortcut scopes
+	// (e.g. profile) are included in the issued ID token only when no access
+	// token is issued.
+	ClaimShortcutRestrictive bool `json:"claimShortcutRestrictive,omitempty"`
+
+	// The flag which indicates whether requests that request no scope are
+	// rejected or not.
+	ScopeRequired bool `json:"scopeRequired,omitempty"`
 }
