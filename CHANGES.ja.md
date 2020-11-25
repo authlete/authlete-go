@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `StandardIntrospectionRequest` 構造体
+    * `WithHiddenProperties` フィールドを追加。
+
+
 v1.1.1 (2020 年 11 月 04 日)
 ----------------------------
 
