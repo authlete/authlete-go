@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.2 (2020-11-25)
+-------------------
+
 - `StandardIntrospectionRequest` struct
     * Added `WithHiddenProperties` field.
 
