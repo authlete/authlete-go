@@ -76,5 +76,11 @@ type DeviceAuthorizationResponse struct {
 	Resources []string `json:"resources,omitempty"`
 
 	//
+	ServiceAttributes []Pair `json:"serviceAttributes,omitempty"`
+
+	//
+	ClientAttributes []Pair `json:"clientAttributes,omitempty"`
+
+	//
 	Warnings []string `json:"warnings,omitempty"`
 }

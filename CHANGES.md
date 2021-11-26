@@ -4,8 +4,14 @@ CHANGES
 - `AuthorizationResponse` struct
     * Added `DynamicScopes` field.
 
+- `BackchannelAuthenticationCompleteResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
 - `BackchannelAuthenticationResponse` struct
     * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
 
 - `Client` struct
     * Added `Attributes` field.
@@ -17,9 +23,17 @@ CHANGES
 
 - `DeviceAuthorizationResponse` struct
     * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
 
 - `DeviceVerificationResponse` struct
     * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `IntrospectionResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
 
 - `Service` struct
     * Added `RefreshTokenDurationReset` field.
@@ -34,6 +48,18 @@ CHANGES
     * Added `HsmEnabled` field.
     * Added `Hsks` field.
     * Renamed `SupportedAuthorizationDataTypes` to `SupportedAuthorizationDetailsTypes`.
+
+- `TokenIssueResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `TokenResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `UserInfoResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
 
 - New components
     * `DynamicScope` struct

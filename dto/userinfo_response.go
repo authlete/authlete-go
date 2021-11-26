@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,4 +51,10 @@ type UserInfoResponse struct {
 
 	//
 	UserInfoClaims string `json:"userInfoClaims,omitempty"`
+
+	//
+	ServiceAttributes []Pair `json:"serviceAttributes,omitempty"`
+
+	//
+	ClientAttributes []Pair `json:"clientAttributes,omitempty"`
 }

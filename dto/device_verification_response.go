@@ -51,4 +51,10 @@ type DeviceVerificationResponse struct {
 
 	//
 	Resources []string `json:"resources,omitempty"`
+
+	//
+	ServiceAttributes []Pair `json:"serviceAttributes,omitempty"`
+
+	//
+	ClientAttributes []Pair `json:"clientAttributes,omitempty"`
 }

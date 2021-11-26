@@ -4,8 +4,14 @@
 - `AuthorizationResponse` 構造体
     * `DynamicScopes` フィールドを追加。
 
+- `BackchannelAuthenticationCompleteResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
 - `BackchannelAuthenticationResponse` 構造体
     * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
 
 - `Client` 構造体
     * `Attributes` フィールドを追加。
@@ -17,9 +23,17 @@
 
 - `DeviceAuthorizationResponse` 構造体
     * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
 
 - `DeviceVerificationResponse` 構造体
     * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `IntrospectionResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
 
 - `Service` 構造体
     * `RefreshTokenDurationReset` フィールドを追加。
@@ -34,6 +48,18 @@
     * `HsmEnabled` フィールドを追加。
     * `Hsks` フィールドを追加。
     * `SupportedAuthorizationDataTypes` を `SupportedAuthorizationDetailsTypes` へ名称変更。
+
+- `TokenIssueResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `TokenResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `UserInfoResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
 
 - 新規部品
     * `DynamicScope` 構造体
