@@ -35,6 +35,10 @@ CHANGES
     * Added `ServiceAttributes` field.
     * Added `ClientAttributes` field.
 
+- `RevocationRequest` struct
+    * Added `ClientCertificate` field.
+    * Added `ClientCertificatePath` field.
+
 - `Service` struct
     * Added `RefreshTokenDurationReset` field.
     * Added `NbfOptional` field.

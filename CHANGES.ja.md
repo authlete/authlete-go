@@ -35,6 +35,10 @@
     * `ServiceAttributes` フィールドを追加。
     * `ClientAttributes` フィールドを追加。
 
+- `RevocationRequest` 構造体
+    * `ClientCertificate` フィールドを追加。
+    * `ClientCertificatePath` フィールドを追加。
+
 - `Service` 構造体
     * `RefreshTokenDurationReset` フィールドを追加。
     * `NbfOptional` フィールドを追加。
