@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` struct
+    * Added `DynamicScopes` field.
+
+- `BackchannelAuthenticationResponse` struct
+    * Added `DynamicScopes` field.
+
 - `Client` struct
     * Added `Attributes` field.
     * Added `CustomMetadata` field.
@@ -8,6 +14,12 @@ CHANGES
     * Added `RequestObjectEncryptionAlgMatchRequired` field.
     * Added `RequestObjectEncryptionEncMatchRequired` field.
     * Renamed `AuthorizationDataTypes` to `AuthorizationDetailsTypes`.
+
+- `DeviceAuthorizationResponse` struct
+    * Added `DynamicScopes` field.
+
+- `DeviceVerificationResponse` struct
+    * Added `DynamicScopes` field.
 
 - `Service` struct
     * Added `RefreshTokenDurationReset` field.
@@ -22,6 +34,9 @@ CHANGES
     * Added `HsmEnabled` field.
     * Added `Hsks` field.
     * Renamed `SupportedAuthorizationDataTypes` to `SupportedAuthorizationDetailsTypes`.
+
+- New components
+    * `DynamicScope` struct
 
 v1.1.2 (2020-11-25)
 -------------------

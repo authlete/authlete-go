@@ -46,6 +46,9 @@ type BackchannelAuthenticationResponse struct {
 	Scopes []Scope `json:"scopes,omitempty"`
 
 	//
+	DynamicScopes []DynamicScope `json:"dynamicScopes,omitempty"`
+
+	//
 	ClaimNames []string `json:"claimNames,omitempty"`
 
 	//

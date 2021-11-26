@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `AuthorizationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+
+- `BackchannelAuthenticationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+
 - `Client` 構造体
     * `Attributes` フィールドを追加。
     * `CustomMetadata` フィールドを追加。
@@ -8,6 +14,12 @@
     * `RequestObjectEncryptionAlgMatchRequired` フィールドを追加。
     * `RequestObjectEncryptionEncMatchRequired` フィールドを追加。
     * `AuthorizationDataTypes` を `AuthorizationDetailsTypes` へ名称変更。
+
+- `DeviceAuthorizationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+
+- `DeviceVerificationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
 
 - `Service` 構造体
     * `RefreshTokenDurationReset` フィールドを追加。
@@ -22,6 +34,9 @@
     * `HsmEnabled` フィールドを追加。
     * `Hsks` フィールドを追加。
     * `SupportedAuthorizationDataTypes` を `SupportedAuthorizationDetailsTypes` へ名称変更。
+
+- 新規部品
+    * `DynamicScope` 構造体
 
 v1.1.2 (2020 年 11 月 25 日)
 ----------------------------
