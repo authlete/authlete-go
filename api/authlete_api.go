@@ -74,4 +74,5 @@ type AuthleteApi interface {
 	HskDelete(handle interface{}) (*dto.HskResponse, *AuthleteError)
 	HskGet(handle interface{}) (*dto.HskResponse, *AuthleteError)
 	HskGetList() (*dto.HskListResponse, *AuthleteError)
+	Echo(parameters *map[string]string) (*map[string]string, *AuthleteError)
 }

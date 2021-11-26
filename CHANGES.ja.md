@@ -6,6 +6,7 @@
     * `HskDelete()` メソッドを追加
     * `HskGet()` メソッドを追加
     * `HskGetList()` メソッドを追加
+    * `Echo()` メソッドを追加
 
 - `AuthorizationResponse` 構造体
     * `DynamicScopes` フィールドを追加。

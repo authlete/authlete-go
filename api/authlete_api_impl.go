@@ -94,7 +94,10 @@ func (self *impl) buildRequest(
 	req.Header = self.buildRequestHeader()
 	req.URL = self.buildRequestUrl(path, queryParams)
 	req.Body = self.buildRequestBody(requestBody)
-	req.SetBasicAuth(apiKey, apiSecret)
+
+	if len(apiKey) > 0 || len(apiSecret) > 0 {
+		req.SetBasicAuth(apiKey, apiSecret)
+	}
 
 	return &req
 }
@@ -194,6 +197,13 @@ func (self *impl) callGetApi(
 	responseContainer interface{}) *AuthleteError {
 	return self.callApi(
 		http.MethodGet, apiKey, apiSecret,
+		path, queryParams, nil, responseContainer)
+}
+
+func (self *impl) callGetApiWithoutCredentials(
+	path string, queryParams map[string]string, responseContainer interface{}) *AuthleteError {
+	return self.callApi(
+		http.MethodGet, "", "",
 		path, queryParams, nil, responseContainer)
 }
 
@@ -738,6 +748,12 @@ func (self *impl) HskGetList() (
 	res *dto.HskListResponse, err *AuthleteError) {
 	res = &dto.HskListResponse{}
 	err = self.callServiceGetApi(`/api/hsk/get/list`, nil, res)
+	return
+}
+
+func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
+	res = &map[string]string{}
+	err = self.callGetApiWithoutCredentials(`/api/misc/echo`, *parameters, res)
 	return
 }
 

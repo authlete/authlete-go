@@ -6,6 +6,7 @@ CHANGES
     * Added `HskDelete()` method.
     * Added `HskGet()` method.
     * Added `HskGetList()` method.
+    * Added `Echo()` method.
 
 - `AuthorizationResponse` struct
     * Added `DynamicScopes` field.
