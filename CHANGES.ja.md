@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `Client` 構造体
+    * `Attributes` フィールドを追加。
+    * `CustomMetadata` フィールドを追加。
+    * `FrontChannelRequestObjectEncryptionRequired` フィールドを追加。
+    * `RequestObjectEncryptionAlgMatchRequired` フィールドを追加。
+    * `RequestObjectEncryptionEncMatchRequired` フィールドを追加。
+    * `AuthorizationDataTypes` を `AuthorizationDetailsTypes` へ名称変更。
+
 - `Service` 構造体
     * `RefreshTokenDurationReset` フィールドを追加。
     * `NbfOptional` フィールドを追加。

@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+- `Client` struct
+    * Added `Attributes` field.
+    * Added `CustomMetadata` field.
+    * Added `FrontChannelRequestObjectEncryptionRequired` field.
+    * Added `RequestObjectEncryptionAlgMatchRequired` field.
+    * Added `RequestObjectEncryptionEncMatchRequired` field.
+    * Renamed `AuthorizationDataTypes` to `AuthorizationDetailsTypes`.
+
 - `Service` struct
     * Added `RefreshTokenDurationReset` field.
     * Added `NbfOptional` field.
