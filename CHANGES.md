@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+- `Service` struct
+    * Added `RefreshTokenDurationReset` field.
+    * Added `NbfOptional` field.
+    * Added `IssSuppressed` field.
+    * Added `Attributes` field.
+    * Added `SupportedCustomClientMetadata` field.
+    * Added `TokenExpirationLinked` field.
+    * Added `FrontChannelRequestObjectEncryptionRequired` field.
+    * Added `RequestObjectEncryptionAlgMatchRequired` field.
+    * Added `RequestObjectEncryptionEncMatchRequired` field.
+    * Added `HsmEnabled` field.
+    * Added `Hsks` field.
+    * Renamed `SupportedAuthorizationDataTypes` to `SupportedAuthorizationDetailsTypes`.
+
 v1.1.2 (2020-11-25)
 -------------------
 

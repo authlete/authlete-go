@@ -1,6 +1,20 @@
 変更点
 ======
 
+- `Service` 構造体
+    * `RefreshTokenDurationReset` フィールドを追加。
+    * `NbfOptional` フィールドを追加。
+    * `IssSuppressed` フィールドを追加。
+    * `Attributes` フィールドを追加。
+    * `SupportedCustomClientMetadata` フィールドを追加。
+    * `TokenExpirationLinked` フィールドを追加。
+    * `FrontChannelRequestObjectEncryptionRequired` フィールドを追加。
+    * `RequestObjectEncryptionAlgMatchRequired` フィールドを追加。
+    * `RequestObjectEncryptionEncMatchRequired` フィールドを追加。
+    * `HsmEnabled` フィールドを追加。
+    * `Hsks` フィールドを追加。
+    * `SupportedAuthorizationDataTypes` を `SupportedAuthorizationDetailsTypes` へ名称変更。
+
 v1.1.2 (2020 年 11 月 25 日)
 ----------------------------
 
