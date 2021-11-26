@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `HskCreate()` メソッドを追加
+    * `HskDelete()` メソッドを追加
+    * `HskGet()` メソッドを追加
+    * `HskGetList()` メソッドを追加
+
 - `AuthorizationResponse` 構造体
     * `DynamicScopes` フィールドを追加。
 
@@ -67,6 +73,12 @@
 
 - 新規部品
     * `DynamicScope` 構造体
+    * `Hsk` 構造体
+    * `HskAction` 型と同型の定数
+    * `HskResponse` 構造体
+    * `HskListAction` 型と同型の定数
+    * `HskListResponse` 構造体
+    * `HskCreateRequest` 構造体
 
 v1.1.2 (2020 年 11 月 25 日)
 ----------------------------

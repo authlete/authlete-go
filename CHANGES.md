@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `HskCreate()` method.
+    * Added `HskDelete()` method.
+    * Added `HskGet()` method.
+    * Added `HskGetList()` method.
+
 - `AuthorizationResponse` struct
     * Added `DynamicScopes` field.
 
@@ -67,6 +73,12 @@ CHANGES
 
 - New components
     * `DynamicScope` struct
+    * `Hsk` struct
+    * `HskAction` type and some of its constants
+    * `HskResponse` struct
+    * `HskListAction` type and some of its constants
+    * `HskListResponse` struct
+    * `HskCreateRequest` struct
 
 v1.1.2 (2020-11-25)
 -------------------

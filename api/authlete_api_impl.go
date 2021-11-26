@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -708,6 +708,36 @@ func (self *impl) PushAuthorizationRequest(
 	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
 	res = &dto.PushedAuthReqResponse{}
 	err = self.callServicePostApi(`/api/pushed_auth_req`, request, res)
+	return
+}
+
+func (self *impl) HskCreate(
+	request *dto.HskCreateRequest) (res *dto.HskResponse, err *AuthleteError) {
+	res = &dto.HskResponse{}
+	err = self.callServicePostApi(`/api/hsk/create`, request, res)
+	return
+}
+
+func (self *impl) HskDelete(
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	path := `/api/hsk/delete/` + toString(handle)
+	res = &dto.HskResponse{}
+	err = self.callServiceGetApi(path, nil, res)
+	return
+}
+
+func (self *impl) HskGet(
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	path := `/api/hsk/get/` + toString(handle)
+	res = &dto.HskResponse{}
+	err = self.callServiceGetApi(path, nil, res)
+	return
+}
+
+func (self *impl) HskGetList() (
+	res *dto.HskListResponse, err *AuthleteError) {
+	res = &dto.HskListResponse{}
+	err = self.callServiceGetApi(`/api/hsk/get/list`, nil, res)
 	return
 }
 

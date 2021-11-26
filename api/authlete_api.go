@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,4 +70,8 @@ type AuthleteApi interface {
 	DeviceComplete(request *dto.DeviceCompleteRequest) (*dto.DeviceCompleteResponse, *AuthleteError)
 	DeviceVerification(request *dto.DeviceVerificationRequest) (*dto.DeviceVerificationResponse, *AuthleteError)
 	PushAuthorizationRequest(request *dto.PushedAuthReqRequest) (*dto.PushedAuthReqResponse, *AuthleteError)
+	HskCreate(request *dto.HskCreateRequest) (*dto.HskResponse, *AuthleteError)
+	HskDelete(handle interface{}) (*dto.HskResponse, *AuthleteError)
+	HskGet(handle interface{}) (*dto.HskResponse, *AuthleteError)
+	HskGetList() (*dto.HskListResponse, *AuthleteError)
 }
