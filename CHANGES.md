@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.3 (2021-12-02)
+-------------------
+
 - `AuthleteApi` interface
     * Added `HskCreate()` method.
     * Added `HskDelete()` method.
