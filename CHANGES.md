@@ -1,6 +1,86 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `HskCreate()` method.
+    * Added `HskDelete()` method.
+    * Added `HskGet()` method.
+    * Added `HskGetList()` method.
+    * Added `Echo()` method.
+
+- `AuthorizationResponse` struct
+    * Added `DynamicScopes` field.
+
+- `BackchannelAuthenticationCompleteResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `BackchannelAuthenticationResponse` struct
+    * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `Client` struct
+    * Added `Attributes` field.
+    * Added `CustomMetadata` field.
+    * Added `FrontChannelRequestObjectEncryptionRequired` field.
+    * Added `RequestObjectEncryptionAlgMatchRequired` field.
+    * Added `RequestObjectEncryptionEncMatchRequired` field.
+    * Renamed `AuthorizationDataTypes` to `AuthorizationDetailsTypes`.
+
+- `DeviceAuthorizationResponse` struct
+    * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `DeviceVerificationResponse` struct
+    * Added `DynamicScopes` field.
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `IntrospectionResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `RevocationRequest` struct
+    * Added `ClientCertificate` field.
+    * Added `ClientCertificatePath` field.
+
+- `Service` struct
+    * Added `RefreshTokenDurationReset` field.
+    * Added `NbfOptional` field.
+    * Added `IssSuppressed` field.
+    * Added `Attributes` field.
+    * Added `SupportedCustomClientMetadata` field.
+    * Added `TokenExpirationLinked` field.
+    * Added `FrontChannelRequestObjectEncryptionRequired` field.
+    * Added `RequestObjectEncryptionAlgMatchRequired` field.
+    * Added `RequestObjectEncryptionEncMatchRequired` field.
+    * Added `HsmEnabled` field.
+    * Added `Hsks` field.
+    * Renamed `SupportedAuthorizationDataTypes` to `SupportedAuthorizationDetailsTypes`.
+
+- `TokenIssueResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `TokenResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- `UserInfoResponse` struct
+    * Added `ServiceAttributes` field.
+    * Added `ClientAttributes` field.
+
+- New components
+    * `DynamicScope` struct
+    * `Hsk` struct
+    * `HskAction` type and some of its constants
+    * `HskResponse` struct
+    * `HskListAction` type and some of its constants
+    * `HskListResponse` struct
+    * `HskCreateRequest` struct
+
 v1.1.2 (2020-11-25)
 -------------------
 

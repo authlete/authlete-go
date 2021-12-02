@@ -1,6 +1,86 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `HskCreate()` メソッドを追加
+    * `HskDelete()` メソッドを追加
+    * `HskGet()` メソッドを追加
+    * `HskGetList()` メソッドを追加
+    * `Echo()` メソッドを追加
+
+- `AuthorizationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `BackchannelAuthenticationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `Client` 構造体
+    * `Attributes` フィールドを追加。
+    * `CustomMetadata` フィールドを追加。
+    * `FrontChannelRequestObjectEncryptionRequired` フィールドを追加。
+    * `RequestObjectEncryptionAlgMatchRequired` フィールドを追加。
+    * `RequestObjectEncryptionEncMatchRequired` フィールドを追加。
+    * `AuthorizationDataTypes` を `AuthorizationDetailsTypes` へ名称変更。
+
+- `DeviceAuthorizationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `DeviceVerificationResponse` 構造体
+    * `DynamicScopes` フィールドを追加。
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `IntrospectionResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `RevocationRequest` 構造体
+    * `ClientCertificate` フィールドを追加。
+    * `ClientCertificatePath` フィールドを追加。
+
+- `Service` 構造体
+    * `RefreshTokenDurationReset` フィールドを追加。
+    * `NbfOptional` フィールドを追加。
+    * `IssSuppressed` フィールドを追加。
+    * `Attributes` フィールドを追加。
+    * `SupportedCustomClientMetadata` フィールドを追加。
+    * `TokenExpirationLinked` フィールドを追加。
+    * `FrontChannelRequestObjectEncryptionRequired` フィールドを追加。
+    * `RequestObjectEncryptionAlgMatchRequired` フィールドを追加。
+    * `RequestObjectEncryptionEncMatchRequired` フィールドを追加。
+    * `HsmEnabled` フィールドを追加。
+    * `Hsks` フィールドを追加。
+    * `SupportedAuthorizationDataTypes` を `SupportedAuthorizationDetailsTypes` へ名称変更。
+
+- `TokenIssueResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `TokenResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- `UserInfoResponse` 構造体
+    * `ServiceAttributes` フィールドを追加。
+    * `ClientAttributes` フィールドを追加。
+
+- 新規部品
+    * `DynamicScope` 構造体
+    * `Hsk` 構造体
+    * `HskAction` 型と同型の定数
+    * `HskResponse` 構造体
+    * `HskListAction` 型と同型の定数
+    * `HskListResponse` 構造体
+    * `HskCreateRequest` 構造体
+
 v1.1.2 (2020 年 11 月 25 日)
 ----------------------------
 

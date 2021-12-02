@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2021 Authlete, Inc.
+// Copyright (C) 2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,19 +16,12 @@
 
 package dto
 
-type RevocationRequest struct {
-	//
-	Parameters string `json:"parameters"` // omitempty is not added intentionally.
+type HskListResponse struct {
+	ApiResponse
 
 	//
-	ClientId string `json:"clientId,omitempty"`
+	Action HskListAction `json:"action,omitempty"`
 
 	//
-	ClientSecret string `json:"clientSecret,omitempty"`
-
-	//
-	ClientCertificate string `json:"clientCertificate,omitempty"`
-
-	//
-	ClientCertificatePath []string `json:"clientCertificatePath,omitempty"`
+	Hsks []Hsk `json:"hsks,omitempty"`
 }

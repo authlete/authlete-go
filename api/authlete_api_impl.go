@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -94,7 +94,10 @@ func (self *impl) buildRequest(
 	req.Header = self.buildRequestHeader()
 	req.URL = self.buildRequestUrl(path, queryParams)
 	req.Body = self.buildRequestBody(requestBody)
-	req.SetBasicAuth(apiKey, apiSecret)
+
+	if len(apiKey) > 0 || len(apiSecret) > 0 {
+		req.SetBasicAuth(apiKey, apiSecret)
+	}
 
 	return &req
 }
@@ -194,6 +197,13 @@ func (self *impl) callGetApi(
 	responseContainer interface{}) *AuthleteError {
 	return self.callApi(
 		http.MethodGet, apiKey, apiSecret,
+		path, queryParams, nil, responseContainer)
+}
+
+func (self *impl) callGetApiWithoutCredentials(
+	path string, queryParams map[string]string, responseContainer interface{}) *AuthleteError {
+	return self.callApi(
+		http.MethodGet, "", "",
 		path, queryParams, nil, responseContainer)
 }
 
@@ -708,6 +718,42 @@ func (self *impl) PushAuthorizationRequest(
 	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
 	res = &dto.PushedAuthReqResponse{}
 	err = self.callServicePostApi(`/api/pushed_auth_req`, request, res)
+	return
+}
+
+func (self *impl) HskCreate(
+	request *dto.HskCreateRequest) (res *dto.HskResponse, err *AuthleteError) {
+	res = &dto.HskResponse{}
+	err = self.callServicePostApi(`/api/hsk/create`, request, res)
+	return
+}
+
+func (self *impl) HskDelete(
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	path := `/api/hsk/delete/` + toString(handle)
+	res = &dto.HskResponse{}
+	err = self.callServiceGetApi(path, nil, res)
+	return
+}
+
+func (self *impl) HskGet(
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	path := `/api/hsk/get/` + toString(handle)
+	res = &dto.HskResponse{}
+	err = self.callServiceGetApi(path, nil, res)
+	return
+}
+
+func (self *impl) HskGetList() (
+	res *dto.HskListResponse, err *AuthleteError) {
+	res = &dto.HskListResponse{}
+	err = self.callServiceGetApi(`/api/hsk/get/list`, nil, res)
+	return
+}
+
+func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
+	res = &map[string]string{}
+	err = self.callGetApiWithoutCredentials(`/api/misc/echo`, *parameters, res)
 	return
 }
 

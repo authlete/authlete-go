@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -216,7 +216,7 @@ type Client struct {
 
 	// The data types that this client may use as values of the `type` field
 	// in `authorization_details`.
-	AuthorizationDataTypes []string `json:"authorizationDataTypes,omitempty"`
+	AuthorizationDetailsTypes []string `json:"authorizationDetailsTypes,omitempty"`
 
 	// The flag which indicates whether this client is required to use PAR
 	// (OAuth 2.0 Pushed Authorization Requests).
@@ -226,4 +226,22 @@ type Client struct {
 	// are always required to utilize a request object by using either `request`
 	// or `request_uri` request parameter.
 	RequestObjectRequired bool `json:"requestObjectRequired,omitempty"`
+
+	// Arbitrary attributes associated with this client.
+	Attributes []Pair `json:"attributes,omitempty"`
+
+	// Custom metadata supported by this client.
+	CustomMetadata string `json:"customMetadata,omitempty"`
+
+	// The flag which indicates whether encryption of request object is required
+	// when the request object is passed through the front channel.
+	FrontChannelRequestObjectEncryptionRequired bool `json:"frontChannelRequestObjectEncryptionRequired,omitempty"`
+
+	// The flag which indicates whether the JWE alg of encrypted request
+	// object must match the value of the request_object_encryption_alg client metadata.
+	RequestObjectEncryptionAlgMatchRequired bool `json:"requestObjectEncryptionAlgMatchRequired,omitempty"`
+
+	// The flag which indicates whether the JWE enc of encrypted request
+	// object must match the value of the request_object_encryption_enc client metadata.
+	RequestObjectEncryptionEncMatchRequired bool `json:"requestObjectEncryptionEncMatchRequired,omitempty"`
 }

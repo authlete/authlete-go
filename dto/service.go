@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2021 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -158,6 +158,10 @@ type Service struct {
 	// refresh token is taken over to the newly issued refresh token.
 	RefreshTokenDurationKept bool `json:"refreshTokenDurationKept,omitempty"`
 
+	// The flag which indicates whether duration of refresh tokens are
+	// reset when they are used even if the refreshTokenKept property
+	RefreshTokenDurationReset bool `json:"refreshTokenDurationReset,omitempty"`
+
 	// The flag which indicates whether `error_description` is omitted.
 	ErrorDescriptionOmitted bool `json:"errorDescriptionOmitted,omitempty"`
 
@@ -279,7 +283,7 @@ type Service struct {
 	MtlsEndpointAliases []NamedUri `json:"mtlsEndpointAliases,omitempty"`
 
 	// Supported data types for authorization_details.
-	SupportedAuthorizationDataTypes []string `json:"supportedAuthorizationDataTypes,omitempty"`
+	SupportedAuthorizationDetailsTypes []string `json:"supportedAuthorizationDetailsTypes,omitempty"`
 
 	// Supported trust frameworks. This corresponds to "trust_frameworks_supported".
 	SupportedTrustFrameworks []string `json:"supportedTrustFrameworks,omitempty"`
@@ -320,4 +324,42 @@ type Service struct {
 	// The flag which indicates whether requests that request no scope are
 	// rejected or not.
 	ScopeRequired bool `json:"scopeRequired,omitempty"`
+
+	// The flag which indicates whether the nbf claim in the request
+	// object is optional even when the authorization request is regarded
+	// as a FAPI-Part2 request.
+	NbfOptional bool `json:"nbfOptional,omitempty"`
+
+	// The flag which indicates whether generation of the iss response
+	// parameter is suppressed.
+	IssSuppressed bool `json:"issSuppressed,omitempty"`
+
+	// Arbitrary attributes associated with this service.
+	Attributes []Pair `json:"attributes,omitempty"`
+
+	// Custom client metadata supported by this service.
+	SupportedCustomClientMetadata []string `json:"supportedCustomClientMetadata,omitempty"`
+
+	// The flag which indicates whether the expiration date of an access token
+	// never exceeds that of the corresponding refresh token.
+	TokenExpirationLinked bool `json:"tokenExpirationLinked,omitempty"`
+
+	// The flag which indicates whether encryption of request object is required
+	// when the request object is passed through the front channel.
+	FrontChannelRequestObjectEncryptionRequired bool `json:"frontChannelRequestObjectEncryptionRequired,omitempty"`
+
+	// The flag which indicates whether the JWE alg of encrypted request
+	// object must match the value of the request_object_encryption_alg client metadata.
+	RequestObjectEncryptionAlgMatchRequired bool `json:"requestObjectEncryptionAlgMatchRequired,omitempty"`
+
+	// The flag which indicates whether the JWE enc of encrypted request
+	// object must match the value of the request_object_encryption_enc client metadata.
+	RequestObjectEncryptionEncMatchRequired bool `json:"requestObjectEncryptionEncMatchRequired,omitempty"`
+
+	// The flag which indicates whether HSM (Hardware Security Module) support is
+	// enabled for this service.
+	HsmEnabled bool `json:"hsmEnabled,omitempty"`
+
+	// Hardware-secured keys. Output only.
+	Hsks []Hsk `json:"hsks,omitempty"`
 }
