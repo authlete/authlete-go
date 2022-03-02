@@ -292,7 +292,7 @@ type Service struct {
 	SupportedEvidence []string `json:"supportedEvidence,omitempty"`
 
 	// Supported ID documents. This corresponds to "id_documents_supported".
-	SupportedIdentityDocuments []string `json:"supportedDocuments,omitempty"`
+	SupportedDocuments []string `json:"supportedDocuments,omitempty"`
 
 	// Supported verification methods. This corresponds to "id_documents_verification_methods_supported".
 	SupportedVerificationMethods []string `json:"supportedVerificationMethods,omitempty"`
