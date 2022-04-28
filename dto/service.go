@@ -369,5 +369,6 @@ type Service struct {
 	// if the scope provided by developer on DCR/management can be requestable
 	DcrScopeUsedAsRequestable bool `json:"dcrScopeUsedAsRequestable,omitempty"`
 
+	// the flag for marking if redirect uris to localhost should be stricted compared or not.
 	LoopbackRedirectionUriVariable bool `json:"loopbackRedirectionUriVariable,omitempty"`
 }
