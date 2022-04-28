@@ -103,10 +103,14 @@ func (self *impl) buildRequest(
 }
 
 func (self *impl) buildRequestHeader() http.Header {
-	return map[string][]string{
+	headers := http.Header{
 		`Accept`:       {`application/json`},
 		`Content-Type`: {`application/json;charset=UTF-8`},
 	}
+	if len(self.settings.UserAgent) > 0 {
+		headers.Set(`User-Agent`, self.settings.UserAgent)
+	}
+	return headers
 }
 
 func (self *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {

@@ -19,5 +19,6 @@ package api
 import "time"
 
 type Settings struct {
-	Timeout time.Duration
+	Timeout   time.Duration
+	UserAgent string
 }
