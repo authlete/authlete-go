@@ -294,6 +294,9 @@ type Service struct {
 	// Supported ID documents. This corresponds to "id_documents_supported".
 	SupportedIdentityDocuments []string `json:"supportedIdentityDocuments,omitempty"`
 
+	// Supported documents. This corresponds to "documents_supported".
+	SupportedDocuments []string `json:"supportedDocuments,omitempty"`
+
 	// Supported verification methods. This corresponds to "id_documents_verification_methods_supported".
 	SupportedVerificationMethods []string `json:"supportedVerificationMethods,omitempty"`
 
@@ -362,4 +365,10 @@ type Service struct {
 
 	// Hardware-secured keys. Output only.
 	Hsks []Hsk `json:"hsks,omitempty"`
+
+	// if the scope provided by developer on DCR/management can be requestable
+	DcrScopeUsedAsRequestable bool `json:"dcrScopeUsedAsRequestable,omitempty"`
+
+	// the flag for marking if redirect uris to localhost should be stricted compared or not.
+	LoopbackRedirectionUriVariable bool `json:"loopbackRedirectionUriVariable,omitempty"`
 }
