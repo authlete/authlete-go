@@ -50,6 +50,14 @@ func (self *impl) init(configuration conf.AuthleteConfiguration) {
 	self.settings = &Settings{}
 }
 
+// this method copy the raw response body from api server to
+// better report error to clients using your api
+func drainBody(body *io.ReadCloser) string {
+	buf := new(strings.Builder)
+	io.Copy(buf, *body)
+	return buf.String()
+}
+
 func (self *impl) callApi(
 	method string, apiKey string, apiSecret string, path string,
 	queryParams map[string]string, requestBody interface{},
@@ -63,14 +71,14 @@ func (self *impl) callApi(
 	// Call the Authlete API.
 	res, err := client.Do(req)
 	if err != nil {
-		msg := fmt.Sprintf(`API call to '%s' failed`, path)
+		msg := fmt.Sprintf(`API call to '%s' failed, with error %s`, path, err.Error())
 		return &AuthleteError{err, msg, req, res}
 	}
 
 	// HTTP Status Code of the API response.
 	sc := res.StatusCode
 	if sc < 200 || 300 <= sc {
-		msg := fmt.Sprintf(`'%s' API returned %d`, path, sc)
+		msg := fmt.Sprintf(`'%s' API returned %d with body \n %s`, path, sc, drainBody(&res.Body))
 		return &AuthleteError{nil, msg, req, res}
 	}
 
