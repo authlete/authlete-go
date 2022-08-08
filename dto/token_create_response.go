@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019 Authlete, Inc.
+// Copyright (C) 2019-2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,4 +53,20 @@ type TokenCreateResponse struct {
 
 	//
 	Properties []Property `json:"properties,omitempty"`
+
+	// Access token in the JWT format.
+	//
+	// Since v1.5.0.
+	JwtAccessToken string `json:"jwtAccessToken,omitempty"`
+
+	// Flag indicating whether the access token is for an external attachment.
+	// See OpenID Connect for Identity Assurance for details.
+	//
+	// Since v1.5.0.
+	ForExternalAttachment bool `json:"forExternalAttachment,omitempty"`
+
+	// Token ID.
+	//
+	// Since v1.5.0.
+	TokenId string `json:"tokenId,omitempty"`
 }

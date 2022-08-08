@@ -1,8 +1,73 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` struct
+    * Added `ConsentedClaims` field.
+    * Added `ClaimsForTx` field.
+    * Added `VerifiedClaimsForTx` field.
+    * Added `JwtAtClaims` field.
+    * Added `AccessToken` field.
+
+- `BackchannelAuthenticationCompleteRequest` struct
+    * Added `ConsentedClaims` field.
+    * Added `JwtAtClaims` field.
+    * Added `AccessToken` field.
+
+- `DeviceCompleteRequest` struct
+    * Added `ConsentedClaims` field.
+    * Added `JwtAtClaims` field.
+
+- `GrantType` type
+    * Added `GrantType_TOKEN_EXCHANGE` constant.
+
+- `TokenCreateRequest` struct
+    * Added `Resources` field.
+    * Added `ForExternalAttachment` field.
+    * Added `JwtAtClaims` field.
+
+- `TokenCreateResponse` struct
+    * Added `JwtAccessToken` field.
+    * Added `ForExternalAttachment` field.
+    * Added `TokenId` field.
+
+- `TokenIssueRequest` struct
+    * Added `JwtAtClaims` field.
+    * Added `AccessToken` field.
+
+- `TokenRequest` struct
+    * Added `AccessToken` field.
+
+- `TokenResponse` struct
+    * Added `GrantId` field.
+    * Added `Audiences` field.
+    * Added `RequestedTokenType` field.
+    * Added `SubjectToken` field.
+    * Added `SubjectTokenType` field.
+    * Added `SubjectTokenInfo` field.
+    * Added `ActorToken` field.
+    * Added `ActorTokenType` field.
+    * Added `ActorTokenInfo` field.
+
+- `TokenUpdateRequest` struct
+    * Added `ForExternalAttachment` field.
+    * Added `TokenId` field.
+
+- `TokenUpdateResponse` struct
+    * Added `ForExternalAttachment` field.
+    * Added `TokenId` field.
+
+- New components
+    * `TokenInfo` struct
+    * `TokenType` type and some of its constants
+
 v1.1.4 (2022-03-28)
 -------------------
+
+- `Service` struct
+    * Added `SupportedDocuments` field.
+    * Added `DcrScopeUsedAsRequestable` field.
+    * Added `LoopbackRedirectionUriVariable` field.
+
 - `Settings` struct
     * Added `UserAgent` field.
 

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2021 Authlete, Inc.
+// Copyright (C) 2019-2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -90,9 +90,66 @@ type TokenResponse struct {
 	//
 	AccessTokenResources []string `json:"accessTokenResources,omitempty"`
 
+	// Grant ID. See Grant Management for OAuth 2.0 for details.
+	//
+	// Since v1.5.0.
+	GrantId string `json:"grantId,omitempty"`
+
 	//
 	ServiceAttributes []Pair `json:"serviceAttributes,omitempty"`
 
 	//
 	ClientAttributes []Pair `json:"clientAttributes,omitempty"`
+
+	// The values of the "audience" request parameters that are contained in
+	// the token exchange request (RFC 8693).
+	//
+	// Since v1.5.0.
+	Audiences []string `json:"audiences,omitempty"`
+
+	// The value of the "requested_token_type" request parameter of the token
+	// exchange request (RFC 8693).
+	//
+	// Since v1.5.0.
+	RequestedTokenType types.TokenType `json:"requestedTokenType,omitempty"`
+
+	// The value of the "subject_token" request parameter of the token exchange
+	// request (RFC 8693).
+	//
+	// Since v1.5.0.
+	SubjectToken string `json:"subjectToken,omitempty"`
+
+	// The value of the "subject_token_type" request parameter of the token
+	// exchange request (RFC 8693).
+	//
+	// Since v1.5.0.
+	SubjectTokenType types.TokenType `json:"subjectTokenType,omitempty"`
+
+	// The information about the token specified by the "subject_token" request
+	// parameter. The information is available only when the token type is
+	// either "urn:ietf:params:oauth:token-type:access_token" or
+	// "urn:ietf:params:oauth:token-type:refresh_token".
+	//
+	// Since v1.5.0.
+	SubjectTokenInfo TokenInfo `json:"subjectTokenInfo,omitempty"`
+
+	// The value of the "actor_token" request parameter of the token exchange
+	// request (RFC 8693).
+	//
+	// Since v1.5.0.
+	ActorToken string `json:"actorToken,omitempty"`
+
+	// The value of the "actor_token_type" request parameter of the token
+	// exchange request (RFC 8693).
+	//
+	// Since v1.5.0.
+	ActorTokenType types.TokenType `json:"actorTokenType,omitempty"`
+
+	// The information about the token specified by the "actor_token" request
+	// parameter. The information is available only when the token type is
+	// either "urn:ietf:params:oauth:token-type:access_token" or
+	// "urn:ietf:params:oauth:token-type:refresh_token".
+	//
+	// Since v1.5.0.
+	ActorTokenInfo TokenInfo `json:"actorTokenInfo,omitempty"`
 }
