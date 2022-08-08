@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.5 (2022-08-09)
+-------------------
+
 - `AuthorizationIssueRequest` struct
     * Added `ConsentedClaims` field.
     * Added `ClaimsForTx` field.

@@ -1,6 +1,9 @@
 変更点
 ======
 
+v1.1.5 (2022 年 08 月 09 日)
+----------------------------
+
 - `AuthorizationIssueRequest` 構造体
     * `ConsentedClaims` フィールドを追加。
     * `ClaimsForTx` フィールドを追加。
