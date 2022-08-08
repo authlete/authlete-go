@@ -92,7 +92,7 @@ type TokenResponse struct {
 
 	// Grant ID. See Grant Management for OAuth 2.0 for details.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	GrantId string `json:"grantId,omitempty"`
 
 	//
@@ -104,25 +104,25 @@ type TokenResponse struct {
 	// The values of the "audience" request parameters that are contained in
 	// the token exchange request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	Audiences []string `json:"audiences,omitempty"`
 
 	// The value of the "requested_token_type" request parameter of the token
 	// exchange request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	RequestedTokenType types.TokenType `json:"requestedTokenType,omitempty"`
 
 	// The value of the "subject_token" request parameter of the token exchange
 	// request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	SubjectToken string `json:"subjectToken,omitempty"`
 
 	// The value of the "subject_token_type" request parameter of the token
 	// exchange request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	SubjectTokenType types.TokenType `json:"subjectTokenType,omitempty"`
 
 	// The information about the token specified by the "subject_token" request
@@ -130,19 +130,19 @@ type TokenResponse struct {
 	// either "urn:ietf:params:oauth:token-type:access_token" or
 	// "urn:ietf:params:oauth:token-type:refresh_token".
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	SubjectTokenInfo TokenInfo `json:"subjectTokenInfo,omitempty"`
 
 	// The value of the "actor_token" request parameter of the token exchange
 	// request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ActorToken string `json:"actorToken,omitempty"`
 
 	// The value of the "actor_token_type" request parameter of the token
 	// exchange request (RFC 8693).
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ActorTokenType types.TokenType `json:"actorTokenType,omitempty"`
 
 	// The information about the token specified by the "actor_token" request
@@ -150,6 +150,6 @@ type TokenResponse struct {
 	// either "urn:ietf:params:oauth:token-type:access_token" or
 	// "urn:ietf:params:oauth:token-type:refresh_token".
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ActorTokenInfo TokenInfo `json:"actorTokenInfo,omitempty"`
 }

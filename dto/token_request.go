@@ -47,6 +47,6 @@ type TokenRequest struct {
 	// The representation of an access token that may be issued as a result
 	// of the Authlete API call.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	AccessToken string `json:"accessToken,omitempty"`
 }

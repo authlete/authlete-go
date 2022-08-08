@@ -56,30 +56,30 @@ type AuthorizationIssueRequest struct {
 
 	// Claims that the user has consented for the client application to know.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ConsentedClaims []string `json:"consentedClaims,omitempty"`
 
 	// Claim key-value pairs that are used to compute values of transformed
 	// claims. The format is JSON.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ClaimsForTx string `json:"claimsForTx,omitempty"`
 
 	// Verified claim key-value pairs that are used to compute values of
 	// transformed claims. The format of each element is JSON.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	VerifiedClaimsForTx []string `json:"verifiedClaimsForTx,omitempty"`
 
 	// Additional claims that are added to the payload part of the JWT
 	// access token.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	JwtAtClaims string `json:"jwtAtClaims,omitempty"`
 
 	// The representation of an access token that may be issued as a result
 	// of the Authlete API call.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	AccessToken string `json:"accessToken,omitempty"`
 }
