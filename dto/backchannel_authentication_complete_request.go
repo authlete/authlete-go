@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,6 +46,23 @@ type BackchannelAuthenticationCompleteRequest struct {
 
 	//
 	IdtHeaderParams string `json:"idtHeaderParams,omitempty"`
+
+	// Claims that the user has consented for the client application to know.
+	//
+	// Since v1.5.0.
+	ConsentedClaims []string `json:"consentedClaims,omitempty"`
+
+	// Additional claims that are added to the payload part of the JWT
+	// access token.
+	//
+	// Since v1.5.0.
+	JwtAtClaims string `json:"jwtAtClaims,omitempty"`
+
+	// The representation of an access token that may be issued as a result
+	// of the Authlete API call.
+	//
+	// Since v1.5.0.
+	AccessToken string `json:"accessToken,omitempty"`
 
 	//
 	ErrorDescription string `json:"errorDescription,omitempty"`

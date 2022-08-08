@@ -1,8 +1,73 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` 構造体
+    * `ConsentedClaims` フィールドを追加。
+    * `ClaimsForTx` フィールドを追加。
+    * `VerifiedClaimsForTx` フィールドを追加。
+    * `JwtAtClaims` フィールドを追加。
+    * `AccessToken` フィールドを追加。
+
+- `BackchannelAuthenticationCompleteRequest` 構造体
+    * `ConsentedClaims` フィールドを追加。
+    * `JwtAtClaims` フィールドを追加。
+    * `AccessToken` フィールドを追加。
+
+- `DeviceCompleteRequest` 構造体
+    * `ConsentedClaims` フィールドを追加。
+    * `JwtAtClaims` フィールドを追加。
+
+- `GrantType` 型
+    * `GrantType_TOKEN_EXCHANGE` 定数を追加。
+
+- `TokenCreateRequest` 構造体
+    * `Resources` フィールドを追加。
+    * `ForExternalAttachment` フィールドを追加。
+    * `JwtAtClaims` フィールドを追加。
+
+- `TokenCreateResponse` 構造体
+    * `JwtAccessToken` フィールドを追加。
+    * `ForExternalAttachment` フィールドを追加。
+    * `TokenId` フィールドを追加。
+
+- `TokenIssueRequest` 構造体
+    * `JwtAtClaims` フィールドを追加。
+    * `AccessToken` フィールドを追加。
+
+- `TokenRequest` 構造体
+    * `AccessToken` フィールドを追加。
+
+- `TokenResponse` 構造体
+    * `GrantId` フィールドを追加。
+    * `Audiences` フィールドを追加。
+    * `RequestedTokenType` フィールドを追加。
+    * `SubjectToken` フィールドを追加。
+    * `SubjectTokenType` フィールドを追加。
+    * `SubjectTokenInfo` フィールドを追加。
+    * `ActorToken` フィールドを追加。
+    * `ActorTokenType` フィールドを追加。
+    * `ActorTokenInfo` フィールドを追加。
+
+- `TokenUpdateRequest` 構造体
+    * `ForExternalAttachment` フィールドを追加。
+    * `TokenId` フィールドを追加。
+
+- `TokenUpdateResponse` 構造体
+    * `ForExternalAttachment` フィールドを追加。
+    * `TokenId` フィールドを追加。
+
+- 新規部品
+    * `TokenInfo` 構造体
+    * `TokenType` 型と同型の定数
+
 v1.1.4 (2022 年 03 月 28 日)
--------------------
+----------------------------
+
+- `Service` 構造体
+    * `SupportedDocuments` フィールドを追加。
+    * `DcrScopeUsedAsRequestable` フィールドを追加。
+    * `LoopbackRedirectionUriVariable` フィールドを追加。
+
 - `Settings` 構造体
     * `UserAgent` フィールドを追加。
 

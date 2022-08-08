@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2022 Authlete, Inc.
+// Copyright (C) 2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,15 +16,13 @@
 
 package types
 
-type GrantType string
+type TokenType string
 
 const (
-	GrantType_AUTHORIZATION_CODE = GrantType(`AUTHORIZATION_CODE`)
-	GrantType_IMPLICIT           = GrantType(`IMPLICIT`)
-	GrantType_PASSWORD           = GrantType(`PASSWORD`)
-	GrantType_CLIENT_CREDENTIALS = GrantType(`CLIENT_CREDENTIALS`)
-	GrantType_REFRESH_TOKEN      = GrantType(`REFRESH_TOKEN`)
-	GrantType_CIBA               = GrantType(`CIBA`)
-	GrantType_DEVICE_CODE        = GrantType(`DEVICE_CODE`)
-	GrantType_TOKEN_EXCHANGE     = GrantType(`TOKEN_EXCHANGE`)
+	TokenType_JWT           = TokenType(`JWT`)
+	TokenType_ACCESS_TOKEN  = TokenType(`ACCESS_TOKEN`)
+	TokenType_REFRESH_TOKEN = TokenType(`REFRESH_TOKEN`)
+	TokenType_ID_TOKEN      = TokenType(`ID_TOKEN`)
+	TokenType_SAML1         = TokenType(`SAML1`)
+	TokenType_SAML2         = TokenType(`SAML2`)
 )

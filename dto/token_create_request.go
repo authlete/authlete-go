@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,4 +57,22 @@ type TokenCreateRequest struct {
 
 	//
 	DpopKeyThumbprint string `json:"dpopKeyThumbprint,omitempty"`
+
+	// Resources associated with the newly issued access token.
+	//
+	// Since v1.5.0.
+	Resources []string `json:"resources,omitempty"`
+
+	// Flag indicating whether the newly issued access token is for an
+	// external attachment. See OpenID Connect for Identity Assurance
+	// for details.
+	//
+	// Since v1.5.0.
+	ForExternalAttachment bool `json:"forExternalAttachment,omitempty"`
+
+	// Additional claims that are added to the payload part of the JWT
+	// access token.
+	//
+	// Since v1.5.0.
+	JwtAtClaims string `json:"jwtAtClaims,omitempty"`
 }

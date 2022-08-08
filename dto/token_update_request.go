@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2020 Authlete, Inc.
+// Copyright (C) 2019-2022 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,4 +46,15 @@ type TokenUpdateRequest struct {
 
 	//
 	DpopKeyThumbprint string `json:"dpopKeyThumbprint,omitempty"`
+
+	// Flag indicating whether the access token is for an external attachment.
+	// See OpenID Connect for Identity Assurance for details.
+	//
+	// Since v1.5.0.
+	ForExternalAttachment bool `json:"forExternalAttachment,omitempty"`
+
+	// Token ID.
+	//
+	// Since v1.5.0.
+	TokenId string `json:"tokenId,omitempty"`
 }
