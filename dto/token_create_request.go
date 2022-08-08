@@ -60,19 +60,19 @@ type TokenCreateRequest struct {
 
 	// Resources associated with the newly issued access token.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	Resources []string `json:"resources,omitempty"`
 
 	// Flag indicating whether the newly issued access token is for an
 	// external attachment. See OpenID Connect for Identity Assurance
 	// for details.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	ForExternalAttachment bool `json:"forExternalAttachment,omitempty"`
 
 	// Additional claims that are added to the payload part of the JWT
 	// access token.
 	//
-	// Since v1.5.0.
+	// Since v1.1.5.
 	JwtAtClaims string `json:"jwtAtClaims,omitempty"`
 }
