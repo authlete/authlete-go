@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `TokenAction` type
+    * Added `TokenAction_TOKEN_EXCHANGE` constant.
+
 v1.1.5 (2022-08-09)
 -------------------
 
