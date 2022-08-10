@@ -27,4 +27,5 @@ const (
 	GrantType_CIBA               = GrantType(`CIBA`)
 	GrantType_DEVICE_CODE        = GrantType(`DEVICE_CODE`)
 	GrantType_TOKEN_EXCHANGE     = GrantType(`TOKEN_EXCHANGE`)
+	GrantType_JWT_BEARER         = GrantType(`JWT_BEARER`)
 )

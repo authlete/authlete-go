@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `GrantType` type
+    * Added `GrantType_JWT_BEARER` constant.
+
+- `TokenAction` type
+    * Added `TokenAction_JWT_BEARER` constant.
+
+- `TokenResponse` struct
+    * Added `Assertion` field.
+
 v1.1.6 (2022-08-09)
 -------------------
 

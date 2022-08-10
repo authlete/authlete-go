@@ -152,4 +152,12 @@ type TokenResponse struct {
 	//
 	// Since v1.1.5.
 	ActorTokenInfo TokenInfo `json:"actorTokenInfo,omitempty"`
+
+	// The value of the "assertion" request parameter of the token request.
+	// The request parameter is defined in RFC 7521 and RFC 7523. The value
+	// is available only when the grant type of the token request is
+	// "urn:ietf:params:oauth:grant-type:jwt-bearer".
+	//
+	// Since v1.1.7.
+	Assertion string `json:"assertion,omitempty"`
 }

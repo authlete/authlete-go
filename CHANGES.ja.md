@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `GrantType` 型
+    * `GrantType_JWT_BEARER` 定数を追加。
+
+- `TokenAction` 型
+    * `TokenAction_JWT_BEARER` 定数を追加。
+
+- `TokenResponse` 構造体
+    * `Assertion` フィールドを追加。
+
 v1.1.6 (2022 年 08 月 09 日)
 ----------------------------
 

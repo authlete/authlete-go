@@ -25,4 +25,5 @@ const (
 	TokenAction_PASSWORD              = TokenAction(`PASSWORD`)
 	TokenAction_OK                    = TokenAction(`OK`)
 	TokenAction_TOKEN_EXCHANGE        = TokenAction(`TOKEN_EXCHANGE`)
+	TokenAction_JWT_BEARER            = TokenAction(`JWT_BEARER`)
 )
