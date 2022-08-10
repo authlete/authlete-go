@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+v1.1.7 (2022-08-11)
+-------------------
+
 - `GrantType` type
     * Added `GrantType_JWT_BEARER` constant.
 
