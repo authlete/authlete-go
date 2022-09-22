@@ -44,6 +44,12 @@ type TokenRequest struct {
 	//
 	Htu string `json:"htu,omitempty"`
 
+	// Additional claims that are added to the payload part of the JWT
+	// access token.
+	//
+	// Since v1.1.8.
+	JwtAtClaims string `json:"jwtAtClaims,omitempty"`
+
 	// The representation of an access token that may be issued as a result
 	// of the Authlete API call.
 	//
