@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+v1.1.8 (2022-09-22)
+-------------------
+
+- `TokenRequest` struct
+    * Added `JwtAtClaims` field.
+
 v1.1.7 (2022-08-11)
 -------------------
 
