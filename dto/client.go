@@ -244,4 +244,10 @@ type Client struct {
 	// The flag which indicates whether the JWE enc of encrypted request
 	// object must match the value of the request_object_encryption_enc client metadata.
 	RequestObjectEncryptionEncMatchRequired bool `json:"requestObjectEncryptionEncMatchRequired,omitempty"`
+
+	// The flag which indicates whether code_challenge is required in authorization request.
+	PkceRequired bool `json:"pkceRequired,omitempty"`
+
+	// The flag which indicates whether code_challenge_method=S256 is required in authorization request.
+	PkceS256Required bool `json:"pkceS256Required,omitempty"`
 }
