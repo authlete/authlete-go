@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+v1.1.9 (2022-12-27)
+-------------------
+
+- `Client` struct
+    * Added `PkceRequired` field.
+    * Added `PkceS256Required` field.
+
 v1.1.8 (2022-09-22)
 -------------------
 
