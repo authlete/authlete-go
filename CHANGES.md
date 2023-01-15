@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+v1.1.10 (2023-01-15)
+-------------------
+
+- `go.mod` 
+    * Updated `toml => v1.2.1`.
+    * Updated `testify => v1.8.1`.
+    * Updated `objx => v0.5.0`.
+    * Updated `testify => v1.8.1`.
+    * Updated `yaml.v3 => v3.0.1`.
+
 v1.1.9 (2022-12-27)
 -------------------
 
