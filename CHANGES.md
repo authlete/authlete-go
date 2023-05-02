@@ -4,13 +4,22 @@ CHANGES
 v1.1.11 (2023-05-02)
 -------------------
 
-- `Service` struct
-    * Added `IdTokenAudType` field.
-
 - `IdTokenAudType` type
     * Added `IdTokenAudType_ARRAY` constant.
     * Added `IdTokenAudType_STRING` constant.
     * Added `IdTokenAudType_DEFAULT` constant.
+
+- `AuthorizationIssueRequest` struct
+    * Added `IdTokenAudType` field.
+
+- `BackchannelAuthenticationCompleteRequest` struct
+    * Added `IdTokenAudType` field.
+
+- `DeviceCompleteRequest` struct
+    * Added `IdTokenAudType` field.
+
+- `Service` struct
+    * Added `IdTokenAudType` field.
 
 v1.1.10 (2023-01-15)
 -------------------

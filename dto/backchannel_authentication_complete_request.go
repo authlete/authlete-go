@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2022 Authlete, Inc.
+// Copyright (C) 2019-2023 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 // License.
 
 package dto
+
+import "github.com/authlete/authlete-go/types"
 
 type BackchannelAuthenticationCompleteRequest struct {
 	//
@@ -69,4 +71,9 @@ type BackchannelAuthenticationCompleteRequest struct {
 
 	//
 	ErrorUri string `json:"errorUri,omitempty"`
+
+	// aud claim type of id token.
+	//
+	// Since v2.3.3.
+	IdTokenAudType types.IdTokenAudType `json:"idTokenAudType,omitempty"`
 }
