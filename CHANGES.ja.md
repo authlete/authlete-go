@@ -1,6 +1,18 @@
 変更点
 ======
 
+v1.1.11 (2023 年 05 月 02 日)
+-------------------
+
+- `Service` 構造体
+    * `IdTokenAudType` フィールドを追加。
+
+- `IdTokenAudType` 型
+    * `IdTokenAudType_ARRAY` 定数を追加。
+    * `IdTokenAudType_STRING` 定数を追加。
+    * `IdTokenAudType_DEFAULT` 定数を追加。
+
+
 v1.1.10 (2023 年 01 月 15 日)
 -------------------
 

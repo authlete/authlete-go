@@ -372,5 +372,6 @@ type Service struct {
 	// the flag for marking if redirect uris to localhost should be stricted compared or not.
 	LoopbackRedirectionUriVariable bool `json:"loopbackRedirectionUriVariable,omitempty"`
 
+	// aud type of id token.
 	IdTokenAudType types.IdTokenAudType `json:"idTokenAudType,omitempty"`
 }

@@ -19,6 +19,7 @@ package types
 type IdTokenAudType string
 
 const (
-	IdTokenAudType_ARRAY  = IdTokenAudType(`array`)
-	IdTokenAudType_STRING = IdTokenAudType(`string`)
+	IdTokenAudType_ARRAY   = IdTokenAudType(`array`)
+	IdTokenAudType_STRING  = IdTokenAudType(`string`)
+	IdTokenAudType_DEFAULT = IdTokenAudType(``)
 )
