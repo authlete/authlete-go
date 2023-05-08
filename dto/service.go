@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2021 Authlete, Inc.
+// Copyright (C) 2019-2023 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -371,4 +371,7 @@ type Service struct {
 
 	// the flag for marking if redirect uris to localhost should be stricted compared or not.
 	LoopbackRedirectionUriVariable bool `json:"loopbackRedirectionUriVariable,omitempty"`
+
+	// aud type of id token.
+	IdTokenAudType types.IdTokenAudType `json:"idTokenAudType,omitempty"`
 }
