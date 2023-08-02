@@ -25,6 +25,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	uPath "path"
 	"strconv"
 	"strings"
 
@@ -124,8 +125,12 @@ func (self *impl) buildRequestHeader() http.Header {
 func (self *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {
 	var builder strings.Builder
 
-	builder.WriteString(self.baseUrl)
-	builder.WriteString(path)
+	endpoint, err := url.Parse(self.baseUrl)
+	if err != nil {
+		log.Panicf(`Failed to parse a URL from '%v'`, self.baseUrl)
+	}
+	endpoint.Path = uPath.Join(endpoint.Path, path)
+	builder.WriteString(endpoint.String())
 
 	if queryParams != nil {
 		delimiter := `?`
