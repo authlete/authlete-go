@@ -25,7 +25,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	uPath "path"
 	"strconv"
 	"strings"
 
@@ -43,7 +42,12 @@ type impl struct {
 }
 
 func (self *impl) init(configuration conf.AuthleteConfiguration) {
-	self.baseUrl = configuration.GetBaseUrl()
+	// validate base URL
+	u, err := url.Parse(configuration.GetBaseUrl())
+	if err != nil {
+		log.Panicf(`Invalid base URL '%s'`, configuration.GetBaseUrl())
+	}
+	self.baseUrl = strings.TrimRight(u.String(), `/`)
 	self.serviceOwnerApiKey = configuration.GetServiceOwnerApiKey()
 	self.serviceOwnerApiSecret = configuration.GetServiceOwnerApiSecret()
 	self.serviceApiKey = configuration.GetServiceApiKey()
@@ -125,12 +129,8 @@ func (self *impl) buildRequestHeader() http.Header {
 func (self *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {
 	var builder strings.Builder
 
-	endpoint, err := url.Parse(self.baseUrl)
-	if err != nil {
-		log.Panicf(`Failed to parse a URL from '%v'`, self.baseUrl)
-	}
-	endpoint.Path = uPath.Join(endpoint.Path, path)
-	builder.WriteString(endpoint.String())
+	builder.WriteString(self.baseUrl)
+	builder.WriteString(path)
 
 	if queryParams != nil {
 		delimiter := `?`
@@ -777,6 +777,5 @@ func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, e
 func New(configuration conf.AuthleteConfiguration) AuthleteApi {
 	im := impl{}
 	im.init(configuration)
-
 	return &im
 }
