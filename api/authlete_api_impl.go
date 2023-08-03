@@ -42,7 +42,6 @@ type impl struct {
 }
 
 func (self *impl) init(configuration conf.AuthleteConfiguration) {
-	// validate base URL
 	u, err := url.Parse(configuration.GetBaseUrl())
 	if err != nil {
 		log.Panicf(`Invalid base URL '%s'`, configuration.GetBaseUrl())
