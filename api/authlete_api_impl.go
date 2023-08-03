@@ -42,7 +42,11 @@ type impl struct {
 }
 
 func (self *impl) init(configuration conf.AuthleteConfiguration) {
-	self.baseUrl = configuration.GetBaseUrl()
+	u, err := url.Parse(configuration.GetBaseUrl())
+	if err != nil {
+		log.Panicf(`Invalid base URL '%s'`, configuration.GetBaseUrl())
+	}
+	self.baseUrl = strings.TrimRight(u.String(), `/`)
 	self.serviceOwnerApiKey = configuration.GetServiceOwnerApiKey()
 	self.serviceOwnerApiSecret = configuration.GetServiceOwnerApiSecret()
 	self.serviceApiKey = configuration.GetServiceApiKey()
