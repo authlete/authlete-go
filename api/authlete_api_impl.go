@@ -777,5 +777,6 @@ func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, e
 func New(configuration conf.AuthleteConfiguration) AuthleteApi {
 	im := impl{}
 	im.init(configuration)
+
 	return &im
 }
