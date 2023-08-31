@@ -25,6 +25,6 @@ type AuthleteError struct {
 	Response *http.Response
 }
 
-func (self *AuthleteError) Error() string {
-	return self.Message
+func (authErr *AuthleteError) Error() string {
+	return authErr.Message
 }

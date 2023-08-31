@@ -21,7 +21,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -33,7 +32,7 @@ import (
 )
 
 type impl struct {
-	baseUrl               string
+	baseUrl               *url.URL
 	serviceOwnerApiKey    string
 	serviceOwnerApiSecret string
 	serviceApiKey         string
@@ -41,17 +40,18 @@ type impl struct {
 	settings              *Settings
 }
 
-func (self *impl) init(configuration conf.AuthleteConfiguration) {
+func (s *impl) init(configuration conf.AuthleteConfiguration) error {
 	u, err := url.Parse(configuration.GetBaseUrl())
 	if err != nil {
-		log.Panicf(`Invalid base URL '%s'`, configuration.GetBaseUrl())
+		return fmt.Errorf(`invalid base URL '%s'`, configuration.GetBaseUrl())
 	}
-	self.baseUrl = strings.TrimRight(u.String(), `/`)
-	self.serviceOwnerApiKey = configuration.GetServiceOwnerApiKey()
-	self.serviceOwnerApiSecret = configuration.GetServiceOwnerApiSecret()
-	self.serviceApiKey = configuration.GetServiceApiKey()
-	self.serviceApiSecret = configuration.GetServiceApiSecret()
-	self.settings = &Settings{}
+	s.baseUrl = u
+	s.serviceOwnerApiKey = configuration.GetServiceOwnerApiKey()
+	s.serviceOwnerApiSecret = configuration.GetServiceOwnerApiSecret()
+	s.serviceApiKey = configuration.GetServiceApiKey()
+	s.serviceApiSecret = configuration.GetServiceApiSecret()
+	s.settings = &Settings{}
+	return nil
 }
 
 // this method copy the raw response body from api server to
@@ -62,15 +62,15 @@ func drainBody(body *io.ReadCloser) string {
 	return buf.String()
 }
 
-func (self *impl) callApi(
+func (s *impl) callApi(
 	method string, apiKey string, apiSecret string, path string,
 	queryParams map[string]string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
 	// Prepare a request to the Authlete API.
-	req := self.buildRequest(method, apiKey, apiSecret, path, queryParams, requestBody)
+	req := s.buildRequest(method, apiKey, apiSecret, path, queryParams, requestBody)
 
 	// HTTP Client
-	client := self.prepareClient()
+	client := s.prepareClient()
 
 	// Call the Authlete API.
 	res, err := client.Do(req)
@@ -87,7 +87,7 @@ func (self *impl) callApi(
 	}
 
 	// Fill the object with the content of the response body.
-	err = self.deserializeResponseBody(res, responseContainer)
+	err = s.deserializeResponseBody(res, responseContainer)
 	if err != nil {
 		msg := fmt.Sprintf(`Failed to deserialize the response from '%s' API`, path)
 		return &AuthleteError{err, msg, req, res}
@@ -97,15 +97,15 @@ func (self *impl) callApi(
 	return nil
 }
 
-func (self *impl) buildRequest(
+func (s *impl) buildRequest(
 	method string, apiKey string, apiSecret string, path string,
 	queryParams map[string]string, requestBody interface{}) *http.Request {
 	req := http.Request{}
 
 	req.Method = method
-	req.Header = self.buildRequestHeader()
-	req.URL = self.buildRequestUrl(path, queryParams)
-	req.Body = self.buildRequestBody(requestBody)
+	req.Header = s.buildRequestHeader()
+	req.URL = s.buildRequestUrl(path, queryParams)
+	req.Body = s.buildRequestBody(requestBody)
 
 	if len(apiKey) > 0 || len(apiSecret) > 0 {
 		req.SetBasicAuth(apiKey, apiSecret)
@@ -114,22 +114,21 @@ func (self *impl) buildRequest(
 	return &req
 }
 
-func (self *impl) buildRequestHeader() http.Header {
+func (s *impl) buildRequestHeader() http.Header {
 	headers := http.Header{
 		`Accept`:       {`application/json`},
 		`Content-Type`: {`application/json;charset=UTF-8`},
 	}
-	if len(self.settings.UserAgent) > 0 {
-		headers.Set(`User-Agent`, self.settings.UserAgent)
+	if len(s.settings.UserAgent) > 0 {
+		headers.Set(`User-Agent`, s.settings.UserAgent)
 	}
 	return headers
 }
 
-func (self *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {
+func (s *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {
 	var builder strings.Builder
 
-	builder.WriteString(self.baseUrl)
-	builder.WriteString(path)
+	builder.WriteString(s.baseUrl.JoinPath(path).String())
 
 	if queryParams != nil {
 		delimiter := `?`
@@ -151,7 +150,7 @@ func (self *impl) buildRequestUrl(path string, queryParams map[string]string) *u
 	return u
 }
 
-func (self *impl) buildRequestBody(requestBody interface{}) io.ReadCloser {
+func (s *impl) buildRequestBody(requestBody interface{}) io.ReadCloser {
 	if requestBody == nil {
 		return nil
 	}
@@ -159,7 +158,7 @@ func (self *impl) buildRequestBody(requestBody interface{}) io.ReadCloser {
 	str, ok := requestBody.(string)
 	if ok {
 		// Convert string to io.ReadCloser
-		return ioutil.NopCloser(strings.NewReader(str))
+		return io.NopCloser(strings.NewReader(str))
 	}
 
 	// Convert the object into []byte.
@@ -169,16 +168,16 @@ func (self *impl) buildRequestBody(requestBody interface{}) io.ReadCloser {
 	}
 
 	// Convert []byte to io.ReadCloser
-	return ioutil.NopCloser(bytes.NewReader(byt))
+	return io.NopCloser(bytes.NewReader(byt))
 }
 
-func (self *impl) prepareClient() *http.Client {
+func (s *impl) prepareClient() *http.Client {
 	return &http.Client{
-		Timeout: self.settings.Timeout,
+		Timeout: s.settings.Timeout,
 	}
 }
 
-func (self *impl) deserializeResponseBody(
+func (s *impl) deserializeResponseBody(
 	res *http.Response, responseContainer interface{}) error {
 	if responseContainer == nil {
 		return nil
@@ -187,7 +186,7 @@ func (self *impl) deserializeResponseBody(
 	defer res.Body.Close()
 
 	// Read the body of the response.
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
@@ -208,75 +207,75 @@ func (self *impl) deserializeResponseBody(
 	return nil
 }
 
-func (self *impl) callGetApi(
+func (s *impl) callGetApi(
 	apiKey string, apiSecret string, path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return s.callApi(
 		http.MethodGet, apiKey, apiSecret,
 		path, queryParams, nil, responseContainer)
 }
 
-func (self *impl) callGetApiWithoutCredentials(
+func (s *impl) callGetApiWithoutCredentials(
 	path string, queryParams map[string]string, responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return s.callApi(
 		http.MethodGet, "", "",
 		path, queryParams, nil, responseContainer)
 }
 
-func (self *impl) callPostApi(
+func (s *impl) callPostApi(
 	apiKey string, apiSecret string, path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return s.callApi(
 		http.MethodPost, apiKey, apiSecret,
 		path, nil, requestBody, responseContainer)
 }
 
-func (self *impl) callDeleteApi(
+func (s *impl) callDeleteApi(
 	apiKey string, apiSecret string, path string) *AuthleteError {
-	return self.callApi(
+	return s.callApi(
 		http.MethodDelete, apiKey, apiSecret, path, nil, nil, nil)
 }
 
-func (self *impl) callServiceGetApi(
+func (s *impl) callServiceGetApi(
 	path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callGetApi(
-		self.serviceApiKey, self.serviceApiSecret,
+	return s.callGetApi(
+		s.serviceApiKey, s.serviceApiSecret,
 		path, queryParams, responseContainer)
 }
 
-func (self *impl) callServicePostApi(
+func (s *impl) callServicePostApi(
 	path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callPostApi(
-		self.serviceApiKey, self.serviceApiSecret,
+	return s.callPostApi(
+		s.serviceApiKey, s.serviceApiSecret,
 		path, requestBody, responseContainer)
 }
 
-func (self *impl) callServiceDeleteApi(path string) *AuthleteError {
-	return self.callDeleteApi(
-		self.serviceApiKey, self.serviceApiSecret, path)
+func (s *impl) callServiceDeleteApi(path string) *AuthleteError {
+	return s.callDeleteApi(
+		s.serviceApiKey, s.serviceApiSecret, path)
 }
 
-func (self *impl) callServiceOwnerGetApi(
+func (s *impl) callServiceOwnerGetApi(
 	path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callGetApi(
-		self.serviceOwnerApiKey, self.serviceOwnerApiSecret,
+	return s.callGetApi(
+		s.serviceOwnerApiKey, s.serviceOwnerApiSecret,
 		path, queryParams, responseContainer)
 }
 
-func (self *impl) callServiceOwnerPostApi(
+func (s *impl) callServiceOwnerPostApi(
 	path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callPostApi(
-		self.serviceOwnerApiKey, self.serviceOwnerApiSecret,
+	return s.callPostApi(
+		s.serviceOwnerApiKey, s.serviceOwnerApiSecret,
 		path, requestBody, responseContainer)
 }
 
-func (self *impl) callServiceOwnerDeleteApi(path string) *AuthleteError {
-	return self.callDeleteApi(
-		self.serviceOwnerApiKey, self.serviceOwnerApiSecret, path)
+func (s *impl) callServiceOwnerDeleteApi(path string) *AuthleteError {
+	return s.callDeleteApi(
+		s.serviceOwnerApiKey, s.serviceOwnerApiSecret, path)
 }
 
 func buildMap(args ...interface{}) map[string]string {
@@ -313,164 +312,164 @@ func toString(val interface{}) string {
 	}
 }
 
-func (self *impl) Settings() *Settings {
-	return self.settings
+func (s *impl) Settings() *Settings {
+	return s.settings
 }
 
-func (self *impl) Authorization(
+func (s *impl) Authorization(
 	request *dto.AuthorizationRequest) (res *dto.AuthorizationResponse, err *AuthleteError) {
 	res = &dto.AuthorizationResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization`, request, res)
+	err = s.callServicePostApi(`/api/auth/authorization`, request, res)
 	return
 }
 
-func (self *impl) AuthorizationFail(
+func (s *impl) AuthorizationFail(
 	request *dto.AuthorizationFailRequest) (res *dto.AuthorizationFailResponse, err *AuthleteError) {
 	res = &dto.AuthorizationFailResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization/fail`, request, res)
+	err = s.callServicePostApi(`/api/auth/authorization/fail`, request, res)
 	return
 }
 
-func (self *impl) AuthorizationIssue(
+func (s *impl) AuthorizationIssue(
 	request *dto.AuthorizationIssueRequest) (res *dto.AuthorizationIssueResponse, err *AuthleteError) {
 	res = &dto.AuthorizationIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization/issue`, request, res)
+	err = s.callServicePostApi(`/api/auth/authorization/issue`, request, res)
 	return
 }
 
-func (self *impl) Token(
+func (s *impl) Token(
 	request *dto.TokenRequest) (res *dto.TokenResponse, err *AuthleteError) {
 	res = &dto.TokenResponse{}
-	err = self.callServicePostApi(`/api/auth/token`, request, res)
+	err = s.callServicePostApi(`/api/auth/token`, request, res)
 	return
 }
 
-func (self *impl) TokenCreate(
+func (s *impl) TokenCreate(
 	request *dto.TokenCreateRequest) (res *dto.TokenCreateResponse, err *AuthleteError) {
 	res = &dto.TokenCreateResponse{}
-	err = self.callServicePostApi(`/api/auth/token/create`, request, res)
+	err = s.callServicePostApi(`/api/auth/token/create`, request, res)
 	return
 }
 
-func (self *impl) TokenDelete(
+func (s *impl) TokenDelete(
 	token string) (err *AuthleteError) {
 	path := `/api/auth/token/delete/` + token
-	err = self.callServiceDeleteApi(path)
+	err = s.callServiceDeleteApi(path)
 	return
 }
 
-func (self *impl) TokenFail(
+func (s *impl) TokenFail(
 	request *dto.TokenFailRequest) (res *dto.TokenFailResponse, err *AuthleteError) {
 	res = &dto.TokenFailResponse{}
-	err = self.callServicePostApi(`/api/auth/token/fail`, request, res)
+	err = s.callServicePostApi(`/api/auth/token/fail`, request, res)
 	return
 }
 
-func (self *impl) TokenIssue(
+func (s *impl) TokenIssue(
 	request *dto.TokenIssueRequest) (res *dto.TokenIssueResponse, err *AuthleteError) {
 	res = &dto.TokenIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/token/issue`, request, res)
+	err = s.callServicePostApi(`/api/auth/token/issue`, request, res)
 	return
 }
 
-func (self *impl) TokenUpdate(
+func (s *impl) TokenUpdate(
 	request *dto.TokenUpdateRequest) (res *dto.TokenUpdateResponse, err *AuthleteError) {
 	res = &dto.TokenUpdateResponse{}
-	err = self.callServicePostApi(`/api/auth/token/update`, request, res)
+	err = s.callServicePostApi(`/api/auth/token/update`, request, res)
 	return
 }
 
-func (self *impl) GetTokenList(
+func (s *impl) GetTokenList(
 	clientIdentifier string, subject string, start uint32, end uint32) (res *dto.TokenListResponse, err *AuthleteError) {
 	params := buildMap(
 		`clientIdentifier`, clientIdentifier,
 		`subject`, subject, `start`, start, `end`, end)
 
 	res = &dto.TokenListResponse{}
-	err = self.callServiceGetApi(`/api/auth/token/get/list`, params, res)
+	err = s.callServiceGetApi(`/api/auth/token/get/list`, params, res)
 	return
 }
 
-func (self *impl) Revocation(
+func (s *impl) Revocation(
 	request *dto.RevocationRequest) (res *dto.RevocationResponse, err *AuthleteError) {
 	res = &dto.RevocationResponse{}
-	err = self.callServicePostApi(`/api/auth/revocation`, request, res)
+	err = s.callServicePostApi(`/api/auth/revocation`, request, res)
 	return
 }
 
-func (self *impl) UserInfo(
+func (s *impl) UserInfo(
 	request *dto.UserInfoRequest) (res *dto.UserInfoResponse, err *AuthleteError) {
 	res = &dto.UserInfoResponse{}
-	err = self.callServicePostApi(`/api/auth/userinfo`, request, res)
+	err = s.callServicePostApi(`/api/auth/userinfo`, request, res)
 	return
 }
 
-func (self *impl) UserInfoIssue(
+func (s *impl) UserInfoIssue(
 	request *dto.UserInfoIssueRequest) (res *dto.UserInfoIssueResponse, err *AuthleteError) {
 	res = &dto.UserInfoIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/userinfo/issue`, request, res)
+	err = s.callServicePostApi(`/api/auth/userinfo/issue`, request, res)
 	return
 }
 
-func (self *impl) Introspection(
+func (s *impl) Introspection(
 	request *dto.IntrospectionRequest) (res *dto.IntrospectionResponse, err *AuthleteError) {
 	res = &dto.IntrospectionResponse{}
-	err = self.callServicePostApi(`/api/auth/introspection`, request, res)
+	err = s.callServicePostApi(`/api/auth/introspection`, request, res)
 	return
 }
 
-func (self *impl) StandardIntrospection(
+func (s *impl) StandardIntrospection(
 	request *dto.StandardIntrospectionRequest) (res *dto.StandardIntrospectionResponse, err *AuthleteError) {
 	res = &dto.StandardIntrospectionResponse{}
-	err = self.callServicePostApi(`/api/auth/introspection/standard`, request, res)
+	err = s.callServicePostApi(`/api/auth/introspection/standard`, request, res)
 	return
 }
 
-func (self *impl) CreateService(
+func (s *impl) CreateService(
 	request *dto.Service) (res *dto.Service, err *AuthleteError) {
 	res = &dto.Service{}
-	err = self.callServiceOwnerPostApi(`/api/service/create`, request, res)
+	err = s.callServiceOwnerPostApi(`/api/service/create`, request, res)
 	return
 }
 
-func (self *impl) DeleteService(
+func (s *impl) DeleteService(
 	apiKey interface{}) (err *AuthleteError) {
 	path := `/api/service/delete/` + toString(apiKey)
-	err = self.callServiceOwnerDeleteApi(path)
+	err = s.callServiceOwnerDeleteApi(path)
 	return
 }
 
-func (self *impl) GetService(
+func (s *impl) GetService(
 	apiKey interface{}) (res *dto.Service, err *AuthleteError) {
 	path := `/api/service/get/` + toString(apiKey)
 	res = &dto.Service{}
-	err = self.callServiceOwnerGetApi(path, nil, res)
+	err = s.callServiceOwnerGetApi(path, nil, res)
 	return
 }
 
-func (self *impl) GetServiceList(
+func (s *impl) GetServiceList(
 	start uint32, end uint32) (res *dto.ServiceListResponse, err *AuthleteError) {
 	params := buildMap(`start`, start, `end`, end)
 
 	res = &dto.ServiceListResponse{}
-	err = self.callServiceOwnerGetApi(`/api/service/get/list`, params, res)
+	err = s.callServiceOwnerGetApi(`/api/service/get/list`, params, res)
 	return
 }
 
-func (self *impl) UpdateService(
+func (s *impl) UpdateService(
 	service *dto.Service) (res *dto.Service, err *AuthleteError) {
 	path := `/api/service/update/` + toString(service.ApiKey)
 	res = &dto.Service{}
-	err = self.callServiceOwnerPostApi(path, service, res)
+	err = s.callServiceOwnerPostApi(path, service, res)
 	return
 }
 
-func (self *impl) GetServiceJwks(
+func (s *impl) GetServiceJwks(
 	pretty bool, includePrivateKeys bool) (res string, err *AuthleteError) {
 	params := buildMap(`pretty`, pretty, `includePrivateKeys`, includePrivateKeys)
 
 	obj := strings.Builder{}
-	err = self.callServiceGetApi(`/api/service/jwks/get`, params, &obj)
+	err = s.callServiceGetApi(`/api/service/jwks/get`, params, &obj)
 
 	if err == nil {
 		res = obj.String()
@@ -479,12 +478,12 @@ func (self *impl) GetServiceJwks(
 	return
 }
 
-func (self *impl) GetServiceConfiguration(
+func (s *impl) GetServiceConfiguration(
 	pretty bool) (res string, err *AuthleteError) {
 	params := buildMap(`pretty`, pretty)
 
 	obj := strings.Builder{}
-	err = self.callServiceGetApi(`/api/service/configuration`, params, &obj)
+	err = s.callServiceGetApi(`/api/service/configuration`, params, &obj)
 
 	if err == nil {
 		res = obj.String()
@@ -493,70 +492,70 @@ func (self *impl) GetServiceConfiguration(
 	return
 }
 
-func (self *impl) CreateClient(
+func (s *impl) CreateClient(
 	client *dto.Client) (res *dto.Client, err *AuthleteError) {
 	res = &dto.Client{}
-	err = self.callServicePostApi(`/api/client/create`, client, res)
+	err = s.callServicePostApi(`/api/client/create`, client, res)
 	return
 }
 
-func (self *impl) DynamicClientRegister(
+func (s *impl) DynamicClientRegister(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration`, request, res)
+	err = s.callServicePostApi(`/api/client/registration`, request, res)
 	return
 }
 
-func (self *impl) DynamicClientGet(
+func (s *impl) DynamicClientGet(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/get`, request, res)
+	err = s.callServicePostApi(`/api/client/registration/get`, request, res)
 	return
 }
 
-func (self *impl) DynamicClientUpdate(
+func (s *impl) DynamicClientUpdate(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/update`, request, res)
+	err = s.callServicePostApi(`/api/client/registration/update`, request, res)
 	return
 }
 
-func (self *impl) DynamicClientDelete(
+func (s *impl) DynamicClientDelete(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/delete`, request, res)
+	err = s.callServicePostApi(`/api/client/registration/delete`, request, res)
 	return
 }
 
-func (self *impl) DeleteClient(
+func (s *impl) DeleteClient(
 	clientIdentifier interface{}) (err *AuthleteError) {
 	path := `/api/client/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = s.callServiceDeleteApi(path)
 	return
 }
 
-func (self *impl) GetClient(
+func (s *impl) GetClient(
 	clientIdentifier interface{}) (res *dto.Client, err *AuthleteError) {
 	path := `/api/client/get/` + toString(clientIdentifier)
 	res = &dto.Client{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = s.callServiceGetApi(path, nil, res)
 	return
 }
 
-func (self *impl) GetClientList(
+func (s *impl) GetClientList(
 	developer string, start uint32, end uint32) (res *dto.ClientListResponse, err *AuthleteError) {
 	params := buildMap(`developer`, developer, `start`, start, `end`, end)
 
 	res = &dto.ClientListResponse{}
-	err = self.callServiceGetApi(`/api/client/get/list`, params, res)
+	err = s.callServiceGetApi(`/api/client/get/list`, params, res)
 	return
 }
 
-func (self *impl) UpdateClient(
+func (s *impl) UpdateClient(
 	client *dto.Client) (res *dto.Client, err *AuthleteError) {
 	path := `/api/client/update/` + toString(client.ClientId)
 	res = &dto.Client{}
-	err = self.callServicePostApi(path, client, res)
+	err = s.callServicePostApi(path, client, res)
 	return
 }
 
@@ -564,12 +563,12 @@ type requestableScopes struct {
 	RequestableScopes []string `json:"requestableScopes,omitempty"`
 }
 
-func (self *impl) GetRequestableScopes(
+func (s *impl) GetRequestableScopes(
 	clientIdentifier interface{}) (res []string, err *AuthleteError) {
 	path := `/api/client/extension/requestable_scopes/get/` + toString(clientIdentifier)
 
 	obj := requestableScopes{}
-	err = self.callServiceGetApi(path, nil, &obj)
+	err = s.callServiceGetApi(path, nil, &obj)
 
 	if err == nil {
 		res = obj.RequestableScopes
@@ -578,7 +577,7 @@ func (self *impl) GetRequestableScopes(
 	return
 }
 
-func (self *impl) SetRequestableScopes(
+func (s *impl) SetRequestableScopes(
 	clientIdentifier interface{}, scopes []string) (res []string, err *AuthleteError) {
 	input := requestableScopes{}
 	input.RequestableScopes = scopes
@@ -586,7 +585,7 @@ func (self *impl) SetRequestableScopes(
 	path := `/api/client/extension/requestable_scopes/update/` + toString(clientIdentifier)
 
 	output := requestableScopes{}
-	err = self.callServicePostApi(path, &input, &output)
+	err = s.callServicePostApi(path, &input, &output)
 
 	if err == nil {
 		res = output.RequestableScopes
@@ -595,10 +594,10 @@ func (self *impl) SetRequestableScopes(
 	return
 }
 
-func (self *impl) DeleteRequestableScopes(
+func (s *impl) DeleteRequestableScopes(
 	clientIdentifier interface{}) (err *AuthleteError) {
 	path := `/api/client/extension/requestable_scopes/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = s.callServiceDeleteApi(path)
 	return
 }
 
@@ -606,7 +605,7 @@ type grantedScopesRequest struct {
 	Subject string `json:"subject,omitempty"`
 }
 
-func (self *impl) GetGrantedScopes(
+func (s *impl) GetGrantedScopes(
 	clientIdentifier interface{}, subject string) (res *dto.GrantedScopesGetResponse, err *AuthleteError) {
 	req := grantedScopesRequest{}
 	req.Subject = subject
@@ -614,18 +613,18 @@ func (self *impl) GetGrantedScopes(
 	path := `/api/client/granted_scopes/get/` + toString(clientIdentifier)
 
 	res = &dto.GrantedScopesGetResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = s.callServicePostApi(path, &req, res)
 	return
 }
 
-func (self *impl) DeleteGrantedScopes(
+func (s *impl) DeleteGrantedScopes(
 	clientIdentifier interface{}, subject string) (err *AuthleteError) {
 	path := `/api/client/granted_scopes/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = s.callServiceDeleteApi(path)
 	return
 }
 
-func (self *impl) DeleteClientAuthorization(
+func (s *impl) DeleteClientAuthorization(
 	clientIdentifier interface{}, subject string) (err *AuthleteError) {
 	req := dto.ClientAuthorizationDeleteRequest{}
 	req.Subject = subject
@@ -633,36 +632,36 @@ func (self *impl) DeleteClientAuthorization(
 	path := `/api/client/authorization/delete/` + toString(clientIdentifier)
 
 	res := &dto.ApiResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = s.callServicePostApi(path, &req, res)
 	return
 }
 
-func (self *impl) GetClientAuthorizationList(
+func (s *impl) GetClientAuthorizationList(
 	request *dto.ClientAuthorizationGetListRequest) (res *dto.AuthorizedClientListResponse, err *AuthleteError) {
 	res = &dto.AuthorizedClientListResponse{}
-	err = self.callServicePostApi(`/api/client/authorization/get/list`, request, res)
+	err = s.callServicePostApi(`/api/client/authorization/get/list`, request, res)
 	return
 }
 
-func (self *impl) UpdateClientAuthorization(
+func (s *impl) UpdateClientAuthorization(
 	clientIdentifier interface{}, request *dto.ClientAuthorizationUpdateRequest) (err *AuthleteError) {
 	path := `/api/client/authorization/update/` + toString(clientIdentifier)
 
 	res := &dto.ApiResponse{}
-	err = self.callServicePostApi(path, request, res)
+	err = s.callServicePostApi(path, request, res)
 	return
 }
 
-func (self *impl) RefreshClientSecret(
+func (s *impl) RefreshClientSecret(
 	clientIdentifier interface{}) (res *dto.ClientSecretRefreshResponse, err *AuthleteError) {
 	path := `/api/client/secret/refresh/` + toString(clientIdentifier)
 
 	res = &dto.ClientSecretRefreshResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = s.callServiceGetApi(path, nil, res)
 	return
 }
 
-func (self *impl) UpdateClientSecret(
+func (s *impl) UpdateClientSecret(
 	clientIdentifier interface{}, clientSecret string) (res *dto.ClientSecretUpdateResponse, err *AuthleteError) {
 	req := dto.ClientSecretUpdateRequest{}
 	req.ClientSecret = clientSecret
@@ -670,112 +669,113 @@ func (self *impl) UpdateClientSecret(
 	path := `/api/client/secret/update/` + toString(clientIdentifier)
 
 	res = &dto.ClientSecretUpdateResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = s.callServicePostApi(path, &req, res)
 	return
 }
 
-func (self *impl) VerifyJose(
+func (s *impl) VerifyJose(
 	request *dto.JoseVerifyRequest) (res *dto.JoseVerifyResponse, err *AuthleteError) {
 	res = &dto.JoseVerifyResponse{}
-	err = self.callServicePostApi(`/api/jose/verify`, request, res)
+	err = s.callServicePostApi(`/api/jose/verify`, request, res)
 	return
 }
 
-func (self *impl) BackchannelAuthentication(
+func (s *impl) BackchannelAuthentication(
 	request *dto.BackchannelAuthenticationRequest) (res *dto.BackchannelAuthenticationResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication`, request, res)
+	err = s.callServicePostApi(`/api/backchannel/authentication`, request, res)
 	return
 }
 
-func (self *impl) BackchannelAuthenticationIssue(
+func (s *impl) BackchannelAuthenticationIssue(
 	request *dto.BackchannelAuthenticationIssueRequest) (res *dto.BackchannelAuthenticationIssueResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationIssueResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/issue`, request, res)
+	err = s.callServicePostApi(`/api/backchannel/authentication/issue`, request, res)
 	return
 }
 
-func (self *impl) BackchannelAuthenticationFail(
+func (s *impl) BackchannelAuthenticationFail(
 	request *dto.BackchannelAuthenticationFailRequest) (res *dto.BackchannelAuthenticationFailResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationFailResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/fail`, request, res)
+	err = s.callServicePostApi(`/api/backchannel/authentication/fail`, request, res)
 	return
 }
 
-func (self *impl) BackchannelAuthenticationComplete(
+func (s *impl) BackchannelAuthenticationComplete(
 	request *dto.BackchannelAuthenticationCompleteRequest) (res *dto.BackchannelAuthenticationCompleteResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationCompleteResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/complete`, request, res)
+	err = s.callServicePostApi(`/api/backchannel/authentication/complete`, request, res)
 	return
 }
 
-func (self *impl) DeviceAuthorization(
+func (s *impl) DeviceAuthorization(
 	request *dto.DeviceAuthorizationRequest) (res *dto.DeviceAuthorizationResponse, err *AuthleteError) {
 	res = &dto.DeviceAuthorizationResponse{}
-	err = self.callServicePostApi(`/api/device/authorization`, request, res)
+	err = s.callServicePostApi(`/api/device/authorization`, request, res)
 	return
 }
 
-func (self *impl) DeviceComplete(
+func (s *impl) DeviceComplete(
 	request *dto.DeviceCompleteRequest) (res *dto.DeviceCompleteResponse, err *AuthleteError) {
 	res = &dto.DeviceCompleteResponse{}
-	err = self.callServicePostApi(`/api/device/complete`, request, res)
+	err = s.callServicePostApi(`/api/device/complete`, request, res)
 	return
 }
 
-func (self *impl) DeviceVerification(
+func (s *impl) DeviceVerification(
 	request *dto.DeviceVerificationRequest) (res *dto.DeviceVerificationResponse, err *AuthleteError) {
 	res = &dto.DeviceVerificationResponse{}
-	err = self.callServicePostApi(`/api/device/verification`, request, res)
+	err = s.callServicePostApi(`/api/device/verification`, request, res)
 	return
 }
 
-func (self *impl) PushAuthorizationRequest(
+func (s *impl) PushAuthorizationRequest(
 	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
 	res = &dto.PushedAuthReqResponse{}
-	err = self.callServicePostApi(`/api/pushed_auth_req`, request, res)
+	err = s.callServicePostApi(`/api/pushed_auth_req`, request, res)
 	return
 }
 
-func (self *impl) HskCreate(
+func (s *impl) HskCreate(
 	request *dto.HskCreateRequest) (res *dto.HskResponse, err *AuthleteError) {
 	res = &dto.HskResponse{}
-	err = self.callServicePostApi(`/api/hsk/create`, request, res)
+	err = s.callServicePostApi(`/api/hsk/create`, request, res)
 	return
 }
 
-func (self *impl) HskDelete(
+func (s *impl) HskDelete(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	path := `/api/hsk/delete/` + toString(handle)
 	res = &dto.HskResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = s.callServiceGetApi(path, nil, res)
 	return
 }
 
-func (self *impl) HskGet(
+func (s *impl) HskGet(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	path := `/api/hsk/get/` + toString(handle)
 	res = &dto.HskResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = s.callServiceGetApi(path, nil, res)
 	return
 }
 
-func (self *impl) HskGetList() (
+func (s *impl) HskGetList() (
 	res *dto.HskListResponse, err *AuthleteError) {
 	res = &dto.HskListResponse{}
-	err = self.callServiceGetApi(`/api/hsk/get/list`, nil, res)
+	err = s.callServiceGetApi(`/api/hsk/get/list`, nil, res)
 	return
 }
 
-func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
+func (s *impl) Echo(parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
 	res = &map[string]string{}
-	err = self.callGetApiWithoutCredentials(`/api/misc/echo`, *parameters, res)
+	err = s.callGetApiWithoutCredentials(`/api/misc/echo`, *parameters, res)
 	return
 }
 
-func New(configuration conf.AuthleteConfiguration) AuthleteApi {
+func New(configuration conf.AuthleteConfiguration) (AuthleteApi, error) {
 	im := impl{}
-	im.init(configuration)
-
-	return &im
+	if err := im.init(configuration); err != nil {
+		return nil, err
+	}
+	return &im, nil
 }
