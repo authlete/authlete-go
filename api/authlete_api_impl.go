@@ -307,7 +307,38 @@ func (s *impl) Settings() *Settings {
 func (s *impl) Authorization(
 	request *dto.AuthorizationRequest) (res *dto.AuthorizationResponse, err *AuthleteError) {
 	res = &dto.AuthorizationResponse{}
-	err = s.callServicePostApi(`/api/auth/authorization`, request, res)
+	// request.Parametersの中身をapplication/x-www-form-urlencoded形式の文字列に変換する
+	// 値が空文字列の場合はそのパラメータを無視する
+	u, _ := url.Parse("")
+	q := u.Query()
+	if len(request.Parameters.ResponseType) > 0 {
+		q.Set("response_type", request.Parameters.ResponseType)
+	}
+	if len(request.Parameters.ClientId) > 0 {
+		q.Set("client_id", request.Parameters.ClientId)
+	}
+	if len(request.Parameters.RedirectUri) > 0 {
+		q.Set("redirect_uri", request.Parameters.RedirectUri)
+	}
+	if len(request.Parameters.Scope) > 0 {
+		q.Set("scope", request.Parameters.Scope)
+	}
+	if len(request.Parameters.CodeChallenge) > 0 {
+		q.Set("code_challenge", request.Parameters.CodeChallenge)
+	}
+	if len(request.Parameters.CodeChallengeMethod) > 0 {
+		q.Set("code_challenge_method", request.Parameters.CodeChallengeMethod)
+	}
+
+	err = s.callServicePostApi(
+		`/api/auth/authorization`,
+		struct {
+			Parameters string `json:"parameters"`
+		}{
+			Parameters: strings.TrimLeft(q.Encode(), "?"),
+		},
+		res,
+	)
 	return
 }
 

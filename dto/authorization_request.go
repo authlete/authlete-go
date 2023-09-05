@@ -20,5 +20,14 @@ type AuthorizationRequest struct {
 	// Request parameters to the authorization endpoint.
 	//
 	// The format is `application/x-www-form-urlencoded`.
-	Parameters string `json:"parameters"` // omitempty is not added intentionally.
+	Parameters AuthorizationRequestParameters `json:"parameters"` // omitempty is not added intentionally.
+}
+
+type AuthorizationRequestParameters struct {
+	ResponseType        string
+	ClientId            string
+	RedirectUri         string
+	Scope               string
+	CodeChallenge       string
+	CodeChallengeMethod string
 }
