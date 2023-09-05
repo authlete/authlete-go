@@ -126,26 +126,14 @@ func (s *impl) buildRequestHeader() http.Header {
 }
 
 func (s *impl) buildRequestUrl(path string, queryParams map[string]string) *url.URL {
-	var builder strings.Builder
-
-	builder.WriteString(s.baseUrl.JoinPath(path).String())
-
-	if queryParams != nil {
-		delimiter := `?`
-		for key, value := range queryParams {
-			builder.WriteString(delimiter)
-			builder.WriteString(url.QueryEscape(key))
-			builder.WriteString(`=`)
-			builder.WriteString(url.QueryEscape(value))
-			delimiter = `&`
-		}
+	u := s.baseUrl.JoinPath(path)
+	q := u.Query()
+	for key, value := range queryParams {
+		q.Set(key, value)
 	}
-
-	rawurl := builder.String()
-	u, err := url.Parse(rawurl)
-	if err != nil {
-		log.Panicf(`Failed to build a URL from '%v'`, rawurl)
-	}
+	u.RawQuery = q.Encode()
+	// このバグが治るまでの暫定対応 https://github.com/golang/go/issues/58605
+	u, _ = url.Parse(u.String())
 
 	return u
 }
