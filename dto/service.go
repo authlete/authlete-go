@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-2023 Authlete, Inc.
+// Copyright (C) 2019-2024 Authlete, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -374,4 +374,8 @@ type Service struct {
 
 	// aud type of id token.
 	IdTokenAudType types.IdTokenAudType `json:"idTokenAudType,omitempty"`
+
+	RequestObjectAudienceChecked bool `json:"requestObjectAudienceChecked,omitempty"`
+
+	UnauthorizedOnClientConfigSupported bool `json:"unauthorizedOnClientConfigSupported,omitempty"`
 }
