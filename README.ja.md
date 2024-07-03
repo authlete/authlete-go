@@ -6,6 +6,8 @@ Go 用 Authlete ライブラリ
 
 [Authlete](https://www.authlete.com/ja/) Web API 用の公式 Go ライブラリです。
 
+*こちらのライブラリの代替として、https://github.com/authlete/openapi-for-go を推奨いたします。*
+
 ライセンス
 ----------
 

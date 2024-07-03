@@ -7,6 +7,8 @@ Overview
 This is the official Go library for [Authlete](https://www.authlete.com/)
 Web APIs.
 
+*We strongly recommend the use of https://github.com/authlete/openapi-for-go instead of authlete-go*
+
 License
 -------
 
