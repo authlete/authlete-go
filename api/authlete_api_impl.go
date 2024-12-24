@@ -174,7 +174,8 @@ func (self *impl) buildRequestBody(requestBody interface{}) io.ReadCloser {
 
 func (self *impl) prepareClient() *http.Client {
 	return &http.Client{
-		Timeout: self.settings.Timeout,
+		Timeout:   self.settings.Timeout,
+		Transport: self.settings.Transport,
 	}
 }
 

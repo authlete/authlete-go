@@ -16,9 +16,13 @@
 
 package api
 
-import "time"
+import (
+	"net/http"
+	"time"
+)
 
 type Settings struct {
 	Timeout   time.Duration
 	UserAgent string
+	Transport http.RoundTripper
 }
