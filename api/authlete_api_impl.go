@@ -222,14 +222,6 @@ func (self *impl) deserializeResponseBody(
 	return nil
 }
 
-func (self *impl) callGetApi(
-	apiKey string, apiSecret string, path string, queryParams map[string]string,
-	responseContainer interface{}) *AuthleteError {
-	return self.callGetApiContext(
-		context.Background(),
-		apiKey, apiSecret, path, queryParams, responseContainer)
-}
-
 func (self *impl) callGetApiContext(
 	ctx context.Context,
 	apiKey string, apiSecret string, path string, queryParams map[string]string,
@@ -240,7 +232,8 @@ func (self *impl) callGetApiContext(
 		path, queryParams, nil, responseContainer)
 }
 
-func (self *impl) callGetApiWithoutCredentials(
+func (self *impl) callGetApiWithoutCredentialsContext(
+	ctx context.Context,
 	path string, queryParams map[string]string, responseContainer interface{}) *AuthleteError {
 	return self.callApi(
 		http.MethodGet, "", "",
@@ -259,15 +252,6 @@ func (self *impl) callDeleteApi(
 	apiKey string, apiSecret string, path string) *AuthleteError {
 	return self.callApi(
 		http.MethodDelete, apiKey, apiSecret, path, nil, nil, nil)
-}
-
-func (self *impl) callServiceGetApi(
-	path string, queryParams map[string]string,
-	responseContainer interface{}) *AuthleteError {
-	return self.callServiceGetApiContext(
-		context.Background(),
-		path, queryParams,
-		responseContainer)
 }
 
 func (self *impl) callServiceGetApiContext(
@@ -293,10 +277,12 @@ func (self *impl) callServiceDeleteApi(path string) *AuthleteError {
 		self.serviceApiKey, self.serviceApiSecret, path)
 }
 
-func (self *impl) callServiceOwnerGetApi(
+func (self *impl) callServiceOwnerGetApiContext(
+	ctx context.Context,
 	path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callGetApi(
+	return self.callGetApiContext(
+		ctx,
 		self.serviceOwnerApiKey, self.serviceOwnerApiSecret,
 		path, queryParams, responseContainer)
 }
@@ -417,12 +403,17 @@ func (self *impl) TokenUpdate(
 
 func (self *impl) GetTokenList(
 	clientIdentifier string, subject string, start uint32, end uint32) (res *dto.TokenListResponse, err *AuthleteError) {
+	return self.GetTokenListContext(context.Background(), clientIdentifier, subject, start, end)
+}
+func (self *impl) GetTokenListContext(
+	ctx context.Context,
+	clientIdentifier string, subject string, start uint32, end uint32) (res *dto.TokenListResponse, err *AuthleteError) {
 	params := buildMap(
 		`clientIdentifier`, clientIdentifier,
 		`subject`, subject, `start`, start, `end`, end)
 
 	res = &dto.TokenListResponse{}
-	err = self.callServiceGetApi(`/api/auth/token/get/list`, params, res)
+	err = self.callServiceGetApiContext(ctx, `/api/auth/token/get/list`, params, res)
 	return
 }
 
@@ -477,18 +468,30 @@ func (self *impl) DeleteService(
 
 func (self *impl) GetService(
 	apiKey interface{}) (res *dto.Service, err *AuthleteError) {
+	return self.GetServiceContext(context.Background(), apiKey)
+}
+
+func (self *impl) GetServiceContext(
+	ctx context.Context,
+	apiKey interface{}) (res *dto.Service, err *AuthleteError) {
 	path := `/api/service/get/` + toString(apiKey)
 	res = &dto.Service{}
-	err = self.callServiceOwnerGetApi(path, nil, res)
+	err = self.callServiceOwnerGetApiContext(ctx, path, nil, res)
 	return
 }
 
 func (self *impl) GetServiceList(
 	start uint32, end uint32) (res *dto.ServiceListResponse, err *AuthleteError) {
+	return self.GetServiceListContext(context.Background(), start, end)
+}
+
+func (self *impl) GetServiceListContext(
+	ctx context.Context,
+	start uint32, end uint32) (res *dto.ServiceListResponse, err *AuthleteError) {
 	params := buildMap(`start`, start, `end`, end)
 
 	res = &dto.ServiceListResponse{}
-	err = self.callServiceOwnerGetApi(`/api/service/get/list`, params, res)
+	err = self.callServiceOwnerGetApiContext(ctx, `/api/service/get/list`, params, res)
 	return
 }
 
@@ -502,10 +505,16 @@ func (self *impl) UpdateService(
 
 func (self *impl) GetServiceJwks(
 	pretty bool, includePrivateKeys bool) (res string, err *AuthleteError) {
+	return self.GetServiceJwksContext(context.Background(), pretty, includePrivateKeys)
+}
+
+func (self *impl) GetServiceJwksContext(
+	ctx context.Context,
+	pretty bool, includePrivateKeys bool) (res string, err *AuthleteError) {
 	params := buildMap(`pretty`, pretty, `includePrivateKeys`, includePrivateKeys)
 
 	obj := strings.Builder{}
-	err = self.callServiceGetApi(`/api/service/jwks/get`, params, &obj)
+	err = self.callServiceGetApiContext(ctx, `/api/service/jwks/get`, params, &obj)
 
 	if err == nil {
 		res = obj.String()
@@ -516,10 +525,16 @@ func (self *impl) GetServiceJwks(
 
 func (self *impl) GetServiceConfiguration(
 	pretty bool) (res string, err *AuthleteError) {
+	return self.GetServiceConfigurationContext(context.Background(), pretty)
+}
+
+func (self *impl) GetServiceConfigurationContext(
+	ctx context.Context,
+	pretty bool) (res string, err *AuthleteError) {
 	params := buildMap(`pretty`, pretty)
 
 	obj := strings.Builder{}
-	err = self.callServiceGetApi(`/api/service/configuration`, params, &obj)
+	err = self.callServiceGetApiContext(ctx, `/api/service/configuration`, params, &obj)
 
 	if err == nil {
 		res = obj.String()
@@ -586,10 +601,16 @@ func (self *impl) GetClientContext(
 
 func (self *impl) GetClientList(
 	developer string, start uint32, end uint32) (res *dto.ClientListResponse, err *AuthleteError) {
+	return self.GetClientListContext(context.Background(), developer, start, end)
+}
+
+func (self *impl) GetClientListContext(
+	ctx context.Context,
+	developer string, start uint32, end uint32) (res *dto.ClientListResponse, err *AuthleteError) {
 	params := buildMap(`developer`, developer, `start`, start, `end`, end)
 
 	res = &dto.ClientListResponse{}
-	err = self.callServiceGetApi(`/api/client/get/list`, params, res)
+	err = self.callServiceGetApiContext(ctx, `/api/client/get/list`, params, res)
 	return
 }
 
@@ -607,10 +628,16 @@ type requestableScopes struct {
 
 func (self *impl) GetRequestableScopes(
 	clientIdentifier interface{}) (res []string, err *AuthleteError) {
+	return self.GetRequestableScopesContext(context.Background(), clientIdentifier)
+}
+
+func (self *impl) GetRequestableScopesContext(
+	ctx context.Context,
+	clientIdentifier interface{}) (res []string, err *AuthleteError) {
 	path := `/api/client/extension/requestable_scopes/get/` + toString(clientIdentifier)
 
 	obj := requestableScopes{}
-	err = self.callServiceGetApi(path, nil, &obj)
+	err = self.callServiceGetApiContext(ctx, path, nil, &obj)
 
 	if err == nil {
 		res = obj.RequestableScopes
@@ -696,10 +723,16 @@ func (self *impl) UpdateClientAuthorization(
 
 func (self *impl) RefreshClientSecret(
 	clientIdentifier interface{}) (res *dto.ClientSecretRefreshResponse, err *AuthleteError) {
+	return self.RefreshClientSecretContext(context.Background(), clientIdentifier)
+}
+
+func (self *impl) RefreshClientSecretContext(
+	ctx context.Context,
+	clientIdentifier interface{}) (res *dto.ClientSecretRefreshResponse, err *AuthleteError) {
 	path := `/api/client/secret/refresh/` + toString(clientIdentifier)
 
 	res = &dto.ClientSecretRefreshResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = self.callServiceGetApiContext(ctx, path, nil, res)
 	return
 }
 
@@ -787,30 +820,49 @@ func (self *impl) HskCreate(
 
 func (self *impl) HskDelete(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	return self.HskDeleteContext(context.Background(), handle)
+}
+func (self *impl) HskDeleteContext(
+	ctx context.Context,
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	path := `/api/hsk/delete/` + toString(handle)
 	res = &dto.HskResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = self.callServiceGetApiContext(ctx, path, nil, res)
 	return
 }
 
 func (self *impl) HskGet(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
+	return self.HskGetContext(context.Background(), handle)
+}
+func (self *impl) HskGetContext(
+	ctx context.Context,
+	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	path := `/api/hsk/get/` + toString(handle)
 	res = &dto.HskResponse{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = self.callServiceGetApiContext(ctx, path, nil, res)
 	return
 }
 
 func (self *impl) HskGetList() (
 	res *dto.HskListResponse, err *AuthleteError) {
+	return self.HskGetListContext(context.Background())
+}
+
+func (self *impl) HskGetListContext(ctx context.Context) (
+	res *dto.HskListResponse, err *AuthleteError) {
 	res = &dto.HskListResponse{}
-	err = self.callServiceGetApi(`/api/hsk/get/list`, nil, res)
+	err = self.callServiceGetApiContext(ctx, `/api/hsk/get/list`, nil, res)
 	return
 }
 
 func (self *impl) Echo(parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
+	return self.EchoContext(context.Background(), parameters)
+}
+
+func (self *impl) EchoContext(ctx context.Context, parameters *map[string]string) (res *map[string]string, err *AuthleteError) {
 	res = &map[string]string{}
-	err = self.callGetApiWithoutCredentials(`/api/misc/echo`, *parameters, res)
+	err = self.callGetApiWithoutCredentialsContext(ctx, `/api/misc/echo`, *parameters, res)
 	return
 }
 
