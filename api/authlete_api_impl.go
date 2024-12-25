@@ -18,6 +18,7 @@ package api
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -66,8 +67,20 @@ func (self *impl) callApi(
 	method string, apiKey string, apiSecret string, path string,
 	queryParams map[string]string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
+	return self.callApiContext(
+		context.Background(),
+		method, apiKey, apiSecret, path,
+		queryParams, requestBody,
+		responseContainer)
+}
+
+func (self *impl) callApiContext(
+	ctx context.Context,
+	method string, apiKey string, apiSecret string, path string,
+	queryParams map[string]string, requestBody interface{},
+	responseContainer interface{}) *AuthleteError {
 	// Prepare a request to the Authlete API.
-	req := self.buildRequest(method, apiKey, apiSecret, path, queryParams, requestBody)
+	req := self.buildRequest(method, apiKey, apiSecret, path, queryParams, requestBody).WithContext(ctx)
 
 	// HTTP Client
 	client := self.prepareClient()
@@ -212,7 +225,17 @@ func (self *impl) deserializeResponseBody(
 func (self *impl) callGetApi(
 	apiKey string, apiSecret string, path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return self.callGetApiContext(
+		context.Background(),
+		apiKey, apiSecret, path, queryParams, responseContainer)
+}
+
+func (self *impl) callGetApiContext(
+	ctx context.Context,
+	apiKey string, apiSecret string, path string, queryParams map[string]string,
+	responseContainer interface{}) *AuthleteError {
+	return self.callApiContext(
+		ctx,
 		http.MethodGet, apiKey, apiSecret,
 		path, queryParams, nil, responseContainer)
 }
@@ -241,7 +264,18 @@ func (self *impl) callDeleteApi(
 func (self *impl) callServiceGetApi(
 	path string, queryParams map[string]string,
 	responseContainer interface{}) *AuthleteError {
-	return self.callGetApi(
+	return self.callServiceGetApiContext(
+		context.Background(),
+		path, queryParams,
+		responseContainer)
+}
+
+func (self *impl) callServiceGetApiContext(
+	ctx context.Context,
+	path string, queryParams map[string]string,
+	responseContainer interface{}) *AuthleteError {
+	return self.callGetApiContext(
+		ctx,
 		self.serviceApiKey, self.serviceApiSecret,
 		path, queryParams, responseContainer)
 }
@@ -538,9 +572,15 @@ func (self *impl) DeleteClient(
 
 func (self *impl) GetClient(
 	clientIdentifier interface{}) (res *dto.Client, err *AuthleteError) {
+	return self.GetClientContext(context.Background(), clientIdentifier)
+}
+
+func (self *impl) GetClientContext(
+	ctx context.Context,
+	clientIdentifier interface{}) (res *dto.Client, err *AuthleteError) {
 	path := `/api/client/get/` + toString(clientIdentifier)
 	res = &dto.Client{}
-	err = self.callServiceGetApi(path, nil, res)
+	err = self.callServiceGetApiContext(ctx, path, nil, res)
 	return
 }
 
