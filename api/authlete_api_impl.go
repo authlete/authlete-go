@@ -235,7 +235,8 @@ func (self *impl) callGetApiContext(
 func (self *impl) callGetApiWithoutCredentialsContext(
 	ctx context.Context,
 	path string, queryParams map[string]string, responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return self.callApiContext(
+		ctx,
 		http.MethodGet, "", "",
 		path, queryParams, nil, responseContainer)
 }
