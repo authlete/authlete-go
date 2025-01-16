@@ -16,7 +16,11 @@
 
 package api
 
-import "github.com/authlete/authlete-go/dto"
+import (
+	"context"
+
+	"github.com/authlete/authlete-go/dto"
+)
 
 type AuthleteApi interface {
 	Settings() *Settings
@@ -49,6 +53,7 @@ type AuthleteApi interface {
 	DynamicClientDelete(request *dto.ClientRegistrationRequest) (*dto.ClientRegistrationResponse, *AuthleteError)
 	DeleteClient(clientIdentifier interface{}) *AuthleteError
 	GetClient(clientIdentifier interface{}) (*dto.Client, *AuthleteError)
+	GetClientContext(ctx context.Context, clientIdentifier interface{}) (*dto.Client, *AuthleteError)
 	GetClientList(developer string, start uint32, end uint32) (*dto.ClientListResponse, *AuthleteError)
 	UpdateClient(client *dto.Client) (*dto.Client, *AuthleteError)
 	GetRequestableScopes(clientIdentifier interface{}) ([]string, *AuthleteError)
