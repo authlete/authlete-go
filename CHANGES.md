@@ -4,8 +4,19 @@ CHANGES
 v1.1.13 (2025-01-17)
 -------------------
 
+- `Settings` type
+    * Added `Transport` field.
+
+- Configured HTTP client's Transport.
+
+- Propagate ctx.Context to each API invocation method.
+
 v1.1.12 (2024-07-05)
 -------------------
+
+- `Service` type
+    * Added `requestObjectAudienceChecked` field.
+    * Added `unauthorizedOnClientConfigSupported` field.
 
 v1.1.11 (2023-05-02)
 -------------------

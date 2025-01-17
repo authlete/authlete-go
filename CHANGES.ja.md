@@ -4,8 +4,18 @@
 v1.1.13 (2025 年 01 月 17 日)
 -------------------
 
+- `Setting` 構造体
+    * `Transport` フィールドを追加。
+
+- `http.Client`HTTPクライアントのTransportを設定。
+
+- 各 API 呼び出しメソッドに ctx.Context を伝播させるようにしました。
+
 v1.1.12 (2024 年 07 月 05 日)
 -------------------
+- `Service` 構造体
+    * `requestObjectAudienceChecked` フィールドを追加。
+    * `unauthorizedOnClientConfigSupported` フィールドを追加。
 
 v1.1.11 (2023 年 05 月 02 日)
 -------------------
