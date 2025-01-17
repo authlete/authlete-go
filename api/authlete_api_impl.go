@@ -249,9 +249,11 @@ func (self *impl) callPostApi(
 		path, nil, requestBody, responseContainer)
 }
 
-func (self *impl) callDeleteApi(
+func (self *impl) callDeleteApiContext(
+	ctx context.Context,
 	apiKey string, apiSecret string, path string) *AuthleteError {
-	return self.callApi(
+	return self.callApiContext(
+		ctx,
 		http.MethodDelete, apiKey, apiSecret, path, nil, nil, nil)
 }
 
@@ -273,8 +275,9 @@ func (self *impl) callServicePostApi(
 		path, requestBody, responseContainer)
 }
 
-func (self *impl) callServiceDeleteApi(path string) *AuthleteError {
-	return self.callDeleteApi(
+func (self *impl) callServiceDeleteApicontext(ctx context.Context, path string) *AuthleteError {
+	return self.callDeleteApiContext(
+		ctx,
 		self.serviceApiKey, self.serviceApiSecret, path)
 }
 
@@ -296,8 +299,9 @@ func (self *impl) callServiceOwnerPostApi(
 		path, requestBody, responseContainer)
 }
 
-func (self *impl) callServiceOwnerDeleteApi(path string) *AuthleteError {
-	return self.callDeleteApi(
+func (self *impl) callServiceOwnerDeleteApiContext(ctx context.Context, path string) *AuthleteError {
+	return self.callDeleteApiContext(
+		ctx,
 		self.serviceOwnerApiKey, self.serviceOwnerApiSecret, path)
 }
 
@@ -376,8 +380,14 @@ func (self *impl) TokenCreate(
 
 func (self *impl) TokenDelete(
 	token string) (err *AuthleteError) {
+	return self.TokenDeleteContext(context.Background(), token)
+}
+
+func (self *impl) TokenDeleteContext(
+	ctx context.Context,
+	token string) (err *AuthleteError) {
 	path := `/api/auth/token/delete/` + token
-	err = self.callServiceDeleteApi(path)
+	err = self.callServiceDeleteApicontext(ctx, path)
 	return
 }
 
@@ -462,8 +472,14 @@ func (self *impl) CreateService(
 
 func (self *impl) DeleteService(
 	apiKey interface{}) (err *AuthleteError) {
+	return self.DeleteServiceContext(context.Background(), apiKey)
+}
+
+func (self *impl) DeleteServiceContext(
+	ctx context.Context,
+	apiKey interface{}) (err *AuthleteError) {
 	path := `/api/service/delete/` + toString(apiKey)
-	err = self.callServiceOwnerDeleteApi(path)
+	err = self.callServiceOwnerDeleteApiContext(ctx, path)
 	return
 }
 
@@ -581,8 +597,14 @@ func (self *impl) DynamicClientDelete(
 
 func (self *impl) DeleteClient(
 	clientIdentifier interface{}) (err *AuthleteError) {
+	return self.DeleteClientContext(context.Background(), clientIdentifier)
+}
+
+func (self *impl) DeleteClientContext(
+	ctx context.Context,
+	clientIdentifier interface{}) (err *AuthleteError) {
 	path := `/api/client/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = self.callServiceDeleteApicontext(ctx, path)
 	return
 }
 
@@ -666,8 +688,14 @@ func (self *impl) SetRequestableScopes(
 
 func (self *impl) DeleteRequestableScopes(
 	clientIdentifier interface{}) (err *AuthleteError) {
+	return self.DeleteRequestableScopesContext(context.Background(), clientIdentifier)
+}
+
+func (self *impl) DeleteRequestableScopesContext(
+	ctx context.Context,
+	clientIdentifier interface{}) (err *AuthleteError) {
 	path := `/api/client/extension/requestable_scopes/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = self.callServiceDeleteApicontext(ctx, path)
 	return
 }
 
@@ -689,8 +717,14 @@ func (self *impl) GetGrantedScopes(
 
 func (self *impl) DeleteGrantedScopes(
 	clientIdentifier interface{}, subject string) (err *AuthleteError) {
+	return self.DeleteGrantedScopesContext(context.Background(), clientIdentifier, subject)
+}
+
+func (self *impl) DeleteGrantedScopesContext(
+	ctx context.Context,
+	clientIdentifier interface{}, subject string) (err *AuthleteError) {
 	path := `/api/client/granted_scopes/delete/` + toString(clientIdentifier)
-	err = self.callServiceDeleteApi(path)
+	err = self.callServiceDeleteApicontext(ctx, path)
 	return
 }
 
@@ -823,6 +857,7 @@ func (self *impl) HskDelete(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	return self.HskDeleteContext(context.Background(), handle)
 }
+
 func (self *impl) HskDeleteContext(
 	ctx context.Context,
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
@@ -836,6 +871,7 @@ func (self *impl) HskGet(
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {
 	return self.HskGetContext(context.Background(), handle)
 }
+
 func (self *impl) HskGetContext(
 	ctx context.Context,
 	handle interface{}) (res *dto.HskResponse, err *AuthleteError) {

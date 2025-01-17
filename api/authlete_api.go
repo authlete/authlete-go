@@ -30,6 +30,7 @@ type AuthleteApi interface {
 	Token(request *dto.TokenRequest) (*dto.TokenResponse, *AuthleteError)
 	TokenCreate(request *dto.TokenCreateRequest) (*dto.TokenCreateResponse, *AuthleteError)
 	TokenDelete(token string) *AuthleteError
+	TokenDeleteContext(ctx context.Context, token string) *AuthleteError
 	TokenFail(request *dto.TokenFailRequest) (*dto.TokenFailResponse, *AuthleteError)
 	TokenIssue(request *dto.TokenIssueRequest) (*dto.TokenIssueResponse, *AuthleteError)
 	TokenUpdate(request *dto.TokenUpdateRequest) (*dto.TokenUpdateResponse, *AuthleteError)
@@ -42,6 +43,7 @@ type AuthleteApi interface {
 	StandardIntrospection(request *dto.StandardIntrospectionRequest) (*dto.StandardIntrospectionResponse, *AuthleteError)
 	CreateService(service *dto.Service) (*dto.Service, *AuthleteError)
 	DeleteService(apiKey interface{}) *AuthleteError
+	DeleteServiceContext(ctx context.Context, apiKey interface{}) *AuthleteError
 	GetService(apiKey interface{}) (*dto.Service, *AuthleteError)
 	GetServiceContext(ctx context.Context, apiKey interface{}) (*dto.Service, *AuthleteError)
 	GetServiceList(start uint32, end uint32) (*dto.ServiceListResponse, *AuthleteError)
@@ -57,6 +59,7 @@ type AuthleteApi interface {
 	DynamicClientUpdate(request *dto.ClientRegistrationRequest) (*dto.ClientRegistrationResponse, *AuthleteError)
 	DynamicClientDelete(request *dto.ClientRegistrationRequest) (*dto.ClientRegistrationResponse, *AuthleteError)
 	DeleteClient(clientIdentifier interface{}) *AuthleteError
+	DeleteClientContext(ctx context.Context, clientIdentifier interface{}) *AuthleteError
 	GetClient(clientIdentifier interface{}) (*dto.Client, *AuthleteError)
 	GetClientContext(ctx context.Context, clientIdentifier interface{}) (*dto.Client, *AuthleteError)
 	GetClientList(developer string, start uint32, end uint32) (*dto.ClientListResponse, *AuthleteError)
@@ -66,8 +69,10 @@ type AuthleteApi interface {
 	GetRequestableScopesContext(ctx context.Context, clientIdentifier interface{}) ([]string, *AuthleteError)
 	SetRequestableScopes(clientIdentifier interface{}, scopes []string) ([]string, *AuthleteError)
 	DeleteRequestableScopes(clientIdentifier interface{}) *AuthleteError
+	DeleteRequestableScopesContext(ctx context.Context, clientIdentifier interface{}) *AuthleteError
 	GetGrantedScopes(clientIdentifier interface{}, subject string) (*dto.GrantedScopesGetResponse, *AuthleteError)
 	DeleteGrantedScopes(clientIdentifier interface{}, subject string) *AuthleteError
+	DeleteGrantedScopesContext(ctx context.Context, clientIdentifier interface{}, subject string) *AuthleteError
 	DeleteClientAuthorization(clientIdentifier interface{}, subject string) *AuthleteError
 	GetClientAuthorizationList(request *dto.ClientAuthorizationGetListRequest) (*dto.AuthorizedClientListResponse, *AuthleteError)
 	UpdateClientAuthorization(clientIdentifier interface{}, request *dto.ClientAuthorizationUpdateRequest) *AuthleteError
