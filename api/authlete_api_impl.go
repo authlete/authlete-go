@@ -241,10 +241,12 @@ func (self *impl) callGetApiWithoutCredentialsContext(
 		path, queryParams, nil, responseContainer)
 }
 
-func (self *impl) callPostApi(
+func (self *impl) callPostApiContext(
+	ctx context.Context,
 	apiKey string, apiSecret string, path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callApi(
+	return self.callApiContext(
+		ctx,
 		http.MethodPost, apiKey, apiSecret,
 		path, nil, requestBody, responseContainer)
 }
@@ -267,10 +269,12 @@ func (self *impl) callServiceGetApiContext(
 		path, queryParams, responseContainer)
 }
 
-func (self *impl) callServicePostApi(
+func (self *impl) callServicePostApiContext(
+	ctx context.Context,
 	path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callPostApi(
+	return self.callPostApiContext(
+		ctx,
 		self.serviceApiKey, self.serviceApiSecret,
 		path, requestBody, responseContainer)
 }
@@ -291,10 +295,12 @@ func (self *impl) callServiceOwnerGetApiContext(
 		path, queryParams, responseContainer)
 }
 
-func (self *impl) callServiceOwnerPostApi(
+func (self *impl) callServiceOwnerPostApiContext(
+	ctx context.Context,
 	path string, requestBody interface{},
 	responseContainer interface{}) *AuthleteError {
-	return self.callPostApi(
+	return self.callPostApiContext(
+		ctx,
 		self.serviceOwnerApiKey, self.serviceOwnerApiSecret,
 		path, requestBody, responseContainer)
 }
@@ -345,36 +351,66 @@ func (self *impl) Settings() *Settings {
 
 func (self *impl) Authorization(
 	request *dto.AuthorizationRequest) (res *dto.AuthorizationResponse, err *AuthleteError) {
+	return self.AuthorizationContext(context.Background(), request)
+}
+
+func (self *impl) AuthorizationContext(
+	ctx context.Context,
+	request *dto.AuthorizationRequest) (res *dto.AuthorizationResponse, err *AuthleteError) {
 	res = &dto.AuthorizationResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/authorization`, request, res)
 	return
 }
 
 func (self *impl) AuthorizationFail(
 	request *dto.AuthorizationFailRequest) (res *dto.AuthorizationFailResponse, err *AuthleteError) {
+	return self.AuthorizationFailContext(context.Background(), request)
+}
+
+func (self *impl) AuthorizationFailContext(
+	ctx context.Context,
+	request *dto.AuthorizationFailRequest) (res *dto.AuthorizationFailResponse, err *AuthleteError) {
 	res = &dto.AuthorizationFailResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization/fail`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/authorization/fail`, request, res)
 	return
 }
 
 func (self *impl) AuthorizationIssue(
 	request *dto.AuthorizationIssueRequest) (res *dto.AuthorizationIssueResponse, err *AuthleteError) {
+	return self.AuthorizationIssueContext(context.Background(), request)
+}
+
+func (self *impl) AuthorizationIssueContext(
+	ctx context.Context,
+	request *dto.AuthorizationIssueRequest) (res *dto.AuthorizationIssueResponse, err *AuthleteError) {
 	res = &dto.AuthorizationIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/authorization/issue`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/authorization/issue`, request, res)
 	return
 }
 
 func (self *impl) Token(
 	request *dto.TokenRequest) (res *dto.TokenResponse, err *AuthleteError) {
+	return self.TokenContext(context.Background(), request)
+}
+
+func (self *impl) TokenContext(
+	ctx context.Context,
+	request *dto.TokenRequest) (res *dto.TokenResponse, err *AuthleteError) {
 	res = &dto.TokenResponse{}
-	err = self.callServicePostApi(`/api/auth/token`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/token`, request, res)
 	return
 }
 
 func (self *impl) TokenCreate(
 	request *dto.TokenCreateRequest) (res *dto.TokenCreateResponse, err *AuthleteError) {
+	return self.TokenCreateContext(context.Background(), request)
+}
+
+func (self *impl) TokenCreateContext(
+	ctx context.Context,
+	request *dto.TokenCreateRequest) (res *dto.TokenCreateResponse, err *AuthleteError) {
 	res = &dto.TokenCreateResponse{}
-	err = self.callServicePostApi(`/api/auth/token/create`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/token/create`, request, res)
 	return
 }
 
@@ -393,22 +429,40 @@ func (self *impl) TokenDeleteContext(
 
 func (self *impl) TokenFail(
 	request *dto.TokenFailRequest) (res *dto.TokenFailResponse, err *AuthleteError) {
+	return self.TokenFailContext(context.Background(), request)
+}
+
+func (self *impl) TokenFailContext(
+	ctx context.Context,
+	request *dto.TokenFailRequest) (res *dto.TokenFailResponse, err *AuthleteError) {
 	res = &dto.TokenFailResponse{}
-	err = self.callServicePostApi(`/api/auth/token/fail`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/token/fail`, request, res)
 	return
 }
 
 func (self *impl) TokenIssue(
 	request *dto.TokenIssueRequest) (res *dto.TokenIssueResponse, err *AuthleteError) {
+	return self.TokenIssueContext(context.Background(), request)
+}
+
+func (self *impl) TokenIssueContext(
+	ctx context.Context,
+	request *dto.TokenIssueRequest) (res *dto.TokenIssueResponse, err *AuthleteError) {
 	res = &dto.TokenIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/token/issue`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/token/issue`, request, res)
 	return
 }
 
 func (self *impl) TokenUpdate(
 	request *dto.TokenUpdateRequest) (res *dto.TokenUpdateResponse, err *AuthleteError) {
+	return self.TokenUpdateContext(context.Background(), request)
+}
+
+func (self *impl) TokenUpdateContext(
+	ctx context.Context,
+	request *dto.TokenUpdateRequest) (res *dto.TokenUpdateResponse, err *AuthleteError) {
 	res = &dto.TokenUpdateResponse{}
-	err = self.callServicePostApi(`/api/auth/token/update`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/token/update`, request, res)
 	return
 }
 
@@ -430,43 +484,79 @@ func (self *impl) GetTokenListContext(
 
 func (self *impl) Revocation(
 	request *dto.RevocationRequest) (res *dto.RevocationResponse, err *AuthleteError) {
+	return self.RevocationContext(context.Background(), request)
+}
+
+func (self *impl) RevocationContext(
+	ctx context.Context,
+	request *dto.RevocationRequest) (res *dto.RevocationResponse, err *AuthleteError) {
 	res = &dto.RevocationResponse{}
-	err = self.callServicePostApi(`/api/auth/revocation`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/revocation`, request, res)
 	return
 }
 
 func (self *impl) UserInfo(
 	request *dto.UserInfoRequest) (res *dto.UserInfoResponse, err *AuthleteError) {
+	return self.UserInfoContext(context.Background(), request)
+}
+
+func (self *impl) UserInfoContext(
+	ctx context.Context,
+	request *dto.UserInfoRequest) (res *dto.UserInfoResponse, err *AuthleteError) {
 	res = &dto.UserInfoResponse{}
-	err = self.callServicePostApi(`/api/auth/userinfo`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/userinfo`, request, res)
 	return
 }
 
 func (self *impl) UserInfoIssue(
 	request *dto.UserInfoIssueRequest) (res *dto.UserInfoIssueResponse, err *AuthleteError) {
+	return self.UserInfoIssueContext(context.Background(), request)
+}
+
+func (self *impl) UserInfoIssueContext(
+	ctx context.Context,
+	request *dto.UserInfoIssueRequest) (res *dto.UserInfoIssueResponse, err *AuthleteError) {
 	res = &dto.UserInfoIssueResponse{}
-	err = self.callServicePostApi(`/api/auth/userinfo/issue`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/userinfo/issue`, request, res)
 	return
 }
 
 func (self *impl) Introspection(
 	request *dto.IntrospectionRequest) (res *dto.IntrospectionResponse, err *AuthleteError) {
+	return self.IntrospectionContext(context.Background(), request)
+}
+
+func (self *impl) IntrospectionContext(
+	ctx context.Context,
+	request *dto.IntrospectionRequest) (res *dto.IntrospectionResponse, err *AuthleteError) {
 	res = &dto.IntrospectionResponse{}
-	err = self.callServicePostApi(`/api/auth/introspection`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/introspection`, request, res)
 	return
 }
 
 func (self *impl) StandardIntrospection(
 	request *dto.StandardIntrospectionRequest) (res *dto.StandardIntrospectionResponse, err *AuthleteError) {
+	return self.StandardIntrospectionContext(context.Background(), request)
+}
+
+func (self *impl) StandardIntrospectionContext(
+	ctx context.Context,
+	request *dto.StandardIntrospectionRequest) (res *dto.StandardIntrospectionResponse, err *AuthleteError) {
 	res = &dto.StandardIntrospectionResponse{}
-	err = self.callServicePostApi(`/api/auth/introspection/standard`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/auth/introspection/standard`, request, res)
 	return
 }
 
 func (self *impl) CreateService(
 	request *dto.Service) (res *dto.Service, err *AuthleteError) {
+	return self.CreateServiceContext(context.Background(), request)
+}
+
+func (self *impl) CreateServiceContext(
+	ctx context.Context,
+	request *dto.Service) (res *dto.Service, err *AuthleteError) {
 	res = &dto.Service{}
-	err = self.callServiceOwnerPostApi(`/api/service/create`, request, res)
+	err = self.callServiceOwnerPostApiContext(ctx, `/api/service/create`, request, res)
 	return
 }
 
@@ -514,9 +604,15 @@ func (self *impl) GetServiceListContext(
 
 func (self *impl) UpdateService(
 	service *dto.Service) (res *dto.Service, err *AuthleteError) {
+	return self.UpdateServiceContext(context.Background(), service)
+}
+
+func (self *impl) UpdateServiceContext(
+	ctx context.Context,
+	service *dto.Service) (res *dto.Service, err *AuthleteError) {
 	path := `/api/service/update/` + toString(service.ApiKey)
 	res = &dto.Service{}
-	err = self.callServiceOwnerPostApi(path, service, res)
+	err = self.callServiceOwnerPostApiContext(ctx, path, service, res)
 	return
 }
 
@@ -562,36 +658,66 @@ func (self *impl) GetServiceConfigurationContext(
 
 func (self *impl) CreateClient(
 	client *dto.Client) (res *dto.Client, err *AuthleteError) {
+	return self.CreateClientContext(context.Background(), client)
+}
+
+func (self *impl) CreateClientContext(
+	ctx context.Context,
+	client *dto.Client) (res *dto.Client, err *AuthleteError) {
 	res = &dto.Client{}
-	err = self.callServicePostApi(`/api/client/create`, client, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/create`, client, res)
 	return
 }
 
 func (self *impl) DynamicClientRegister(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
+	return self.DynamicClientRegisterContext(context.Background(), request)
+}
+
+func (self *impl) DynamicClientRegisterContext(
+	ctx context.Context,
+	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/registration`, request, res)
 	return
 }
 
 func (self *impl) DynamicClientGet(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
+	return self.DynamicClientGetContext(context.Background(), request)
+}
+
+func (self *impl) DynamicClientGetContext(
+	ctx context.Context,
+	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/get`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/registration/get`, request, res)
 	return
 }
 
 func (self *impl) DynamicClientUpdate(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
+	return self.DynamicClientUpdateContext(context.Background(), request)
+}
+
+func (self *impl) DynamicClientUpdateContext(
+	ctx context.Context,
+	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/update`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/registration/update`, request, res)
 	return
 }
 
 func (self *impl) DynamicClientDelete(
 	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
+	return self.DynamicClientDeleteContext(context.Background(), request)
+}
+
+func (self *impl) DynamicClientDeleteContext(
+	ctx context.Context,
+	request *dto.ClientRegistrationRequest) (res *dto.ClientRegistrationResponse, err *AuthleteError) {
 	res = &dto.ClientRegistrationResponse{}
-	err = self.callServicePostApi(`/api/client/registration/delete`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/registration/delete`, request, res)
 	return
 }
 
@@ -639,9 +765,15 @@ func (self *impl) GetClientListContext(
 
 func (self *impl) UpdateClient(
 	client *dto.Client) (res *dto.Client, err *AuthleteError) {
+	return self.UpdateClientContext(context.Background(), client)
+}
+
+func (self *impl) UpdateClientContext(
+	ctx context.Context,
+	client *dto.Client) (res *dto.Client, err *AuthleteError) {
 	path := `/api/client/update/` + toString(client.ClientId)
 	res = &dto.Client{}
-	err = self.callServicePostApi(path, client, res)
+	err = self.callServicePostApiContext(ctx, path, client, res)
 	return
 }
 
@@ -671,13 +803,19 @@ func (self *impl) GetRequestableScopesContext(
 
 func (self *impl) SetRequestableScopes(
 	clientIdentifier interface{}, scopes []string) (res []string, err *AuthleteError) {
+	return self.SetRequestableScopesContext(context.Background(), clientIdentifier, scopes)
+}
+
+func (self *impl) SetRequestableScopesContext(
+	ctx context.Context,
+	clientIdentifier interface{}, scopes []string) (res []string, err *AuthleteError) {
 	input := requestableScopes{}
 	input.RequestableScopes = scopes
 
 	path := `/api/client/extension/requestable_scopes/update/` + toString(clientIdentifier)
 
 	output := requestableScopes{}
-	err = self.callServicePostApi(path, &input, &output)
+	err = self.callServicePostApiContext(ctx, path, &input, &output)
 
 	if err == nil {
 		res = output.RequestableScopes
@@ -705,13 +843,19 @@ type grantedScopesRequest struct {
 
 func (self *impl) GetGrantedScopes(
 	clientIdentifier interface{}, subject string) (res *dto.GrantedScopesGetResponse, err *AuthleteError) {
+	return self.GetGrantedScopesContext(context.Background(), clientIdentifier, subject)
+}
+
+func (self *impl) GetGrantedScopesContext(
+	ctx context.Context,
+	clientIdentifier interface{}, subject string) (res *dto.GrantedScopesGetResponse, err *AuthleteError) {
 	req := grantedScopesRequest{}
 	req.Subject = subject
 
 	path := `/api/client/granted_scopes/get/` + toString(clientIdentifier)
 
 	res = &dto.GrantedScopesGetResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = self.callServicePostApiContext(ctx, path, &req, res)
 	return
 }
 
@@ -730,29 +874,47 @@ func (self *impl) DeleteGrantedScopesContext(
 
 func (self *impl) DeleteClientAuthorization(
 	clientIdentifier interface{}, subject string) (err *AuthleteError) {
+	return self.DeleteClientAuthorizationContext(context.Background(), clientIdentifier, subject)
+}
+
+func (self *impl) DeleteClientAuthorizationContext(
+	ctx context.Context,
+	clientIdentifier interface{}, subject string) (err *AuthleteError) {
 	req := dto.ClientAuthorizationDeleteRequest{}
 	req.Subject = subject
 
 	path := `/api/client/authorization/delete/` + toString(clientIdentifier)
 
 	res := &dto.ApiResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = self.callServicePostApiContext(ctx, path, &req, res)
 	return
 }
 
 func (self *impl) GetClientAuthorizationList(
 	request *dto.ClientAuthorizationGetListRequest) (res *dto.AuthorizedClientListResponse, err *AuthleteError) {
+	return self.GetClientAuthorizationListContext(context.Background(), request)
+}
+
+func (self *impl) GetClientAuthorizationListContext(
+	ctx context.Context,
+	request *dto.ClientAuthorizationGetListRequest) (res *dto.AuthorizedClientListResponse, err *AuthleteError) {
 	res = &dto.AuthorizedClientListResponse{}
-	err = self.callServicePostApi(`/api/client/authorization/get/list`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/client/authorization/get/list`, request, res)
 	return
 }
 
 func (self *impl) UpdateClientAuthorization(
 	clientIdentifier interface{}, request *dto.ClientAuthorizationUpdateRequest) (err *AuthleteError) {
+	return self.UpdateClientAuthorizationContext(context.Background(), clientIdentifier, request)
+}
+
+func (self *impl) UpdateClientAuthorizationContext(
+	ctx context.Context,
+	clientIdentifier interface{}, request *dto.ClientAuthorizationUpdateRequest) (err *AuthleteError) {
 	path := `/api/client/authorization/update/` + toString(clientIdentifier)
 
 	res := &dto.ApiResponse{}
-	err = self.callServicePostApi(path, request, res)
+	err = self.callServicePostApiContext(ctx, path, request, res)
 	return
 }
 
@@ -773,83 +935,149 @@ func (self *impl) RefreshClientSecretContext(
 
 func (self *impl) UpdateClientSecret(
 	clientIdentifier interface{}, clientSecret string) (res *dto.ClientSecretUpdateResponse, err *AuthleteError) {
+	return self.UpdateClientSecretContext(context.Background(), clientIdentifier, clientSecret)
+}
+
+func (self *impl) UpdateClientSecretContext(
+	ctx context.Context,
+	clientIdentifier interface{}, clientSecret string) (res *dto.ClientSecretUpdateResponse, err *AuthleteError) {
 	req := dto.ClientSecretUpdateRequest{}
 	req.ClientSecret = clientSecret
 
 	path := `/api/client/secret/update/` + toString(clientIdentifier)
 
 	res = &dto.ClientSecretUpdateResponse{}
-	err = self.callServicePostApi(path, &req, res)
+	err = self.callServicePostApiContext(ctx, path, &req, res)
 	return
 }
 
 func (self *impl) VerifyJose(
 	request *dto.JoseVerifyRequest) (res *dto.JoseVerifyResponse, err *AuthleteError) {
+	return self.VerifyJoseContext(context.Background(), request)
+}
+
+func (self *impl) VerifyJoseContext(
+	ctx context.Context,
+	request *dto.JoseVerifyRequest) (res *dto.JoseVerifyResponse, err *AuthleteError) {
 	res = &dto.JoseVerifyResponse{}
-	err = self.callServicePostApi(`/api/jose/verify`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/jose/verify`, request, res)
 	return
 }
 
 func (self *impl) BackchannelAuthentication(
 	request *dto.BackchannelAuthenticationRequest) (res *dto.BackchannelAuthenticationResponse, err *AuthleteError) {
+	return self.BackchannelAuthenticationContext(context.Background(), request)
+}
+
+func (self *impl) BackchannelAuthenticationContext(
+	ctx context.Context,
+	request *dto.BackchannelAuthenticationRequest) (res *dto.BackchannelAuthenticationResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/backchannel/authentication`, request, res)
 	return
 }
 
 func (self *impl) BackchannelAuthenticationIssue(
 	request *dto.BackchannelAuthenticationIssueRequest) (res *dto.BackchannelAuthenticationIssueResponse, err *AuthleteError) {
+	return self.BackchannelAuthenticationIssueContext(context.Background(), request)
+}
+
+func (self *impl) BackchannelAuthenticationIssueContext(
+	ctx context.Context,
+	request *dto.BackchannelAuthenticationIssueRequest) (res *dto.BackchannelAuthenticationIssueResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationIssueResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/issue`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/backchannel/authentication/issue`, request, res)
 	return
 }
 
 func (self *impl) BackchannelAuthenticationFail(
 	request *dto.BackchannelAuthenticationFailRequest) (res *dto.BackchannelAuthenticationFailResponse, err *AuthleteError) {
+	return self.BackchannelAuthenticationFailContext(context.Background(), request)
+}
+
+func (self *impl) BackchannelAuthenticationFailContext(
+	ctx context.Context,
+	request *dto.BackchannelAuthenticationFailRequest) (res *dto.BackchannelAuthenticationFailResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationFailResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/fail`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/backchannel/authentication/fail`, request, res)
 	return
 }
 
 func (self *impl) BackchannelAuthenticationComplete(
 	request *dto.BackchannelAuthenticationCompleteRequest) (res *dto.BackchannelAuthenticationCompleteResponse, err *AuthleteError) {
+	return self.BackchannelAuthenticationCompleteContext(context.Background(), request)
+}
+
+func (self *impl) BackchannelAuthenticationCompleteContext(
+	ctx context.Context,
+	request *dto.BackchannelAuthenticationCompleteRequest) (res *dto.BackchannelAuthenticationCompleteResponse, err *AuthleteError) {
 	res = &dto.BackchannelAuthenticationCompleteResponse{}
-	err = self.callServicePostApi(`/api/backchannel/authentication/complete`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/backchannel/authentication/complete`, request, res)
 	return
 }
 
 func (self *impl) DeviceAuthorization(
 	request *dto.DeviceAuthorizationRequest) (res *dto.DeviceAuthorizationResponse, err *AuthleteError) {
+	return self.DeviceAuthorizationContext(context.Background(), request)
+}
+
+func (self *impl) DeviceAuthorizationContext(
+	ctx context.Context,
+	request *dto.DeviceAuthorizationRequest) (res *dto.DeviceAuthorizationResponse, err *AuthleteError) {
 	res = &dto.DeviceAuthorizationResponse{}
-	err = self.callServicePostApi(`/api/device/authorization`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/device/authorization`, request, res)
 	return
 }
 
 func (self *impl) DeviceComplete(
 	request *dto.DeviceCompleteRequest) (res *dto.DeviceCompleteResponse, err *AuthleteError) {
+	return self.DeviceCompleteContext(context.Background(), request)
+}
+
+func (self *impl) DeviceCompleteContext(
+	ctx context.Context,
+	request *dto.DeviceCompleteRequest) (res *dto.DeviceCompleteResponse, err *AuthleteError) {
 	res = &dto.DeviceCompleteResponse{}
-	err = self.callServicePostApi(`/api/device/complete`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/device/complete`, request, res)
 	return
 }
 
 func (self *impl) DeviceVerification(
 	request *dto.DeviceVerificationRequest) (res *dto.DeviceVerificationResponse, err *AuthleteError) {
+	return self.DeviceVerificationContext(context.Background(), request)
+}
+
+func (self *impl) DeviceVerificationContext(
+	ctx context.Context,
+	request *dto.DeviceVerificationRequest) (res *dto.DeviceVerificationResponse, err *AuthleteError) {
 	res = &dto.DeviceVerificationResponse{}
-	err = self.callServicePostApi(`/api/device/verification`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/device/verification`, request, res)
 	return
 }
 
 func (self *impl) PushAuthorizationRequest(
 	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
+	return self.PushAuthorizationRequestContext(context.Background(), request)
+}
+
+func (self *impl) PushAuthorizationRequestContext(
+	ctx context.Context,
+	request *dto.PushedAuthReqRequest) (res *dto.PushedAuthReqResponse, err *AuthleteError) {
 	res = &dto.PushedAuthReqResponse{}
-	err = self.callServicePostApi(`/api/pushed_auth_req`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/pushed_auth_req`, request, res)
 	return
 }
 
 func (self *impl) HskCreate(
 	request *dto.HskCreateRequest) (res *dto.HskResponse, err *AuthleteError) {
+	return self.HskCreateContext(context.Background(), request)
+}
+
+func (self *impl) HskCreateContext(
+	ctx context.Context,
+	request *dto.HskCreateRequest) (res *dto.HskResponse, err *AuthleteError) {
 	res = &dto.HskResponse{}
-	err = self.callServicePostApi(`/api/hsk/create`, request, res)
+	err = self.callServicePostApiContext(ctx, `/api/hsk/create`, request, res)
 	return
 }
 
